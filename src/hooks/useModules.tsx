@@ -29,6 +29,19 @@ function useModules() {
     }
   }
 
+  const removeModule = (item:tItem) => {
+    console.log('remove', item.name)
+    if (item.type === 'thruster') {
+      modules.methods.setThruster(modules.thruster.slice(0, modules.thruster.length - 1))
+    } else if (item.type === 'modules') {
+      const index = modules.modules.findIndex(m => m.name === item.name)
+      if(index === -1) return
+      const copiedModules = [...modules.modules]
+      copiedModules.splice(index, 1)
+      modules.methods.setModules(copiedModules)
+    }
+  }
+
   const includes = (item:tItem) => {
     if(item.type === 'head') return modules.head.name === item.name
     else if (item.type === 'engine') return modules.engine.name === item.name
@@ -42,6 +55,7 @@ function useModules() {
     thruster: modules.thruster,
     modules: modules.modules,
     addModule,
+    removeModule,
     includes
   }
 
