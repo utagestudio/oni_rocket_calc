@@ -1,0 +1,90 @@
+[
+  {
+    "title": "HEAD",
+    "items": [
+      {
+        "name": "Command Capsule",
+        "image": "img_command_capsule.webp",
+        "image2x": "img_command_capsule@2x.webp",
+        "multiple": false
+      },
+      {
+        "name": "Robo-Pilot Capsule",
+        "image": "img_robo_pilot_capsule.webp",
+        "image2x": "img_robo_pilot_capsule@2x.webp",
+        "multiple": false
+      }
+    ]
+  },
+  {
+    "title": "ENGINE",
+    "items": [
+      {
+        "name": "Steam Engine",
+        "image": "img_steam_engine.webp",
+        "image2x": "img_steam_engine@2x.webp",
+        "multiple": false
+      },
+      {
+        "name": "Petroleum Engine",
+        "image": "img_petroleum_engine.webp",
+        "image2x": "img_petroleum_engine@2x.webp",
+        "multiple": false
+      },
+      {
+        "name": "Hydrogen Engine",
+        "image": "img_hydrogen_engine.webp",
+        "image2x": "img_hydrogen_engine@2x.webp",
+        "multiple": false
+      },
+      {
+        "name": "Solid Fuel Thruster",
+        "image": "img_thruster.webp",
+        "image2x": "img_thruster@2x.webp",
+        "options": true,
+        "multiple": true
+      }
+    ]
+  },
+  {
+    "title": "MODULES",
+    "items": [
+      {
+        "name": "Research Module",
+        "image": "img_research_module.webp",
+        "image2x": "img_research_module@2x.webp",
+        "multiple": true
+      },
+      {
+        "name": "Cargo Bay",
+        "image": "img_cargo_bay.webp",
+        "image2x": "img_cargo_bay@2x.webp",
+        "multiple": true
+      },
+      {
+        "name": "Hydrogen Engine",
+        "image": "img_biological_cargo_bay.webp",
+        "image2x": "img_biological_cargo_bay@2x.webp",
+        "multiple": true
+      },
+      {
+        "name": "Gas Cargo Canister",
+        "image": "img_gas_cargo_canister.webp",
+        "image2x": "img_gas_cargo_canister@2x.webp",
+        "multiple": true
+      },
+      {
+        "name": "Liquid Cargo Tank",
+        "image": "img_liquid_cargo_tank.webp",
+        "image2x": "img_liquid_cargo_tank@2x.webp",
+        "multiple": true
+      },
+      {
+        "name": "Sight-Seeing Module",
+        "image": "img_sight_seeing_module.webp",
+        "image2x": "img_sight_seeing_module@2x.webp",
+        "multiple": true
+      }
+    ]
+  }
+]
