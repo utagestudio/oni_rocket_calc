@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {Barriecito} from "next/font/google";
 import "./globals.sass";
+import ModulesProvider from '@/provider/ModulesProvider'
 
 const barriecito = Barriecito({
   variable: "--font-barriecito",
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={barriecito.variable}>
-    {children}
+      <ModulesProvider>
+        {children}
+      </ModulesProvider>
     </body>
     </html>
   );

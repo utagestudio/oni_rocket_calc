@@ -2,7 +2,6 @@
   @at-root
     .frame
       width: 100%
-      background-color: rgba(255,255,255,.1)
       border-radius: 8px
 
       display: flex
@@ -11,6 +10,12 @@
       align-items: center
       box-sizing: border-box
       padding: 4px
+      cursor: pointer
+      transition: background-color .1s ease-in-out
+      &.selected
+        background-color: rgba(255,255,255,.1)
+      &:hover
+        background-color: rgba(255,255,255,.3)
     .image
       flex: 0 0 65px
     .name

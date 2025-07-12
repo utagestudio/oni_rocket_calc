@@ -3,12 +3,14 @@
     "title": "HEAD",
     "items": [
       {
+        "type": "head",
         "name": "Command Capsule",
         "image": "img_command_capsule.webp",
         "image2x": "img_command_capsule@2x.webp",
         "multiple": false
       },
       {
+        "type": "head",
         "name": "Robo-Pilot Capsule",
         "image": "img_robo_pilot_capsule.webp",
         "image2x": "img_robo_pilot_capsule@2x.webp",
@@ -20,24 +22,28 @@
     "title": "ENGINE",
     "items": [
       {
+        "type": "engine",
         "name": "Steam Engine",
         "image": "img_steam_engine.webp",
         "image2x": "img_steam_engine@2x.webp",
         "multiple": false
       },
       {
+        "type": "engine",
         "name": "Petroleum Engine",
         "image": "img_petroleum_engine.webp",
         "image2x": "img_petroleum_engine@2x.webp",
         "multiple": false
       },
       {
+        "type": "engine",
         "name": "Hydrogen Engine",
         "image": "img_hydrogen_engine.webp",
         "image2x": "img_hydrogen_engine@2x.webp",
         "multiple": false
       },
       {
+        "type": "thruster",
         "name": "Solid Fuel Thruster",
         "image": "img_thruster.webp",
         "image2x": "img_thruster@2x.webp",
@@ -50,36 +56,42 @@
     "title": "MODULES",
     "items": [
       {
+        "type": "modules",
         "name": "Research Module",
         "image": "img_research_module.webp",
         "image2x": "img_research_module@2x.webp",
         "multiple": true
       },
       {
+        "type": "modules",
         "name": "Cargo Bay",
         "image": "img_cargo_bay.webp",
         "image2x": "img_cargo_bay@2x.webp",
         "multiple": true
       },
       {
-        "name": "Hydrogen Engine",
+        "type": "modules",
+        "name": "Biological Cargo Bay",
         "image": "img_biological_cargo_bay.webp",
         "image2x": "img_biological_cargo_bay@2x.webp",
         "multiple": true
       },
       {
+        "type": "modules",
         "name": "Gas Cargo Canister",
         "image": "img_gas_cargo_canister.webp",
         "image2x": "img_gas_cargo_canister@2x.webp",
         "multiple": true
       },
       {
+        "type": "modules",
         "name": "Liquid Cargo Tank",
         "image": "img_liquid_cargo_tank.webp",
         "image2x": "img_liquid_cargo_tank@2x.webp",
         "multiple": true
       },
       {
+        "type": "modules",
         "name": "Sight-Seeing Module",
         "image": "img_sight_seeing_module.webp",
         "image2x": "img_sight_seeing_module@2x.webp",
