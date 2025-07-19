@@ -5,6 +5,7 @@
       {
         "type": "head",
         "name": "Command Capsule",
+        "selected": true,
         "image": "img_command_capsule.webp",
         "image2x": "img_command_capsule@2x.webp",
         "multiple": false
@@ -24,6 +25,7 @@
       {
         "type": "engine",
         "name": "Steam Engine",
+        "selected": true,
         "image": "img_steam_engine.webp",
         "image2x": "img_steam_engine@2x.webp",
         "multiple": false
@@ -58,6 +60,7 @@
       {
         "type": "modules",
         "name": "Research Module",
+        "selected": true,
         "image": "img_research_module.webp",
         "image2x": "img_research_module@2x.webp",
         "multiple": true

@@ -6,7 +6,7 @@ function useModules() {
   const modules = useContext<tModuleContext>(ModuleContext)
 
   const addModule = (item:tItem) => {
-    console.log('add', item.name)
+    console.log('add', item.name, item.type)
     let foundItem:tItem | undefined = undefined
     for(let i = 0; i < data.length; i++) {
       const group = data[i]
