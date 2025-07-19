@@ -1,0 +1,61 @@
+.Distance
+  @at-root
+    .Distance_wrap
+      @at-root
+        .Distance_meter
+          padding: 0 0 0 40px
+          position: relative
+          &::before
+            content: ''
+            display: block
+            position: absolute
+            top: 16px
+            width: 4px
+            height: calc( 100% - 32px)
+            z-index: 10
+            background-color: rgba(white, .3)
+
+
+          @at-root
+            .Distance_list
+              list-style: none
+              margin: 0
+              padding-right: 10px
+              display: flex
+              flex-direction: column
+              position: relative
+              z-index: 100
+              @at-root
+                .Distance_item
+                  display: flex
+                  align-items: center
+                  justify-content: space-between
+                  gap: 16px
+                  color: white
+                  font-size: 12px
+                  height: 32px
+                  cursor: pointer
+                  @at-root
+                    .Distance_dot
+                      background-color: rgba(white, .5)
+                      width: 4px
+                      aspect-ratio: 1
+                      background-color: white
+                      border-radius: 50%
+                    .Distance_value
+            .Distance_current
+              position: absolute
+              bottom: 0
+              left: 0
+              width: 100%
+              padding-left: 1px
+              background-color: rgba(#F44A47, .7)
+              border-radius: 8px
+              display: flex
+              align-items: center
+              transition: bottom .1s ease
+
+        .Distance_destination
+          padding-left: 20px
+        .Distance_source
+          padding-left: 20px
