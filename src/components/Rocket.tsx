@@ -12,10 +12,10 @@ function Rocket({}: Props) {
       <div className="Rocket_wrap">
         <ModuleImage module={modules.head} />
         { modules.modules.length > 0 && <>
-          { modules.modules.map(m => {return <ModuleImage module={m} />}) }
+          { modules.modules.map(((m, i) => {return <ModuleImage module={m} key={i} />})) }
         </>}
         { modules.thruster.length > 0 && <>
-          { modules.thruster.map(m => {return <ModuleImage module={m} />}) }
+          { modules.thruster.map(((m, i) => {return <ModuleImage module={m} key={i}/>})) }
         </>}
         <ModuleImage module={modules.engine} />
       </div>
