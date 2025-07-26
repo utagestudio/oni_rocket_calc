@@ -10,14 +10,16 @@ function Rocket({}: Props) {
   return <>
     <div className="Rocket">
       <div className="Rocket_wrap">
-        <ModuleImage module={modules.head} />
-        { modules.modules.length > 0 && <>
-          { modules.modules.map(((m, i) => {return <ModuleImage module={m} key={i} />})) }
-        </>}
-        { modules.thruster.length > 0 && <>
-          { modules.thruster.map(((m, i) => {return <ModuleImage module={m} key={i}/>})) }
-        </>}
-        <ModuleImage module={modules.engine} />
+        <ul className="Rocket_modules">
+          <li className="Rocket_module"><ModuleImage module={modules.head} /></li>
+          { modules.modules.length > 0 && <>
+            { modules.modules.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+          </>}
+          { modules.thruster.length > 0 && <>
+            { modules.thruster.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+          </>}
+          <li className="Rocket_module"><ModuleImage module={modules.engine} /></li>
+        </ul>
       </div>
     </div>
   </>
