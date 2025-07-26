@@ -8,7 +8,7 @@ type Props = {
 }
 
 function DistanceProvider({children}: React.PropsWithChildren<Props>) {
-  const [distance, setDistance] = useState<number>(0)
+  const [distance, setDistance] = useState<number>(10000)
 
   return <>
     <DistanceContext.Provider value={{distance, methods: {setDistance}}}>

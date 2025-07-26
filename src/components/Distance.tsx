@@ -2,7 +2,6 @@
 import './Distance.sass'
 import {DistanceContext} from '@/provider/DistanceProvider'
 import {MouseEvent, useCallback, useContext} from 'react'
-import {set} from 'immutable'
 type Props = {}
 
 const NUM_DISTANCE = 18
@@ -11,7 +10,7 @@ function Distance({}: Props) {
   const {distance, methods: {setDistance}} = useContext<tDistanceContext>(DistanceContext)
 
   const onClickDistance = useCallback((e:MouseEvent<HTMLLIElement>) =>{
-    const value = parseInt(e.currentTarget.dataset.distance as string) || 0
+    const value = parseInt(e.currentTarget.dataset.distance as string) || 10000
     setDistance(value)
   }, [])
 
