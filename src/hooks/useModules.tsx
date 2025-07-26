@@ -6,7 +6,6 @@ function useModules() {
   const modules = useContext<tModuleContext>(ModuleContext)
 
   const addModule = (item:tItem) => {
-    console.log('add', item.name, item.type)
     let foundItem:tItem | undefined = undefined
     for(let i = 0; i < data.length; i++) {
       const group = data[i]
@@ -24,13 +23,14 @@ function useModules() {
         modules.methods.setThruster(modules.thruster.concat(foundItem))
         break
       case 'modules':
-        modules.methods.setModules(modules.modules.concat(foundItem))
+        const new_modules = modules.modules.concat(foundItem)
+        new_modules.sort((a, b) => (a.order || 0) - (b.order || 0))
+        modules.methods.setModules(new_modules)
         break
     }
   }
 
   const removeModule = (item:tItem) => {
-    console.log('remove', item.name)
     if (item.type === 'thruster') {
       modules.methods.setThruster(modules.thruster.slice(0, modules.thruster.length - 1))
     } else if (item.type === 'modules') {
@@ -43,7 +43,6 @@ function useModules() {
   }
 
   const reset = () => {
-    console.log("reset")
     modules.methods.setThruster([])
     modules.methods.setModules([])
   }
