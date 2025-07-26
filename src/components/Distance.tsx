@@ -5,7 +5,7 @@ import {MouseEvent, useCallback, useContext} from 'react'
 import {set} from 'immutable'
 type Props = {}
 
-const NUM_DISTANCE = 19
+const NUM_DISTANCE = 18
 
 function Distance({}: Props) {
   const {distance, methods: {setDistance}} = useContext<tDistanceContext>(DistanceContext)
@@ -17,7 +17,7 @@ function Distance({}: Props) {
 
   const currentPosition = useCallback(() => {
     return {
-      bottom: `${distance/10000 * 32}px`,
+      bottom: `${((distance/10000) - 1) * 32}px`,
     }
   }, [distance])
 
@@ -28,7 +28,7 @@ function Distance({}: Props) {
         <div className="Distance_meter">
           <ul className="Distance_list">
             {Array.from({length: NUM_DISTANCE}, (_, i) => {
-              const distance_num = (NUM_DISTANCE - i - 1) * 10000
+              const distance_num = (NUM_DISTANCE - i) * 10000
               return (
                 <li className="Distance_item" onClick={onClickDistance} data-distance={distance_num} key={i}>
                   <div className="Distance_dot"></div>
