@@ -10,7 +10,7 @@
   display: grid
   grid-template-columns: 800px auto 1fr
   grid-template-rows: auto auto auto
-  grid-template-areas: "title title copyright" "content distance rocket" "content distance rocket"
+  grid-template-areas: "title reset copyright" "content distance rocket" "content distance rocket"
   gap: 20px 24px
   box-sizing: border-box
   padding: 48px 48px 0 48px
@@ -30,6 +30,8 @@
   line-height: 100%
   color: #F8F8F8
 
+.reset
+  grid-area: reset
 .copyright
   grid-area: copyright
 .content

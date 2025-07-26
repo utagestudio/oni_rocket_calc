@@ -4,12 +4,14 @@ import Copyright from '@/components/Copyright'
 import ModuleSelector from '@/components/ModuleSelector'
 import Distance from '@/components/Distance'
 import Rocket from '@/components/Rocket'
+import ResetButton from '@/components/ResetButton'
 
 export default function Home() {
   return <>
     <div className={styles.page}>
       <div className={styles.main}>
         <div className={styles.title}>Rocket Calculator</div>
+        <div className={styles.reset}><ResetButton /></div>
         <div className={styles.copyright}><Copyright /></div>
         <div className={styles.content}>
           <ModuleSelector />

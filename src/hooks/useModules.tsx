@@ -42,6 +42,12 @@ function useModules() {
     }
   }
 
+  const reset = () => {
+    console.log("reset")
+    modules.methods.setThruster([])
+    modules.methods.setModules([])
+  }
+
   const includes = (item:tItem) => {
     if(item.type === 'head') return modules.head.name === item.name
     else if (item.type === 'engine') return modules.engine.name === item.name
@@ -56,6 +62,7 @@ function useModules() {
     modules: modules.modules,
     addModule,
     removeModule,
+    reset,
     includes
   }
 
