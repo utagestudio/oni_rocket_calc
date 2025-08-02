@@ -1,0 +1,32 @@
+.Results
+  @at-root
+    .Results_wrap
+      background-color: rgba(white, .6)
+      border-radius: 8px
+      padding: 16px
+      display: flex
+      gap: 16px
+      @at-root
+        .Results_selected
+          background-color: white
+          padding: 16px
+          border-radius: 8px
+          display: flex
+          flex-direction: column
+          gap: 16px
+
+        .Results_fuel
+        .Results_oxidizer
+        .Results_thruster
+        .Results_title
+          border-left: 4px solid #F14846
+          padding-left: 8px
+          font-family: var(--font-barriecito)
+          font-style: normal
+          font-weight: 700
+          font-size: 16px
+          line-height: 100%
+          letter-spacing: 0.1em
+          @at-root
+            .Results_total
+              font-family: sans-serif

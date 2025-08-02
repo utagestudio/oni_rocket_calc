@@ -5,6 +5,7 @@ import ModuleSelector from '@/components/ModuleSelector'
 import Distance from '@/components/Distance'
 import Rocket from '@/components/Rocket'
 import ResetButton from '@/components/ResetButton'
+import Results from '@/components/Results/Results'
 
 export default function Home() {
   return <>
@@ -19,6 +20,7 @@ export default function Home() {
           </div>
           <div className={styles.distance}><Distance /></div>
           <div className={styles.rocket}><Rocket /></div>
+          <div className={styles.results}><Results /></div>
         </div>
       </div>
       <div className={styles.footer}><Footer /></div>
