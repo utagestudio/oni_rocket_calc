@@ -1,0 +1,58 @@
+.OxidizerTank
+  padding: 0 16px
+  display: flex
+  align-items: center
+  gap: 16px
+  @at-root
+    .OxidizerTank_selector
+      list-style: none
+      margin: 0
+      padding: 0
+      display: flex
+      flex-direction: column
+      gap: 4px
+      @at-root
+        .OxidizerTank_type
+          user-select: none
+          cursor: pointer
+          display: flex
+          align-items: center
+          padding: 4px 8px
+          gap: 12px
+          font-family: var(--font-barriecito)
+          font-style: normal
+          font-weight: 700
+          font-size: 12px
+          line-height: 1
+          &.-selected
+            background-color: #E3D09A
+            border-radius: 8px
+          @at-root
+            .OxidizerTank_typeImg
+              //
+    .OxidizerTank_list
+      list-style: none
+      margin: 0
+      padding: 0
+      display: flex
+      gap: 16px
+      @at-root
+        .OxidizerTank_item
+          display: flex
+          flex-direction: column
+          align-items: center
+          gap: 15px
+          @at-root
+            .OxidizerTank_image
+              width: 60px
+              font-size: 0
+              line-height: 0
+              @at-root
+                .OxidizerTank_img
+                  width: 100%
+            .OxidizerTank_capacity
+              font-weight: 700
+              font-size: 12px
+              line-height: 1
+              letter-spacing: 0.1em
+

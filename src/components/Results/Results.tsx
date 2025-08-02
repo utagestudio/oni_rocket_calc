@@ -25,6 +25,7 @@ function Results({}: Props) {
         <div className="Results_cell -oxidizer">
           <div className="Results_title">OXIDIZER TANKS<div className="Results_total">REQUIRED: {oxidizer_required.toLocaleString()}kg</div></div>
           <div className="Results_content">
+            <OxidizerTank required={oxidizer_required} />
           </div>
         </div>
         <div className="Results_cell -thruster">
