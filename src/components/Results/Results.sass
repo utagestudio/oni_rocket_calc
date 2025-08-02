@@ -7,17 +7,22 @@
       display: flex
       gap: 16px
       @at-root
-        .Results_selected
-          background-color: white
-          padding: 16px
-          border-radius: 8px
+        .Results_cell
           display: flex
           flex-direction: column
           gap: 16px
 
-        .Results_fuel
-        .Results_oxidizer
-        .Results_thruster
+          &.-selected
+            background-color: white
+            padding: 16px
+            border-radius: 8px
+            display: flex
+            flex-direction: column
+            gap: 16px
+
+          &.-fuel
+          &.-oxidizer
+          &.-thruster
         .Results_title
           border-left: 4px solid #F14846
           padding-left: 8px
@@ -30,3 +35,4 @@
           @at-root
             .Results_total
               font-family: sans-serif
+              font-size: 12px
