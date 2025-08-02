@@ -29,7 +29,7 @@ function OxidizerTank({required}: Props) {
         {Array.from({length: requiredTanks}, (_, i) => {
           const capacity = requiredTanks === i + 1 ? (required % 2700) : 2700
 
-          return <li className="OxidizerTank_item">
+          return <li className="OxidizerTank_item" key={i}>
             <div className="OxidizerTank_image"><img className="OxidizerTank_img" src={`/assets/images/img_${oxidizerType}_oxidizer_tank.webp`}
                                                  srcSet={`/assets/images/img_${oxidizerType}_oxidizer_tank.webp 1x, /assets/images/img_${oxidizerType}_oxidizer_tank@2x.webp 2x`}
                                                  alt=""/></div>
