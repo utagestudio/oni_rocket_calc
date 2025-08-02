@@ -1,0 +1,30 @@
+.ForThruster
+  @at-root
+  .ForThruster_list
+    list-style: none
+    margin: 0
+    padding: 0
+    display: flex
+    flex-direction: column
+    gap: 4px
+    @at-root
+      .ForThruster_item
+        display: flex
+        align-items: center
+        padding: 4px 8px
+        gap: 12px
+        @at-root
+          .ForThruster_image
+            @at-root
+              .ForThruster_img
+          .ForThruster_name
+            flex: 1 1 1px
+            font-family: var(--font-barriecito)
+            font-style: normal
+            font-weight: 700
+            font-size: 12px
+            line-height: 1
+          .ForThruster_required
+            font-weight: 700
+            font-size: 12px
+            line-height: 1

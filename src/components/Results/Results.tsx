@@ -1,10 +1,15 @@
+"use client"
+
 import './Results.sass'
 import SelectedModules from '@/components/Results/SelectedModules'
 import FuelTank from '@/components/Results/FuelTank'
 import OxidizerTank from '@/components/Results/OxidizerTank'
+import useModules from '@/hooks/useModules'
+import ForThruster from '@/components/Results/ForThruster'
 type Props = {}
 
 function Results({}: Props) {
+  const modules = useModules()
 
   const fuel_required = 1234
   const oxidizer_required = 1234
@@ -28,10 +33,14 @@ function Results({}: Props) {
             <OxidizerTank required={oxidizer_required} />
           </div>
         </div>
-        <div className="Results_cell -thruster">
-          <div className="Results_title">For THRUSTER</div>
-          <div className="Results_content"></div>
-        </div>
+        {modules.thruster.length > 0 && <>
+          <div className="Results_cell -thruster">
+            <div className="Results_title">For THRUSTER</div>
+            <div className="Results_content">
+              <ForThruster />
+            </div>
+          </div>
+        </>}
       </div>
     </div>
   </>
