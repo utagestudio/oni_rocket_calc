@@ -10,7 +10,7 @@ function ModuleSelector({}: Props) {
   const modules = useModules()
 
   useEffect(() => {
-    data && data.map((group) => {
+    data && data.map((group:tGroup) => {
       group.items.map((item) => {
         item.selected && modules.addModule(item)
       })
@@ -19,7 +19,10 @@ function ModuleSelector({}: Props) {
 
   return <>
     <div className={styles.ModuleSelector}>
-      {data && data.map((group) => <Group group={group} key={group.title} />)}
+      {data && data.map((group:tGroup) => {
+        if( group.isUnSelectable ) return <></>
+        return <Group group={group} key={group.title}/>
+      })}
     </div>
   </>
 }

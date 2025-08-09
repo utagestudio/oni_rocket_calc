@@ -107,5 +107,38 @@
         "multiple": true
       }
     ]
+  },
+  {
+    "title": "FUEL",
+    "isUnSelectable": true,
+    "items": [
+      {
+        "type": "fuel",
+        "name": "Fuel Tank",
+        "image": "img_fuel_tank.webp",
+        "image2x": "img_fuel_tank@2x.webp",
+        "multiple": true
+      }
+    ]
+  },
+  {
+    "title": "OXIDIZER",
+    "isUnSelectable": true,
+    "items": [
+      {
+        "type": "oxidizer",
+        "name": "Solid Oxidizer Tank",
+        "image": "img_solid_oxidizer_tank.webp",
+        "image2x": "img_solid_oxidizer_tank@2x.webp",
+        "multiple": true
+      },
+      {
+        "type": "oxidizer",
+        "name": "Liquid Oxidizer Tank",
+        "image": "img_liquid_oxidizer_tank.webp",
+        "image2x": "img_liquid_oxidizer_tank@2x.webp",
+        "multiple": true
+      }
+    ]
   }
 ]
