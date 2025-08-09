@@ -41,7 +41,7 @@ function useModules() {
         }
         break
       case 'thruster':
-        modules.methods.setThruster(modules.thruster.concat(foundItem))
+        modules.methods.setThruster(preValue => preValue.concat(foundItem))
         break
       case 'modules':
         const new_modules = modules.modules.concat(foundItem)
@@ -49,27 +49,29 @@ function useModules() {
         modules.methods.setModules(new_modules)
         break
       case 'fuel':
-        modules.methods.setFuelTanks(modules.fuelTanks.concat(foundItem))
+        modules.methods.setFuelTanks(preValue => preValue.concat(foundItem))
         break
       case 'oxidizer':
-        modules.methods.setOxidizerTanks(modules.oxidizerTanks.concat(foundItem))
+        modules.methods.setOxidizerTanks(preValue => preValue.concat(foundItem))
         break
     }
   }
 
   const removeModule = (item:tItem) => {
     if (item.type === 'thruster') {
-      modules.methods.setThruster(modules.thruster.slice(0, modules.thruster.length - 1))
+      modules.methods.setThruster(preValue => preValue.slice(0, modules.thruster.length - 1))
     } else if (item.type === 'fuel') {
-      modules.methods.setFuelTanks(modules.fuelTanks.slice(0, modules.fuelTanks.length - 1))
+      modules.methods.setFuelTanks(preValue => preValue.slice(0, modules.fuelTanks.length - 1))
     } else if (item.type === 'oxidizer') {
-      modules.methods.setOxidizerTanks(modules.oxidizerTanks.slice(0, modules.oxidizerTanks.length - 1))
+      modules.methods.setOxidizerTanks(preValue => preValue.slice(0, modules.oxidizerTanks.length - 1))
     } else if (item.type === 'modules') {
-      const index = modules.modules.findIndex(m => m.name === item.name)
-      if(index === -1) return
-      const copiedModules = [...modules.modules]
-      copiedModules.splice(index, 1)
-      modules.methods.setModules(copiedModules)
+      modules.methods.setModules(preValue => {
+        const index = preValue.findIndex(m => m.name === item.name)
+        if(index === -1) return preValue
+        const copiedModules = [...preValue]
+        copiedModules.splice(index, 1)
+        return copiedModules
+      })
     }
   }
 
