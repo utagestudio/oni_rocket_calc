@@ -15,6 +15,12 @@ function Rocket({}: Props) {
           { modules.modules.length > 0 && <>
             { modules.modules.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
           </>}
+          { modules.fuelTanks.length > 0 && <>
+            { modules.fuelTanks.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+          </>}
+          { modules.oxidizerTanks.length > 0 && <>
+            { modules.oxidizerTanks.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+          </>}
           { modules.thruster.length > 0 && <>
             { modules.thruster.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
           </>}
