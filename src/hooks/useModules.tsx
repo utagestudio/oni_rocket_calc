@@ -25,12 +25,8 @@ function useModules() {
       case 'engine':
         modules.methods.setEngine(foundItem)
         if(foundItem.name === "Steam Engine"){
-          [...modules.fuelTanks].forEach((tank) => {
-            removeModule(tank)
-          });
-          [...modules.oxidizerTanks].forEach((tank) => {
-            removeModule(tank)
-          })
+          modules.methods.setFuelTanks([])
+          modules.methods.setOxidizerTanks([])
         } else {
           if( modules.fuelTanks.length === 0 ){
             addModule(findItem("Fuel Tank") as tItem)
