@@ -36,7 +36,7 @@ function useModules() {
             addModule(findItem("Fuel Tank") as tItem)
           }
           if( modules.oxidizerTanks.length === 0 ){
-            addModule(findItem("Solid Oxidizer Tank") as tItem)
+            addOxidizerTank()
           }
         }
         break
@@ -54,6 +54,22 @@ function useModules() {
       case 'oxidizer':
         modules.methods.setOxidizerTanks(preValue => preValue.concat(foundItem))
         break
+    }
+  }
+
+  const addOxidizerTank = () => {
+    if( modules.oxidizerType === 'solid') {
+      addModule(findItem("Solid Oxidizer Tank") as tItem)
+    } else {
+      addModule(findItem("Liquid Oxidizer Tank") as tItem)
+    }
+  }
+
+  const changeOxidizerTankByType = () => {
+    const length = modules.oxidizerTanks.length
+    modules.methods.setOxidizerTanks([])
+    for(let i = 0; i < length; i++) {
+      addOxidizerTank()
     }
   }
 
@@ -99,6 +115,8 @@ function useModules() {
     oxidizerType: modules.oxidizerType,
     addModule,
     removeModule,
+    addOxidizerTank,
+    changeOxidizerTankByType,
     reset,
     includes,
     setOxidizerType: modules.methods.setOxidizerType,
