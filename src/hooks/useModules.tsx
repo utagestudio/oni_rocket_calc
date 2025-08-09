@@ -5,13 +5,19 @@ import data from '@/contents/data.json'
 function useModules() {
   const modules = useContext<tModuleContext>(ModuleContext)
 
-  const addModule = (item:tItem) => {
+  const findItem = (itemName:string) => {
     let foundItem:tItem | undefined = undefined
     for(let i = 0; i < data.length; i++) {
       const group = data[i]
-      foundItem = group.items.find((i) => i.name === item.name)
+      foundItem = group.items.find((i) => i.name === itemName)
       if(foundItem) break
     }
+    return foundItem
+  }
+
+  const addModule = (item:tItem) => {
+    let foundItem:tItem | undefined = undefined
+    foundItem = findItem(item.name)
     switch(foundItem?.type){
       case 'head':
         modules.methods.setHead(foundItem)
