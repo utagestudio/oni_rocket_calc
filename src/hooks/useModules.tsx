@@ -94,10 +94,12 @@ function useModules() {
     modules: modules.modules,
     fuelTanks: modules.fuelTanks,
     oxidizerTanks: modules.oxidizerTanks,
+    oxidizerType: modules.oxidizerType,
     addModule,
     removeModule,
     reset,
-    includes
+    includes,
+    setOxidizerType: modules.methods.setOxidizerType,
   }
 
 }

@@ -8,6 +8,7 @@ type tModuleState = {
 }
 
 type tModuleContext = tModuleState & {
+  oxidizerType: string
   methods: {
     setHead:  React.Dispatch<React.SetStateAction<tItem>>
     setEngine:   React.Dispatch<React.SetStateAction<tItem>>
@@ -15,5 +16,6 @@ type tModuleContext = tModuleState & {
     setModules:  React.Dispatch<React.SetStateAction<tItem[]>>
     setFuelTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
     setOxidizerTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
+    setOxidizerType: React.Dispatch<React.SetStateAction<string>>
   }
 }

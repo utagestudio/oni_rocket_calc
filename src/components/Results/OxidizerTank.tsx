@@ -1,13 +1,14 @@
 "use client"
 import './OxidizerTank.sass'
-import {useState} from 'react'
+import useModules from '@/hooks/useModules'
 type Props = {
   required: number
 }
 
 function OxidizerTank({required}: Props) {
   const requiredTanks = Math.ceil(required / 2700)
-  const [oxidizerType, setOxidizerType] = useState<string>('solid')
+  const {oxidizerType, setOxidizerType} = useModules()
+
 
   return <>
     <div className="OxidizerTank">
