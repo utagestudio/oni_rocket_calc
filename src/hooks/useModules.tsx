@@ -27,6 +27,12 @@ function useModules() {
         new_modules.sort((a, b) => (a.order || 0) - (b.order || 0))
         modules.methods.setModules(new_modules)
         break
+      case 'fuel':
+        modules.methods.setFuelTanks(modules.fuelTanks.concat(foundItem))
+        break
+      case 'oxidizer':
+        modules.methods.setOxidizerTanks(modules.oxidizerTanks.concat(foundItem))
+        break
     }
   }
 
