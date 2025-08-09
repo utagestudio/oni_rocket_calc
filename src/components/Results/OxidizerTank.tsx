@@ -8,11 +8,15 @@ type Props = {
 
 function OxidizerTank({required}: Props) {
   const requiredTanks = Math.ceil(required / 2700)
-  const {oxidizerType, setOxidizerType, changeOxidizerTankByType} = useModules()
+  const {oxidizerType, setOxidizerType, changeOxidizerTankByType, setNumberOfOxidizerTank} = useModules()
 
   useEffect(() => {
     changeOxidizerTankByType()
   }, [oxidizerType]);
+
+    useEffect(() => {
+      setNumberOfOxidizerTank(requiredTanks)
+    }, [requiredTanks]);
 
 
   return <>

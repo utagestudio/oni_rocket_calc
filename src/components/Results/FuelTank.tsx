@@ -1,10 +1,18 @@
 import './FuelTank.sass'
+import {useEffect} from 'react'
+import useModules from '@/hooks/useModules'
 type Props = {
   required: number
 }
 
 function FuelTank({required}: Props) {
   const requiredTanks = Math.ceil(required / 900)
+  const {setNumberOfFuelTank} = useModules()
+
+  useEffect(() => {
+    setNumberOfFuelTank(requiredTanks)
+  }, [requiredTanks]);
+
 
   return <>
     <div className="FuelTank">

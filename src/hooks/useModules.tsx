@@ -57,6 +57,30 @@ function useModules() {
     }
   }
 
+  const setNumberOfFuelTank = (num:number) => {
+    if(modules.engine.name === "Steam Engine") return
+    const tanks = [] as tItem[]
+    for(let i = 0; i < num; i++) {
+      const tank = findItem("Fuel Tank")
+      if(tank) tanks.push(tank)
+    }
+    modules.methods.setFuelTanks(tanks)
+  }
+  const setNumberOfOxidizerTank = (num:number) => {
+    if(modules.engine.name === "Steam Engine") return
+    const tanks = [] as tItem[]
+    for(let i = 0; i < num; i++) {
+      let tank: tItem | undefined = undefined
+      if( modules.oxidizerType === 'solid') {
+        tank = findItem("Solid Oxidizer Tank") as tItem
+      } else {
+        tank = findItem("Liquid Oxidizer Tank") as tItem
+      }
+      if(tank) tanks.push(tank)
+    }
+    modules.methods.setOxidizerTanks(tanks)
+  }
+
   const addOxidizerTank = () => {
     if( modules.oxidizerType === 'solid') {
       addModule(findItem("Solid Oxidizer Tank") as tItem)
@@ -117,6 +141,8 @@ function useModules() {
     removeModule,
     addOxidizerTank,
     changeOxidizerTankByType,
+    setNumberOfFuelTank,
+    setNumberOfOxidizerTank,
     reset,
     includes,
     setOxidizerType: modules.methods.setOxidizerType,
