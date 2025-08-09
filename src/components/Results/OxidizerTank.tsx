@@ -14,9 +14,9 @@ function OxidizerTank({required}: Props) {
     changeOxidizerTankByType()
   }, [oxidizerType]);
 
-    useEffect(() => {
-      setNumberOfOxidizerTank(requiredTanks)
-    }, [requiredTanks]);
+  useEffect(() => {
+    setNumberOfOxidizerTank(requiredTanks)
+  }, [requiredTanks]);
 
 
   return <>
