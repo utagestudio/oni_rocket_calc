@@ -24,6 +24,21 @@ function useModules() {
         break
       case 'engine':
         modules.methods.setEngine(foundItem)
+        if(foundItem.name === "Steam Engine"){
+          [...modules.fuelTanks].forEach((tank) => {
+            removeModule(tank)
+          });
+          [...modules.oxidizerTanks].forEach((tank) => {
+            removeModule(tank)
+          })
+        } else {
+          if( modules.fuelTanks.length === 0 ){
+            addModule(findItem("Fuel Tank") as tItem)
+          }
+          if( modules.oxidizerTanks.length === 0 ){
+            addModule(findItem("Solid Oxidizer Tank") as tItem)
+          }
+        }
         break
       case 'thruster':
         modules.methods.setThruster(modules.thruster.concat(foundItem))
@@ -45,6 +60,10 @@ function useModules() {
   const removeModule = (item:tItem) => {
     if (item.type === 'thruster') {
       modules.methods.setThruster(modules.thruster.slice(0, modules.thruster.length - 1))
+    } else if (item.type === 'fuel') {
+      modules.methods.setFuelTanks(modules.fuelTanks.slice(0, modules.fuelTanks.length - 1))
+    } else if (item.type === 'oxidizer') {
+      modules.methods.setOxidizerTanks(modules.oxidizerTanks.slice(0, modules.oxidizerTanks.length - 1))
     } else if (item.type === 'modules') {
       const index = modules.modules.findIndex(m => m.name === item.name)
       if(index === -1) return
@@ -57,6 +76,8 @@ function useModules() {
   const reset = () => {
     modules.methods.setThruster([])
     modules.methods.setModules([])
+    modules.methods.setFuelTanks([])
+    modules.methods.setOxidizerTanks([])
   }
 
   const includes = (item:tItem) => {
@@ -71,6 +92,8 @@ function useModules() {
     engine: modules.engine,
     thruster: modules.thruster,
     modules: modules.modules,
+    fuelTanks: modules.fuelTanks,
+    oxidizerTanks: modules.oxidizerTanks,
     addModule,
     removeModule,
     reset,
