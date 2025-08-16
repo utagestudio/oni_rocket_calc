@@ -12,7 +12,7 @@ export default function Home() {
     <div className={styles.page}>
       <div className={styles.main}>
         <div className={styles.wrapper}>
-          <div className={styles.title}>Rocket Calculator</div>
+          <div className={styles.title}>Rocket Calculator - Alpha</div>
           <div className={styles.reset}><ResetButton /></div>
           <div className={styles.copyright}><Copyright /></div>
           <div className={styles.content}>
