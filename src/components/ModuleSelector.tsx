@@ -20,7 +20,7 @@ function ModuleSelector({}: Props) {
   return <>
     <div className={styles.ModuleSelector}>
       {data && data.map((group:tGroup) => {
-        if( group.isUnSelectable ) return <></>
+        if( group.isUnSelectable ) return
         return <Group group={group} key={group.title}/>
       })}
     </div>
