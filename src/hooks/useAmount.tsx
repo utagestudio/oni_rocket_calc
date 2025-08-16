@@ -5,13 +5,12 @@ function useAmount() {
   const amount = useContext<tAmountContext>(AmountContext)
 
   const amountCalculate = ({head, engine, thruster, modules, fuelTanks, oxidizerTanks}:tModuleState) => {
-    amount.methods.setFuelAmount(Math.random() * 3000 << 0)
-    amount.methods.setOxidizerAmount(Math.random() * 3000 << 0)
+    const resultAmount = Math.random() * 2700 << 0
+    amount.methods.setAmount(resultAmount)
   }
 
   return {
-    fuelAmount: amount.fuelAmount,
-    oxidizerAmount: amount.oxidizerAmount,
+    amount: amount.amount,
     amountCalculate
   }
 }

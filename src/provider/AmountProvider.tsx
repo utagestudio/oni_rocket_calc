@@ -8,11 +8,10 @@ type Props = {
 }
 
 function AmountProvider({children}: PropsWithChildren<Props>) {
-  const [fuelAmount, setFuelAmount] = useState<number>(0)
-  const [oxidizerAmount, setOxidizerAmount] = useState<number>(0)
+  const [amount, setAmount] = useState<number>(0)
 
   return <>
-    <AmountContext.Provider value={{fuelAmount, oxidizerAmount, methods: {setFuelAmount, setOxidizerAmount}}}>
+    <AmountContext.Provider value={{amount, methods: {setAmount}}}>
       {children}
     </AmountContext.Provider>
   </>

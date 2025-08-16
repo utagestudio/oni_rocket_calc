@@ -1,8 +1,6 @@
 type tAmountContext = {
-  fuelAmount: number,
-  oxidizerAmount: number,
+  amount: number,
   methods: {
-    setFuelAmount: React.Dispatch<React.SetStateAction<number>>,
-    setOxidizerAmount: React.Dispatch<React.SetStateAction<number>>,
+    setAmount: React.Dispatch<React.SetStateAction<number>>,
   }
 }

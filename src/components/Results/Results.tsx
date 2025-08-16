@@ -21,15 +21,15 @@ function Results({}: Props) {
           <div className="Results_content"><SelectedModules /></div>
         </div>
         <div className="Results_cell -fuel">
-          <div className="Results_title">FUEL TANKS<div className="Results_total">REQUIRED: {amount.fuelAmount.toLocaleString()}kg</div></div>
+          <div className="Results_title">FUEL TANKS<div className="Results_total">REQUIRED: {amount.amount.toLocaleString()}kg</div></div>
           <div className="Results_content">
-            <FuelTank required={amount.fuelAmount} />
+            <FuelTank required={amount.amount} />
           </div>
         </div>
         <div className="Results_cell -oxidizer">
-          <div className="Results_title">OXIDIZER TANKS<div className="Results_total">REQUIRED: {amount.oxidizerAmount.toLocaleString()}kg</div></div>
+          <div className="Results_title">OXIDIZER TANKS<div className="Results_total">REQUIRED: {amount.amount.toLocaleString()}kg</div></div>
           <div className="Results_content">
-            <OxidizerTank required={amount.oxidizerAmount} />
+            <OxidizerTank required={amount.amount} />
           </div>
         </div>
         {modules.thruster.length > 0 && <>
