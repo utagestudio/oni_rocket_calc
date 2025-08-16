@@ -8,14 +8,16 @@
         "selected": true,
         "image": "img_command_capsule.webp",
         "image2x": "img_command_capsule@2x.webp",
-        "multiple": false
+        "multiple": false,
+        "mass": 200
       },
       {
         "type": "head",
         "name": "Robo-Pilot Capsule",
         "image": "img_robo_pilot_capsule.webp",
         "image2x": "img_robo_pilot_capsule@2x.webp",
-        "multiple": false
+        "multiple": false,
+        "mass": 200
       }
     ]
   },
@@ -28,21 +30,27 @@
         "selected": true,
         "image": "img_steam_engine.webp",
         "image2x": "img_steam_engine@2x.webp",
-        "multiple": false
+        "multiple": false,
+        "mass": 2000,
+        "efficiency": 20
       },
       {
         "type": "engine",
         "name": "Petroleum Engine",
         "image": "img_petroleum_engine.webp",
         "image2x": "img_petroleum_engine@2x.webp",
-        "multiple": false
+        "multiple": false,
+        "mass": 200,
+        "efficiency": 40
       },
       {
         "type": "engine",
         "name": "Hydrogen Engine",
         "image": "img_hydrogen_engine.webp",
         "image2x": "img_hydrogen_engine@2x.webp",
-        "multiple": false
+        "multiple": false,
+        "mass": 500,
+        "efficiency": 60
       },
       {
         "type": "thruster",
@@ -50,7 +58,10 @@
         "image": "img_thruster.webp",
         "image2x": "img_thruster@2x.webp",
         "options": true,
-        "multiple": true
+        "multiple": true,
+        "mass": 200,
+        "efficiency": 30,
+        "baseRange": 12000
       }
     ]
   },
@@ -64,7 +75,8 @@
         "selected": true,
         "image": "img_research_module.webp",
         "image2x": "img_research_module@2x.webp",
-        "multiple": true
+        "multiple": true,
+        "mass": 200
       },
       {
         "type": "modules",
@@ -72,7 +84,8 @@
         "order": 3,
         "image": "img_cargo_bay.webp",
         "image2x": "img_cargo_bay@2x.webp",
-        "multiple": true
+        "multiple": true,
+        "mass": 2000
       },
       {
         "type": "modules",
@@ -80,7 +93,8 @@
         "order": 4,
         "image": "img_biological_cargo_bay.webp",
         "image2x": "img_biological_cargo_bay@2x.webp",
-        "multiple": true
+        "multiple": true,
+        "mass": 1000
       },
       {
         "type": "modules",
@@ -88,7 +102,8 @@
         "order": 5,
         "image": "img_gas_cargo_canister.webp",
         "image2x": "img_gas_cargo_canister@2x.webp",
-        "multiple": true
+        "multiple": true,
+        "mass": 1000
       },
       {
         "type": "modules",
@@ -96,7 +111,8 @@
         "order": 6,
         "image": "img_liquid_cargo_tank.webp",
         "image2x": "img_liquid_cargo_tank@2x.webp",
-        "multiple": true
+        "multiple": true,
+        "mass": 1000
       },
       {
         "type": "modules",
@@ -104,7 +120,8 @@
         "order": 2,
         "image": "img_sight_seeing_module.webp",
         "image2x": "img_sight_seeing_module@2x.webp",
-        "multiple": true
+        "multiple": true,
+        "mass": 200
       }
     ]
   },
@@ -117,7 +134,7 @@
         "name": "Fuel Tank",
         "image": "img_fuel_tank.webp",
         "image2x": "img_fuel_tank@2x.webp",
-        "multiple": true
+        "mass": 100
       }
     ]
   },
@@ -130,14 +147,14 @@
         "name": "Solid Oxidizer Tank",
         "image": "img_solid_oxidizer_tank.webp",
         "image2x": "img_solid_oxidizer_tank@2x.webp",
-        "multiple": true
+        "mass": 100
       },
       {
         "type": "oxidizer",
         "name": "Liquid Oxidizer Tank",
         "image": "img_liquid_oxidizer_tank.webp",
         "image2x": "img_liquid_oxidizer_tank@2x.webp",
-        "multiple": true
+        "mass": 100
       }
     ]
   }

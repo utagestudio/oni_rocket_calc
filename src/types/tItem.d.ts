@@ -7,4 +7,13 @@ type tItem = {
   image2x: string
   options?: boolean
   multiple?: boolean
+  mass: number
+};
+
+type tEngine = tItem & {
+  efficiency: number
+};
+
+type tThruster = tItem & {
+  baseRange: number
 };

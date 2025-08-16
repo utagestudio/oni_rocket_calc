@@ -23,7 +23,7 @@ function useModules() {
         modules.methods.setHead(foundItem)
         break
       case 'engine':
-        modules.methods.setEngine(foundItem)
+        modules.methods.setEngine(foundItem as tEngine)
         if(foundItem.name === "Steam Engine"){
           modules.methods.setFuelTanks([])
           modules.methods.setOxidizerTanks([])
@@ -37,7 +37,7 @@ function useModules() {
         }
         break
       case 'thruster':
-        modules.methods.setThruster(preValue => preValue.concat(foundItem))
+        modules.methods.setThruster(preValue => preValue.concat(foundItem as tThruster))
         break
       case 'modules':
         const new_modules = modules.modules.concat(foundItem)
