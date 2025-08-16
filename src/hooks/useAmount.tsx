@@ -4,7 +4,7 @@ import {AmountContext} from '@/provider/AmountProvider'
 function useAmount() {
   const amount = useContext<tAmountContext>(AmountContext)
 
-  const amountCalculate = ({head, engine, thruster, modules, fuelTanks, oxidizerTanks, oxidizerType, distance}:tModuleState) => {
+  const amountCalculate = ({head, engine, thruster, modules, fuelTanks, oxidizerTanks, oxidizerType, distance}:tAmount) => {
     // 不変のロケット質量
     const fixedDryMass = head.mass + engine.mass + thruster.reduce((mass, t) => { return mass + t.mass}, 0) + modules.reduce((mass, t) => { return mass + t.mass}, 0)
     // 不変の距離バフ（スラスター分） 12,000km x スラスター台数

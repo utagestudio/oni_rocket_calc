@@ -6,7 +6,6 @@ type tModuleState = {
   fuelTanks: tItem[]
   oxidizerTanks: tItem[]
   oxidizerType: string
-  distance: number
 }
 
 type tModuleContext = tModuleState & {
