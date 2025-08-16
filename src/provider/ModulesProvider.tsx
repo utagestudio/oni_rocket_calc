@@ -1,6 +1,5 @@
 "use client"
-import React, {useState, createContext, useEffect} from 'react'
-import useAmount from '@/hooks/useAmount'
+import React, {useState, createContext} from 'react'
 
 export const ModuleContext = createContext<tModuleContext>({} as tModuleContext)
 
@@ -9,7 +8,6 @@ type Props = {
 }
 
 function ModulesProvider({children}: React.PropsWithChildren<Props>) {
-  const {amountCalculate} = useAmount()
   const [head, setHead] = useState<tItem>({} as tItem)
   const [engine, setEngine] = useState<tEngine>({} as tEngine)
   const [thruster, setThruster] = useState<tThruster[]>([] as tThruster[])

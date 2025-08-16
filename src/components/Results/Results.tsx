@@ -7,7 +7,7 @@ import OxidizerTank from '@/components/Results/OxidizerTank'
 import useModules from '@/hooks/useModules'
 import ForThruster from '@/components/Results/ForThruster'
 import useAmount from '@/hooks/useAmount'
-import {useContext, useEffect, useMemo} from 'react'
+import {useContext, useMemo} from 'react'
 import {useThrottleFn} from 'react-use'
 import {DistanceContext} from '@/provider/DistanceProvider'
 type Props = {}
