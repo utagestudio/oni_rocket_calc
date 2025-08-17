@@ -2,7 +2,13 @@
   background-color: #05030E
   padding: 2px 0
   font-size: 0.875rem
-  color: #666
   font-family: var(--font-barriecito)
 .wrap
+  &:hover
+    .anchor
+      letter-spacing: .1em
+.anchor
   padding: 0 1rem
+  text-decoration: none
+  color: #666
+  transition: letter-spacing .1s ease-in-out

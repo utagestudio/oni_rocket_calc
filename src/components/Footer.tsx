@@ -4,9 +4,11 @@ type Props = {}
 function Footer({}: Props) {
   return <>
     <div className={styles.footer}>
-      <div className={styles.wrap}>
-        &copy;UTAGE.GAMES
-      </div>
+      <span className={styles.wrap}>
+        <a href='https://youtube.com/@utagegames' target='_blank' className={styles.anchor}>
+          &copy;UTAGE.GAMES
+        </a>
+      </span>
     </div>
   </>
 }

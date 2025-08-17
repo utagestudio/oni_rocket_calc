@@ -1,13 +1,20 @@
 .copyright
+  &:hover
+    .anchor
+      transform: rotate(5deg)
+
+.anchor
   display: flex
   flex-direction: row
   justify-content: center
   align-items: center
   padding: 10px
   gap: 10px
-
   background: #E4801D
   border-radius: 12px
+
+  text-decoration: none
+  transition: transform .1s ease-in-out
 
 .text
   font-family: var(--font-barriecito)
