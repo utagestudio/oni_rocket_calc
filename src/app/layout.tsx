@@ -4,6 +4,7 @@ import "./globals.sass";
 import ModulesProvider from '@/provider/ModulesProvider'
 import DistanceProvider from '@/provider/DistanceProvider'
 import AmountProvider from '@/provider/AmountProvider'
+import { Analytics } from "@vercel/analytics/next"
 
 const barriecito = Barriecito({
   variable: "--font-barriecito",
@@ -57,6 +58,7 @@ export default function RootLayout({
           </DistanceProvider>
         </ModulesProvider>
       </AmountProvider>
+      <Analytics />
     </body>
     </html>
   );
