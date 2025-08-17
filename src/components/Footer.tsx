@@ -9,6 +9,11 @@ function Footer({}: Props) {
           &copy;UTAGE.GAMES
         </a>
       </span>
+      <span className={styles.wrap}>
+        <a href='https://github.com/utagestudio/oni_rocket_calc' target='_blank' className={styles.anchor}>
+          Github
+        </a>
+      </span>
     </div>
   </>
 }
