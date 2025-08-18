@@ -12,7 +12,7 @@
           display: flex
           flex-direction: column
           align-items: center
-          gap: 15px
+          gap: 8px
           @at-root
             .FuelTank_image
               width: 60px
@@ -23,7 +23,14 @@
                   width: 100%
             .FuelTank_capacity
               font-weight: 700
-              font-size: 12px
               line-height: 1
               letter-spacing: 0.1em
+              display: flex
+              align-items: baseline
+              gap: 2px
+              @at-root
+                .FuelTank_value
+                  font-size: 18px
+                .FuelTank_unit
+                  font-size: 12px
 

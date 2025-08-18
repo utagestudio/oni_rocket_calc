@@ -22,7 +22,10 @@ function FuelTank({required}: Props) {
 
           return <li className="FuelTank_item" key={i}>
             <div className="FuelTank_image"><img className="FuelTank_img" src="/assets/images/img_fuel_tank.webp" srcSet="/assets/images/img_fuel_tank.webp 1x, /assets/images/img_fuel_tank@2x.webp 2x" alt="" /></div>
-            <div className="FuelTank_capacity">{capacity}kg</div>
+            <div className="FuelTank_capacity">
+              <div className="FuelTank_value">{capacity}</div>
+              <div className="FuelTank_unit">kg</div>
+            </div>
           </li>
         })}
       </ul>

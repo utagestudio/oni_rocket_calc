@@ -44,7 +44,10 @@ function OxidizerTank({required}: Props) {
                                                  srcSet={`/assets/images/img_${oxidizerType}_oxidizer_tank.webp 1x, /assets/images/img_${oxidizerType}_oxidizer_tank@2x.webp 2x`}
                                                  alt=""/></div>
 
-            <div className="OxidizerTank_capacity">{capacity.toLocaleString()}kg</div>
+            <div className="OxidizerTank_capacity">
+              <div className="OxidizerTank_value">{capacity.toLocaleString()}</div>
+              <div className="OxidizerTank_unit">kg</div>
+            </div>
           </li>
         })}
       </ul>
