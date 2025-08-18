@@ -35,13 +35,13 @@ function Results({}: Props) {
           <div className="Results_content"><SelectedModules /></div>
         </div>
         <div className="Results_cell -fuel">
-          <div className="Results_title">FUEL TANKS<div className="Results_total">REQUIRED: {amount.toLocaleString()}kg</div></div>
+          <div className="Results_title">FUEL TANKS</div>
           <div className="Results_content">
             <FuelTank required={amount} />
           </div>
         </div>
         <div className="Results_cell -oxidizer">
-          <div className="Results_title">OXIDIZER TANKS<div className="Results_total">REQUIRED: {amount.toLocaleString()}kg</div></div>
+          <div className="Results_title">OXIDIZER TANKS</div>
           <div className="Results_content">
             <OxidizerTank required={amount} />
           </div>
@@ -54,6 +54,12 @@ function Results({}: Props) {
             </div>
           </div>
         </>}
+        <div className="Results_cell -amount">
+          <div className="Results_title">Fuel Amount</div>
+          <div className="Results_content -amount">
+            <div className="Results_total">{amount.toLocaleString()}</div>kg
+          </div>
+        </div>
       </div>
     </div>
   </>
