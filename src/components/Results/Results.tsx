@@ -35,20 +35,20 @@ function Results({}: Props) {
           <div className="Results_content"><SelectedModules /></div>
         </div>
         <div className="Results_cell -fuel">
-          <div className="Results_title">FUEL TANKS</div>
+          <div className="Results_title">Fuel Tanks</div>
           <div className="Results_content">
             <FuelTank required={amount} />
           </div>
         </div>
         <div className="Results_cell -oxidizer">
-          <div className="Results_title">OXIDIZER TANKS</div>
+          <div className="Results_title">Oxidizer Tanks</div>
           <div className="Results_content">
             <OxidizerTank required={amount} />
           </div>
         </div>
         {thruster.length > 0 && <>
           <div className="Results_cell -thruster">
-            <div className="Results_title">For THRUSTER</div>
+            <div className="Results_title">For Thruster</div>
             <div className="Results_content">
               <ForThruster />
             </div>
