@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Barriecito} from "next/font/google";
+import {Barriecito, M_PLUS_Rounded_1c} from "next/font/google";
 import "./globals.sass";
 import ModulesProvider from '@/provider/ModulesProvider'
 import DistanceProvider from '@/provider/DistanceProvider'
@@ -11,6 +11,12 @@ const barriecito = Barriecito({
   weight: "400",
   subsets: ["latin"],
 });
+
+const mplus = M_PLUS_Rounded_1c({
+  variable: "--font-mplus",
+  weight: "400",
+  subsets: ["latin"],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rocket-calc.utage.games'),
@@ -50,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={barriecito.variable}>
+    <body className={`${mplus.variable} ${barriecito.variable}`}>
       <AmountProvider>
         <ModulesProvider>
           <DistanceProvider>
