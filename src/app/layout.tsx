@@ -46,7 +46,10 @@ export const metadata: Metadata = {
     site: '@utage_studio', // 公式アカウント
     creator: '@utage_studio', // 作成者アカウント
   },
-
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
