@@ -1,9 +1,16 @@
 .SelectedModules
+  display: flex
+  flex-direction: column
+  gap: 16px
   @at-root
     .SelectedModules_list
+      order: 2
       list-style: none
       margin: 0
       padding: 0
+      display: flex
+      flex-direction: column
+      gap: 8px
       @at-root
         .SelectedModules_item
           display: flex
@@ -14,3 +21,11 @@
               flex: 1 1 1px
             .SelectedModules_number
               display: block
+    .SelectedModules_button
+      order: 1
+      cursor: pointer
+      transform: translateX(-120%)
+      padding: 1ex 1em
+      transition: transform .1s ease-in-out
+      &.-shown
+        transform: translateX(0)

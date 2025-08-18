@@ -13,13 +13,25 @@
           gap: 16px
 
           &.-selected
-            background-color: white
+            position: fixed
+            top: 0
+            left: 50lvw
+            z-index: 1000
+            width: 100lvw
+            height: 100lvh
+            transform: translateX(50lvw)
+            background-color: rgba(#171932, .8)
+            color: white
             padding: 16px
-            border-radius: 8px
+            border-radius: 8px 0 0 8px
             gap: 16px
+            transition: transform .1s ease-in-out
+            &.-show
+              transform: translateX(415px)
+
 
           &.-selected
-            grid-area: 1/1/3/2
+            // TODO: フロート化により、ここにあるのは不適切なので、移動させる。
           &.-fuel
             grid-area: 1/2/2/3
           &.-oxidizer

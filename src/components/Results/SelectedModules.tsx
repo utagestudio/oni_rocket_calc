@@ -2,9 +2,12 @@
 
 import './SelectedModules.sass'
 import useModules from '@/hooks/useModules'
-type Props = {}
+type Props = {
+  isShown: boolean,
+  onToggle: () => void
+}
 
-function SelectedModules({}: Props) {
+function SelectedModules({isShown, onToggle}: Props) {
   const modules = useModules()
 
   const groupModulesModule = (modules: tItem[]) => {
@@ -42,8 +45,10 @@ function SelectedModules({}: Props) {
           <div className="SelectedModules_name">{modules.engine.name}</div>
           <div className="SelectedModules_number">x1</div>
         </li>
-
       </ul>
+
+      {/*暫定設置*/}
+      <button className={`SelectedModules_button ${isShown ? '-shown' : ''}`} onClick={onToggle}>{isShown ? 'Hide' : 'Show Selected Modules'}</button>
     </div>
   </>
 }

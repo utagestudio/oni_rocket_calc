@@ -7,7 +7,7 @@ import OxidizerTank from '@/components/Results/OxidizerTank'
 import useModules from '@/hooks/useModules'
 import ForThruster from '@/components/Results/ForThruster'
 import useAmount from '@/hooks/useAmount'
-import {useContext, useMemo} from 'react'
+import {useCallback, useContext, useMemo, useState} from 'react'
 import {useThrottleFn} from 'react-use'
 import {DistanceContext} from '@/provider/DistanceProvider'
 type Props = {}
@@ -16,6 +16,7 @@ function Results({}: Props) {
   const {head, engine, thruster, modules, fuelTanks,oxidizerTanks,oxidizerType} = useModules()
   const {amount, amountCalculate} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
+  const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({
@@ -27,12 +28,16 @@ function Results({}: Props) {
     amountCalculate(p)
   }, 1000, [params])
 
+  const toggleSelectedModuleArea = useCallback(() => {
+    setIsShowSelectedModuleArea(prev => !prev)
+  }, [])
+
   return <>
     <div className="Results">
       <div className="Results_wrap">
-        <div className="Results_cell -selected">
+        <div className={`Results_cell -selected ${isShowSelectedModuleArea ? '-show' : ''}`}>
           <div className="Results_title">Selected Modules</div>
-          <div className="Results_content"><SelectedModules /></div>
+          <div className="Results_content"><SelectedModules isShown={isShowSelectedModuleArea} onToggle={toggleSelectedModuleArea} /></div>
         </div>
         <div className="Results_cell -fuel">
           <div className="Results_title">Fuel Tanks</div>
