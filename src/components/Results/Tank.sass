@@ -1,38 +1,45 @@
-.SteamTank
+.Tank
   padding: 0 16px
+  display: flex
+  align-items: center
+  gap: 16px
   @at-root
-    .SteamTank_list
+    .Tank_option
+      display: block
+    .Tank_list
       list-style: none
       margin: 0
       padding: 0
       display: flex
       gap: 16px
       @at-root
-        .SteamTank_item
+        .Tank_item
           display: flex
           flex-direction: column
           align-items: center
           gap: 8px
           @at-root
-            .SteamTank_image
+            .Tank_image
               width: 60px
               font-size: 0
               line-height: 0
               @at-root
-                .SteamTank_img
+                .Tank_img
                   width: 100%
-            .SteamTank_capacity
+            .Tank_capacity
               font-weight: 700
               line-height: 1
               letter-spacing: 0.1em
               display: flex
               align-items: baseline
-              gap: 2px
+              gap: 4px
               @at-root
-                .SteamTank_value
+                .Tank_value
                   font-size: 18px
-                  width: 4ex
+                  width: 6ex
                   text-align: right
-                .SteamTank_unit
+                .Tank_unit
                   font-size: 12px
+
+
 

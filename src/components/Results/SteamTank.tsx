@@ -1,24 +1,13 @@
-import './SteamTank.sass'
-import useAmount from '@/hooks/useAmount'
+import Tank from '@/components/Results/Tank'
 type Props = {
   required: number
 }
 
 function SteamTank({required}: Props) {
-  const {isCalculating} = useAmount()
+  const requiredTanks = Math.ceil(required / 900)
 
   return <>
-    <div className="SteamTank">
-      <ul className="SteamTank_list">
-        <li className="SteamTank_item">
-          <div className="SteamTank_image"><img className="SteamTank_img" src="/assets/images/img_steam_engine.webp" srcSet="/assets/images/img_steam_engine@2x.webp 1x, /assets/images/img_fuel_tank@2x.webp 2x" alt="" /></div>
-          <div className="SteamTank_capacity">
-            <div className="SteamTank_value">{isCalculating ? '---' : required.toLocaleString()}</div>
-            <div className="SteamTank_unit">kg</div>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <Tank required={required} limitAmountPerTank={900} numberOfTanks={requiredTanks} image='img_steam_engine'></Tank>
   </>
 }
 
