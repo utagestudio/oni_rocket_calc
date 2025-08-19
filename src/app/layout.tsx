@@ -20,16 +20,16 @@ const mplus = M_PLUS_Rounded_1c({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rocket-calc.utage.games'),
-  title: "Rocket Calculator for Oxygen Not Included Base Game | UTAGE.GAMES",
+  title: "Rocket Fuel Calculator for Oxygen Not Included Base Game | UTAGE.GAMES",
   description: "Automatic fuel amount calculator for rockets in Oxygen Not Included",
   alternates: {
     canonical: '/', // ルートの canonical
   },
   openGraph: {
     type: 'website',
-    siteName: 'Rocket Calculator for Oxygen Not Included Base Game | UTAGE.GAMES',
+    siteName: 'Rocket Fuel Calculator for Oxygen Not Included Base Game | UTAGE.GAMES',
     url: 'https://rocket-calc.utage.games',
-    title: 'Rocket Calculator for Oxygen Not Included Base Game | UTAGE.GAMES',
+    title: 'Rocket Fuel Calculator for Oxygen Not Included Base Game | UTAGE.GAMES',
     description: 'Automatic fuel amount calculator for rockets in Oxygen Not Included',
     images: [
       {

@@ -34,11 +34,21 @@
   font-weight: 700
   line-height: 1
   color: #F8F8F8
+  display: grid
+  grid-template-areas: "name name" "title version"
+  gap: 0 16px
+  justify-content: start
+  align-items: baseline
 .gameName
+  grid-area: name
   font-size: 24px
   letter-spacing: 0.1em
 .title
+  grid-area: title
   font-size: 64px
+.version
+  grid-area: version
+  font-size: 24px
 
 .reset
   grid-area: reset
