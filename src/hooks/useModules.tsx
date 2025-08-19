@@ -5,6 +5,10 @@ import data from '@/contents/data.json'
 function useModules() {
   const modules = useContext<tModuleContext>(ModuleContext)
 
+  /**
+   * Find the module from the data.json file
+   * @param itemName
+   */
   const findItem = (itemName:string) => {
     let foundItem:tItem | undefined = undefined
     for(let i = 0; i < data.length; i++) {
@@ -15,6 +19,10 @@ function useModules() {
     return foundItem
   }
 
+  /**
+   * Add the module to the state
+   * @param item
+   */
   const addModule = (item:tItem) => {
     let foundItem:tItem | undefined = undefined
     foundItem = findItem(item.name)
@@ -43,6 +51,10 @@ function useModules() {
     }
   }
 
+  /**
+   * Set the number of fuel tanks to the specified number(num)
+   * @param num
+   */
   const setNumberOfFuelTank = (num:number) => {
     if(modules.engine.name === "Steam Engine") return
     const tanks = [] as tItem[]
@@ -52,6 +64,11 @@ function useModules() {
     }
     modules.methods.setFuelTanks(tanks)
   }
+
+  /**
+   * Set the number of oxidizer tanks to the specified number(num)
+   * @param num
+   */
   const setNumberOfOxidizerTank = (num:number) => {
     if(modules.engine.name === "Steam Engine") return
     const tanks = [] as tItem[]
@@ -67,6 +84,9 @@ function useModules() {
     modules.methods.setOxidizerTanks(tanks)
   }
 
+  /**
+   * Add the oxidizer tank to the state
+   */
   const addOxidizerTank = () => {
     if( modules.oxidizerType === 'solid') {
       addModule(findItem("Solid Oxidizer Tank") as tItem)
@@ -75,6 +95,9 @@ function useModules() {
     }
   }
 
+  /**
+   * Change the oxidizer tank type to the specified type
+   */
   const changeOxidizerTankByType = () => {
     const length = modules.oxidizerTanks.length
     modules.methods.setOxidizerTanks([])
@@ -83,6 +106,10 @@ function useModules() {
     }
   }
 
+  /**
+   * Remove the module from the state
+   * @param item
+   */
   const removeModule = (item:tItem) => {
     if (item.type === 'thruster') {
       modules.methods.setThruster(preValue => preValue.slice(0, modules.thruster.length - 1))
@@ -101,6 +128,9 @@ function useModules() {
     }
   }
 
+  /**
+   * Reset the state to the initial state
+   */
   const reset = () => {
     modules.methods.setThruster([])
     modules.methods.setModules([])
@@ -126,6 +156,10 @@ function useModules() {
     
   }
 
+  /**
+   * Check if the module is included in the state
+   * @param item
+   */
   const includes = (item:tItem) => {
     if(item.type === 'head') return modules.head.name === item.name
     else if (item.type === 'engine') return modules.engine.name === item.name
