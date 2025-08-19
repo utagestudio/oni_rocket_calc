@@ -6,6 +6,7 @@
       padding: 16px
       display: grid
       gap: 16px
+      min-height: 180px
       @at-root
         .Results_cell
           display: flex
@@ -32,6 +33,10 @@
 
           &.-selected
             // TODO: フロート化により、ここにあるのは不適切なので、移動させる。
+          &.-unreached
+            grid-area: 1/1/3/4
+            align-items: center
+            justify-content: center
           &.-steam
             grid-area: 1/1/2/3
           &.-fuel
@@ -59,6 +64,11 @@
           font-size: 16px
           line-height: 1
           gap: 8px
+          &.-unreached
+            font-size: 32px
+            line-height: 0.8
+            letter-spacing: .08em
+            font-weight: 700
           &.-amount
             @at-root
               .Results_total
