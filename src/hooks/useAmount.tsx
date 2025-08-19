@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import {AmountContext} from '@/provider/AmountProvider'
 
 function useAmount() {
@@ -46,11 +46,14 @@ function useAmount() {
 
     const resultAmount = isAtLimit ? -1 : additionalWetMass
     amount.methods.setAmount(resultAmount)
+    amount.methods.setIsCalculating(false)
   }
 
   return {
     amount: amount.amount,
-    amountCalculate
+    isCalculating: amount.isCalculating,
+    amountCalculate,
+    setIsCalculating: amount.methods.setIsCalculating
   }
 }
 

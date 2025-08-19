@@ -7,15 +7,15 @@ import OxidizerTank from '@/components/Results/OxidizerTank'
 import useModules from '@/hooks/useModules'
 import ForThruster from '@/components/Results/ForThruster'
 import useAmount from '@/hooks/useAmount'
-import {useCallback, useContext, useMemo, useState} from 'react'
-import {useThrottleFn} from 'react-use'
+import {useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import {useDebounce} from 'react-use'
 import {DistanceContext} from '@/provider/DistanceProvider'
 import SteamTank from '@/components/Results/SteamTank'
 type Props = {}
 
 function Results({}: Props) {
   const {head, engine, thruster, modules, fuelTanks,oxidizerTanks,oxidizerType} = useModules()
-  const {amount, amountCalculate} = useAmount()
+  const {amount, isCalculating, amountCalculate, setIsCalculating} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
 
@@ -24,10 +24,15 @@ function Results({}: Props) {
     head, engine, thruster, modules, fuelTanks, oxidizerTanks, oxidizerType, distance
   }), [head, engine, thruster, modules, fuelTanks, oxidizerTanks, oxidizerType, distance])
 
-  // amountCalculate をスロットル（第三引数に依存配列が必要）
-  useThrottleFn((p: typeof params) => {
-    amountCalculate(p)
+  // amountCalculate をDebounce
+  useDebounce(() => {
+    amountCalculate(params)
   }, 1000, [params])
+
+  // paramsに変更があった時点で、loadingにする
+  useEffect(() => {
+    setIsCalculating(true)
+  }, [params]);
 
   const toggleSelectedModuleArea = useCallback(() => {
     setIsShowSelectedModuleArea(prev => !prev)
@@ -76,7 +81,7 @@ function Results({}: Props) {
         <div className="Results_cell -amount">
           <div className="Results_title">Fuel Amount</div>
           <div className="Results_content -amount">
-            <div className="Results_total">{amount.toLocaleString()}</div>kg
+            <div className="Results_total">{isCalculating ? '---' :amount.toLocaleString()}</div>kg
           </div>
         </div>
       </div>

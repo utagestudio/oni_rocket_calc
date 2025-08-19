@@ -2,6 +2,7 @@
 import './OxidizerTank.sass'
 import useModules from '@/hooks/useModules'
 import {useEffect} from 'react'
+import useAmount from '@/hooks/useAmount'
 type Props = {
   required: number
 }
@@ -9,6 +10,7 @@ type Props = {
 function OxidizerTank({required}: Props) {
   const requiredTanks = Math.ceil(required / 2700)
   const {oxidizerType, setOxidizerType, changeOxidizerTankByType, setNumberOfOxidizerTank} = useModules()
+  const {isCalculating} = useAmount()
 
   useEffect(() => {
     changeOxidizerTankByType()
@@ -45,7 +47,7 @@ function OxidizerTank({required}: Props) {
                                                  alt=""/></div>
 
             <div className="OxidizerTank_capacity">
-              <div className="OxidizerTank_value">{capacity.toLocaleString()}</div>
+              <div className="OxidizerTank_value">{isCalculating ? '---' : capacity.toLocaleString()}</div>
               <div className="OxidizerTank_unit">kg</div>
             </div>
           </li>
