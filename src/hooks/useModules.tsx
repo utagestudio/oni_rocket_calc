@@ -24,17 +24,7 @@ function useModules() {
         break
       case 'engine':
         modules.methods.setEngine(foundItem as tEngine)
-        if(foundItem.name === "Steam Engine"){
-          modules.methods.setFuelTanks([])
-          modules.methods.setOxidizerTanks([])
-        } else {
-          if( modules.fuelTanks.length === 0 ){
-            addModule(findItem("Fuel Tank") as tItem)
-          }
-          if( modules.oxidizerTanks.length === 0 ){
-            addOxidizerTank()
-          }
-        }
+        setupTanks(foundItem.name)
         break
       case 'thruster':
         modules.methods.setThruster(preValue => preValue.concat(foundItem as tThruster))
@@ -114,7 +104,15 @@ function useModules() {
   const reset = () => {
     modules.methods.setThruster([])
     modules.methods.setModules([])
-    if(modules.engine.name === "Steam Engine"){
+    setupTanks(modules.engine.name)
+  }
+
+  /**
+   * Set the initial state of fuel tanks and oxidizer tanks
+   * @param engineName {string} "Steam Engine" or others
+   */
+  const setupTanks = (engineName:string) => {
+    if(engineName === "Steam Engine"){
       modules.methods.setFuelTanks([])
       modules.methods.setOxidizerTanks([])
     } else {
@@ -125,6 +123,7 @@ function useModules() {
         addOxidizerTank()
       }
     }
+    
   }
 
   const includes = (item:tItem) => {
