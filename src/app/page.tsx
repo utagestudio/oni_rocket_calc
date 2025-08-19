@@ -12,7 +12,10 @@ export default function Home() {
     <div className={styles.page}>
       <div className={styles.main}>
         <div className={styles.wrapper}>
-          <div className={styles.title}>Rocket Calculator - Alpha</div>
+          <h1 className={styles.heading}>
+            <div className={styles.gameName}>Oxygen Not Included</div>
+            <div className={styles.title}>Rocket Calculator - Alpha</div>
+          </h1>
           <div className={styles.reset}><ResetButton /></div>
           <div className={styles.copyright}><Copyright /></div>
           <div className={styles.content}>
