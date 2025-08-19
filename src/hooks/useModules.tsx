@@ -114,8 +114,17 @@ function useModules() {
   const reset = () => {
     modules.methods.setThruster([])
     modules.methods.setModules([])
-    modules.methods.setFuelTanks([])
-    modules.methods.setOxidizerTanks([])
+    if(modules.engine.name === "Steam Engine"){
+      modules.methods.setFuelTanks([])
+      modules.methods.setOxidizerTanks([])
+    } else {
+      if( modules.fuelTanks.length === 0 ){
+        addModule(findItem("Fuel Tank") as tItem)
+      }
+      if( modules.oxidizerTanks.length === 0 ){
+        addOxidizerTank()
+      }
+    }
   }
 
   const includes = (item:tItem) => {
