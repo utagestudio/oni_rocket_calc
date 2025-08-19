@@ -10,6 +10,7 @@ import useAmount from '@/hooks/useAmount'
 import {useCallback, useContext, useMemo, useState} from 'react'
 import {useThrottleFn} from 'react-use'
 import {DistanceContext} from '@/provider/DistanceProvider'
+import SteamTank from '@/components/Results/SteamTank'
 type Props = {}
 
 function Results({}: Props) {
@@ -39,18 +40,31 @@ function Results({}: Props) {
           <div className="Results_title">Selected Modules</div>
           <div className="Results_content"><SelectedModules isShown={isShowSelectedModuleArea} onToggle={toggleSelectedModuleArea} /></div>
         </div>
-        <div className="Results_cell -fuel">
-          <div className="Results_title">Fuel Tanks</div>
-          <div className="Results_content">
-            <FuelTank required={amount} />
+
+        {engine.name === "Steam Engine" &&
+          <div className="Results_cell -steam">
+            <div className="Results_title">Steam</div>
+            <div className="Results_content">
+              <SteamTank required={amount} />
+            </div>
           </div>
-        </div>
-        <div className="Results_cell -oxidizer">
-          <div className="Results_title">Oxidizer Tanks</div>
-          <div className="Results_content">
-            <OxidizerTank required={amount} />
+        }
+
+        {engine.name !== "Steam Engine" && <>
+          <div className="Results_cell -fuel">
+            <div className="Results_title">Fuel Tanks</div>
+            <div className="Results_content">
+              <FuelTank required={amount} />
+            </div>
           </div>
-        </div>
+          <div className="Results_cell -oxidizer">
+            <div className="Results_title">Oxidizer Tanks</div>
+            <div className="Results_content">
+              <OxidizerTank required={amount} />
+            </div>
+          </div>
+        </>}
+
         {thruster.length > 0 && <>
           <div className="Results_cell -thruster">
             <div className="Results_title">For Thruster</div>
