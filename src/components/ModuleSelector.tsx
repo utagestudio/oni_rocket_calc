@@ -1,4 +1,5 @@
 "use client"
+
 import styles from './ModuleSelector.module.sass'
 import data from '@/contents/data.json'
 import Group from '@/components/Group'

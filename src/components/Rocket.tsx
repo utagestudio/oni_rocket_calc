@@ -1,4 +1,5 @@
 "use client"
+
 import './Rocket.sass'
 import useModules from '@/hooks/useModules'
 import ModuleImage from '@/components/ModuleImage'

@@ -1,5 +1,3 @@
-"use client"
-
 import styles from './Group.module.sass'
 import Cell from '@/components/Cell'
 import {useCallback} from 'react'

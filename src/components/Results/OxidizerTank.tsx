@@ -1,4 +1,3 @@
-"use client"
 import './OxidizerTank.sass'
 import useModules from '@/hooks/useModules'
 import {useEffect} from 'react'

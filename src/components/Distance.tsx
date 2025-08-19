@@ -1,4 +1,5 @@
 "use client"
+
 import './Distance.sass'
 import {DistanceContext} from '@/provider/DistanceProvider'
 import {MouseEvent, useCallback, useContext} from 'react'

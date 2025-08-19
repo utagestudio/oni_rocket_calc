@@ -1,5 +1,3 @@
-"use client"
-
 import './SelectedModules.sass'
 import useModules from '@/hooks/useModules'
 type Props = {
