@@ -175,6 +175,7 @@ function useModules() {
     fuelTanks: modules.fuelTanks,
     oxidizerTanks: modules.oxidizerTanks,
     oxidizerType: modules.oxidizerType,
+    findItem,
     addModule,
     removeModule,
     addOxidizerTank,

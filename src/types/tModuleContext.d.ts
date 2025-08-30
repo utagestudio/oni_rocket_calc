@@ -3,12 +3,12 @@ type tModuleState = {
   engine: tEngine
   thruster: tThruster[]
   modules: tItem[]
-  fuelTanks: tItem[]
-  oxidizerTanks: tItem[]
   oxidizerType: string
 }
 
 type tModuleContext = tModuleState & {
+  fuelTanks: tItem[]
+  oxidizerTanks: tItem[]
   methods: {
     setHead:  React.Dispatch<React.SetStateAction<tItem>>
     setEngine:   React.Dispatch<React.SetStateAction<tEngine>>

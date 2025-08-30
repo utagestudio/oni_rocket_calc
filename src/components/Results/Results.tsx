@@ -21,8 +21,8 @@ function Results({}: Props) {
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({
-    head, engine, thruster, modules, fuelTanks, oxidizerTanks, oxidizerType, distance
-  }), [head, engine, thruster, modules, fuelTanks, oxidizerTanks, oxidizerType, distance])
+    head, engine, thruster, modules, oxidizerType, distance
+  }), [head, engine, thruster, modules, oxidizerType, distance])
 
   // amountCalculate をDebounce
   useDebounce(() => {
