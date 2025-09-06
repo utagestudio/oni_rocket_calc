@@ -11,11 +11,12 @@ import {useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {useDebounce} from 'react-use'
 import {DistanceContext} from '@/provider/DistanceProvider'
 import SteamTank from '@/components/Results/SteamTank'
+import FuelAmount from '@/components/Results/FuelAmount'
 type Props = {}
 
 function Results({}: Props) {
   const {head, engine, thruster, modules, fuelTanks,oxidizerTanks,oxidizerType} = useModules()
-  const {amount, isCalculating, amountCalculate, setIsCalculating} = useAmount()
+  const {amount,  amountCalculate, setIsCalculating} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
   const [numberOfFuelTanks, setNumberOfFuelTanks] = useState(0)
@@ -55,22 +56,7 @@ function Results({}: Props) {
           <div className="Results_title">Selected Modules</div>
           <div className="Results_content"><SelectedModules isShown={isShowSelectedModuleArea} onToggle={toggleSelectedModuleArea} /></div>
         </div>
-
-        {isCalculating &&
-          <div className="Results_cell -unreached">
-            <div className="Results_content -unreached">
-              Calculating...
-            </div>
-          </div>
-        }
-        {!isCalculating && amount < 0 &&
-          <div className="Results_cell -unreached">
-            <div className="Results_content -unreached">
-              Unreached
-            </div>
-          </div>
-        }
-        {!isCalculating && amount >= 0 && <>
+        {<>
           {engine.name === "Steam Engine" &&
             <div className="Results_cell -steam">
               <div className="Results_title">Steam</div>
@@ -103,12 +89,14 @@ function Results({}: Props) {
               </div>
             </div>
           </>}
+
           <div className="Results_cell -amount">
             <div className="Results_title">Fuel Amount</div>
             <div className="Results_content -amount">
-              <div className="Results_total">{isCalculating ? '---' :amount.toLocaleString()}</div>kg
+              <FuelAmount />
             </div>
           </div>
+
         </>}
 
       </div>
