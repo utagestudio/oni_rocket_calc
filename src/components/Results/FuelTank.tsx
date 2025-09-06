@@ -3,19 +3,13 @@ import useModules from '@/hooks/useModules'
 import Tank from '@/components/Results/Tank'
 type Props = {
   required: number
+  numberOfTanks: number
 }
 
-function FuelTank({required}: Props) {
-  const requiredTanks = Math.ceil(required / 900)
-  const {setNumberOfFuelTank} = useModules()
-
-  useEffect(() => {
-    setNumberOfFuelTank(requiredTanks)
-  }, [requiredTanks]);
-
+function FuelTank({required, numberOfTanks}: Props) {
 
   return <>
-    <Tank required={required} limitAmountPerTank={900} numberOfTanks={requiredTanks} image='img_fuel_tank'></Tank>
+    <Tank required={required} limitAmountPerTank={900} numberOfTanks={numberOfTanks} image='img_fuel_tank'></Tank>
   </>
 }
 

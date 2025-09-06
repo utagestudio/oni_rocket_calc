@@ -15,7 +15,7 @@ export default function Home() {
           <h1 className={styles.heading}>
             <div className={styles.gameName}>Oxygen Not Included</div>
             <div className={styles.title}>Rocket Fuel Calculator</div>
-            <div className={styles.version}>Ver.alpha</div>
+            <div className={styles.version}>Ver.beta</div>
           </h1>
           <div className={styles.reset}><ResetButton /></div>
           <div className={styles.copyright}><Copyright /></div>
