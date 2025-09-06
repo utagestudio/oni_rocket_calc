@@ -17,13 +17,13 @@ function useAmount() {
 
     const isSteam: boolean = engine.name === "Steam Engine"
     // 目標距離[km]
-    const T = distance;
+    const TargetRange = distance;
     // 空虚重量[kg]
     const W0  = head.mass + engine.mass + thruster.reduce((mass, t) => { return mass + t.mass}, 0) + modules.reduce((mass, t) => { return mass + t.mass}, 0)
     // 燃料効率[km/kg]
     const eta = engine.efficiency * (isSteam || oxidizerType === "solid" ? 1 : 1.33)
 
-    const res = minimalFuelWithOxidizerPenaltyScaledInside(T, W0, eta, isSteam);
+    const res = minimalFuelWithOxidizerPenaltyScaledInside(TargetRange, W0, eta, isSteam);
     if (res.feasible) {
       amount.methods.setAmount(res.fuelKg)
       amount.methods.setIsCalculating(false)
@@ -34,19 +34,19 @@ function useAmount() {
   }
 
   const minimalFuelWithOxidizerPenaltyScaledInside = (
-    targetKm: number,              // T
+    targetKm: number,              // TargetRange
     dryMassKg: number,             // W0
     efficiencyKmPerKg: number,     // η
     isSteam: boolean               // Steam Engin なら true
   ): tFeasible => {
     const OxidizerTankMass = isSteam ? 0 : 100
-    const T = Math.max(0, targetKm);
+    const TargetRange = Math.max(0, targetKm);
     const W0 = Math.max(0, dryMassKg + OxidizerTankMass);
     const eta = Math.max(0, efficiencyKmPerKg);
     const dW = isSteam ? 0 : Math.max(0, MASS_INCREASE_PER_STEP_KG);
     const S = Math.max(1, Math.floor(STEP));
 
-    const values =  {W0, dW, eta, T, isSteam}
+    const values =  {W0, dW, eta, TargetRange, isSteam}
 
     // TODO: eta === 0 になることはないので、多分使わない
     if (eta === 0) {
@@ -140,8 +140,8 @@ function useAmount() {
 
   // g(f) = η f − ((Wk + 2f)/300)^3.2 − T, where Wk = W0 + ΔW·k
   // 到達可否。 true なら到達可能
-  const g = (f: number, values: {W0: number, dW: number, eta: number, T: number, isSteam: boolean}) => {
-    const {W0, dW, eta, T, isSteam} = values;
+  const g = (f: number, values: {W0: number, dW: number, eta: number, TargetRange: number, isSteam: boolean}) => {
+    const {W0, dW, eta, TargetRange, isSteam} = values;
 
     const k = stepCount(f);
     const Wk = W0 + dW * k;
@@ -149,6 +149,8 @@ function useAmount() {
     const penalty = Math.max(Wk + f_value, Math.pow((Wk + f_value) / 300, 3.2));
     console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${T}`);
     return eta * f - penalty > T;
+    console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${TargetRange}`);
+    return eta * f - penalty > TargetRange;
   };
 
   return {
