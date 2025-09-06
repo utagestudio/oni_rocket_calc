@@ -3,16 +3,15 @@ import {AmountContext} from '@/provider/AmountProvider'
 import useModules from '@/hooks/useModules'
 
 function useAmount() {
-  const {findItem} = useModules()
+  const {thruster, findItem} = useModules()
   const amount = useContext<tAmountContext>(AmountContext)
   const STEP = 900
   const fuelTank = findItem("Fuel Tank")
   const MASS_INCREASE_PER_STEP_KG = fuelTank!.mass
 
-  const amountCalculate = ({head, engine, thruster, modules, oxidizerType, distance}:tAmount) => {
+  const amountCalculate = ({head, engine, thruster: _t, modules, oxidizerType, distance}:tAmount) => {
     amount.methods.setIsCalculating(true)
 
-    // TODO: Thrusterを導入する
     // TODO: 燃料タンクの個数保存処理を Results/FuelTank.tsx, Results/OxidizerTank.tsx で行わず、この計算後に対応する
 
     const isSteam: boolean = engine.name === "Steam Engine"
@@ -146,11 +145,11 @@ function useAmount() {
     const k = stepCount(f);
     const Wk = W0 + dW * k;
     const f_value = isSteam ? f : f * 2; // Steam Engineならf単体。それ以外は、同量の酸化剤を追加
-    const penalty = Math.max(Wk + f_value, Math.pow((Wk + f_value) / 300, 3.2));
-    console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${T}`);
-    return eta * f - penalty > T;
+    const thruster_wet_mass = thruster.length * 800;
+    const total_mass = Wk + f_value + thruster_wet_mass;
+    const penalty = Math.max(total_mass, Math.pow(total_mass / 300, 3.2));
     console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${TargetRange}`);
-    return eta * f - penalty > TargetRange;
+    return eta * f - penalty > TargetRange - 12_000 * thruster.length;
   };
 
   return {
