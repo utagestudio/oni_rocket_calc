@@ -14,7 +14,6 @@ function useAmount() {
 
     // TODO: Steam Engine のときの計算結果を確認する
     // TODO: Thrusterを導入する
-    // TODO: 重量ペナルティの軽量時の計算を反映する
     // TODO: 燃料タンクの個数保存処理を Results/FuelTank.tsx, Results/OxidizerTank.tsx で行わず、この計算後に対応する
 
     const isSteam: boolean = engine.name === "Steam Engine"
@@ -146,7 +145,7 @@ function useAmount() {
     const k = stepCount(f);
     const Wk = W0 + MASS_INCREASE_PER_STEP_KG * k;
     const f_value = isSteam ? f : f * 2; // Steam Engineならf単体。それ以外は、同量の酸化剤を追加
-    const penalty = Math.pow((Wk + f_value) / 300, 3.2);
+    const penalty = Math.max(Wk + f_value, Math.pow((Wk + f_value) / 300, 3.2));
     console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${T}`);
     return eta * f - penalty > T;
   };
