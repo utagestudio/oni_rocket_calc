@@ -38,7 +38,7 @@ function Results({}: Props) {
       setNumberOfOxidizerTanks(0)
     }
     setIsCalculating(false)
-  }, 1000, [params])
+  }, 200, [params])
 
   // paramsに変更があった時点で、loadingにする
   useEffect(() => {
