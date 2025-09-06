@@ -30,6 +30,7 @@ function useAmount() {
     } else {
       console.log(`到達不可: ${res.reason}`);
     }
+    return res
   }
 
   const minimalFuelWithOxidizerPenaltyScaledInside = (

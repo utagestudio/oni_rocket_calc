@@ -18,6 +18,7 @@ function Results({}: Props) {
   const {amount, isCalculating, amountCalculate, setIsCalculating} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
+  const [numberOfFuelTanks, setNumberOfFuelTanks] = useState(0)
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({
@@ -26,7 +27,12 @@ function Results({}: Props) {
 
   // amountCalculate をDebounce
   useDebounce(() => {
-    amountCalculate(params)
+    const feasible = amountCalculate(params)
+    if(feasible.feasible) {
+      setNumberOfFuelTanks(feasible.segment)
+    } else {
+      setNumberOfFuelTanks(0)
+    }
   }, 1000, [params])
 
   // paramsに変更があった時点で、loadingにする
@@ -67,7 +73,7 @@ function Results({}: Props) {
             <div className="Results_cell -fuel">
               <div className="Results_title">Fuel Tanks</div>
               <div className="Results_content">
-                <FuelTank required={amount} />
+                <FuelTank required={amount} numberOfTanks={numberOfFuelTanks} />
               </div>
             </div>
             <div className="Results_cell -oxidizer">
