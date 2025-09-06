@@ -15,7 +15,7 @@ import FuelAmount from '@/components/Results/FuelAmount'
 type Props = {}
 
 function Results({}: Props) {
-  const {head, engine, thruster, modules, fuelTanks,oxidizerTanks,oxidizerType} = useModules()
+  const {head, engine, thruster, modules, oxidizerType} = useModules()
   const {amount,  amountCalculate, setIsCalculating} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
@@ -29,7 +29,7 @@ function Results({}: Props) {
 
   // amountCalculate をDebounce
   useDebounce(() => {
-    const feasible = amountCalculate(params)
+    const feasible = amountCalculate()
     if(feasible.feasible) {
       setNumberOfFuelTanks(feasible.fSegment)
       setNumberOfOxidizerTanks(feasible.oSegment)

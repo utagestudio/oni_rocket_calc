@@ -1,15 +1,17 @@
 import {useContext} from 'react'
 import {AmountContext} from '@/provider/AmountProvider'
 import useModules from '@/hooks/useModules'
+import {DistanceContext} from '@/provider/DistanceProvider'
 
 function useAmount() {
-  const {thruster, findItem} = useModules()
+  const {head, engine, modules, oxidizerType, thruster, findItem} = useModules()
+  const {distance} = useContext<tDistanceContext>(DistanceContext)
   const amount = useContext<tAmountContext>(AmountContext)
   const STEP = 900
   const fuelTank = findItem("Fuel Tank")
   const MASS_INCREASE_PER_STEP_KG = fuelTank!.mass
 
-  const amountCalculate = ({head, engine, thruster: _t, modules, oxidizerType, distance}:tAmount) => {
+  const amountCalculate = () => {
     amount.methods.setAmount(0)
     const isSteam: boolean = engine.name === "Steam Engine"
     // 目標距離[km]
