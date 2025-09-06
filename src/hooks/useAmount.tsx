@@ -10,8 +10,7 @@ function useAmount() {
   const MASS_INCREASE_PER_STEP_KG = fuelTank!.mass
 
   const amountCalculate = ({head, engine, thruster: _t, modules, oxidizerType, distance}:tAmount) => {
-    amount.methods.setIsCalculating(true)
-
+    amount.methods.setAmount(0)
     const isSteam: boolean = engine.name === "Steam Engine"
     // 目標距離[km]
     const TargetRange = distance;
@@ -23,9 +22,9 @@ function useAmount() {
     const res = minimalFuelWithOxidizerPenaltyScaledInside(TargetRange, W0, eta, isSteam);
     if (res.feasible) {
       amount.methods.setAmount(res.fuelKg)
-      amount.methods.setIsCalculating(false)
       console.log(`必要最小燃料: ${res.fuelKg} kg（k=${res.fSegment}）`);
     } else {
+      amount.methods.setAmount(-1)
       console.log(`到達不可: ${res.reason}`);
     }
     return res

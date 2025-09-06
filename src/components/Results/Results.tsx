@@ -36,6 +36,7 @@ function Results({}: Props) {
       setNumberOfFuelTanks(0)
       setNumberOfOxidizerTanks(0)
     }
+    setIsCalculating(false)
   }, 1000, [params])
 
   // paramsに変更があった時点で、loadingにする
@@ -55,14 +56,21 @@ function Results({}: Props) {
           <div className="Results_content"><SelectedModules isShown={isShowSelectedModuleArea} onToggle={toggleSelectedModuleArea} /></div>
         </div>
 
-        {amount < 0 &&
+        {isCalculating &&
           <div className="Results_cell -unreached">
             <div className="Results_content -unreached">
-              {isCalculating ? '---' : 'Unreached'}
+              Calculating...
             </div>
           </div>
         }
-        {amount >= 0 && <>
+        {!isCalculating && amount < 0 &&
+          <div className="Results_cell -unreached">
+            <div className="Results_content -unreached">
+              Unreached
+            </div>
+          </div>
+        }
+        {!isCalculating && amount >= 0 && <>
           {engine.name === "Steam Engine" &&
             <div className="Results_cell -steam">
               <div className="Results_title">Steam</div>
