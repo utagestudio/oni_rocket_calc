@@ -12,8 +12,6 @@ function useAmount() {
   const amountCalculate = ({head, engine, thruster: _t, modules, oxidizerType, distance}:tAmount) => {
     amount.methods.setIsCalculating(true)
 
-    // TODO: 燃料タンクの個数保存処理を Results/FuelTank.tsx, Results/OxidizerTank.tsx で行わず、この計算後に対応する
-
     const isSteam: boolean = engine.name === "Steam Engine"
     // 目標距離[km]
     const TargetRange = distance;
