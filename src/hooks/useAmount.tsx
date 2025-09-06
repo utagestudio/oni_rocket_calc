@@ -26,7 +26,7 @@ function useAmount() {
     if (res.feasible) {
       amount.methods.setAmount(res.fuelKg)
       amount.methods.setIsCalculating(false)
-      console.log(`必要最小燃料: ${res.fuelKg} kg（k=${res.segment}）`);
+      console.log(`必要最小燃料: ${res.fuelKg} kg（k=${res.fSegment}）`);
     } else {
       console.log(`到達不可: ${res.reason}`);
     }
@@ -56,7 +56,7 @@ function useAmount() {
     // TODO: f=0 はありえないので不要
     // f=0 の個別判定
     if (g(0, values)) {
-      return { feasible: true, fuelKg: 0, segment: 0 };
+      return { feasible: true, fuelKg: 0, fSegment: 0, oSegment: 0 };
     }
 
     // ピーク定数: (Wk + 2f)/300 = C
@@ -129,7 +129,7 @@ function useAmount() {
       let ans = hi;
       while (ans - 1 >= start && g(ans - 1, values)) ans--;
 
-      return { feasible: true, fuelKg: ans, segment: k };
+      return { feasible: true, fuelKg: ans, fSegment: k, oSegment: isSteam ? 0 : 1 };
     }
 
     return { feasible: false, reason: "探索上限を超過（パラメータ異常の可能性）" };

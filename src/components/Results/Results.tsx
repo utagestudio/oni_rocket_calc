@@ -19,6 +19,7 @@ function Results({}: Props) {
   const {distance} = useContext<tDistanceContext>(DistanceContext)
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
   const [numberOfFuelTanks, setNumberOfFuelTanks] = useState(0)
+  const [numberOfOxidizerTanks, setNumberOfOxidizerTanks] = useState(0)
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({
@@ -29,9 +30,11 @@ function Results({}: Props) {
   useDebounce(() => {
     const feasible = amountCalculate(params)
     if(feasible.feasible) {
-      setNumberOfFuelTanks(feasible.segment)
+      setNumberOfFuelTanks(feasible.fSegment)
+      setNumberOfOxidizerTanks(feasible.oSegment)
     } else {
       setNumberOfFuelTanks(0)
+      setNumberOfOxidizerTanks(0)
     }
   }, 1000, [params])
 
@@ -79,7 +82,7 @@ function Results({}: Props) {
             <div className="Results_cell -oxidizer">
               <div className="Results_title">Oxidizer Tanks</div>
               <div className="Results_content">
-                <OxidizerTank required={amount} />
+                <OxidizerTank required={amount} numberOfTanks={numberOfOxidizerTanks} />
               </div>
             </div>
           </>}
