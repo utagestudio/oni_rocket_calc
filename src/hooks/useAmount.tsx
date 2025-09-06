@@ -12,7 +12,6 @@ function useAmount() {
   const amountCalculate = ({head, engine, thruster, modules, oxidizerType, distance}:tAmount) => {
     amount.methods.setIsCalculating(true)
 
-    // TODO: Steam Engine のときの計算結果を確認する
     // TODO: Thrusterを導入する
     // TODO: 燃料タンクの個数保存処理を Results/FuelTank.tsx, Results/OxidizerTank.tsx で行わず、この計算後に対応する
 
@@ -33,6 +32,7 @@ function useAmount() {
       console.log(`到達不可: ${res.reason}`);
     }
   }
+
   const minimalFuelWithOxidizerPenaltyScaledInside = (
     targetKm: number,              // T
     dryMassKg: number,             // W0
@@ -43,10 +43,10 @@ function useAmount() {
     const T = Math.max(0, targetKm);
     const W0 = Math.max(0, dryMassKg + OxidizerTankMass);
     const eta = Math.max(0, efficiencyKmPerKg);
-    const dW = Math.max(0, MASS_INCREASE_PER_STEP_KG);
+    const dW = isSteam ? 0 : Math.max(0, MASS_INCREASE_PER_STEP_KG);
     const S = Math.max(1, Math.floor(STEP));
 
-    const values =  {W0, eta, T, isSteam}
+    const values =  {W0, dW, eta, T, isSteam}
 
     // TODO: eta === 0 になることはないので、多分使わない
     if (eta === 0) {
@@ -64,7 +64,8 @@ function useAmount() {
     const C = Math.pow((eta * 300) / penaltyDerivativeCoeff, 1 / 2.2);
 
     // セグメント k=1: [1, S], k=2: [S+1, 2S], ...
-    for (let k = 1; k < 4; k++) {
+    const max_loop = isSteam ? 1 : 3
+    for (let k = 1; k <= max_loop; k++) {
       const start = (k - 1) * S + 1;
       const end = k * S;
 
@@ -139,11 +140,11 @@ function useAmount() {
 
   // g(f) = η f − ((Wk + 2f)/300)^3.2 − T, where Wk = W0 + ΔW·k
   // 到達可否。 true なら到達可能
-  const g = (f: number, values: {W0: number, eta: number, T: number, isSteam: boolean}) => {
-    const {W0, eta, T, isSteam} = values;
+  const g = (f: number, values: {W0: number, dW: number, eta: number, T: number, isSteam: boolean}) => {
+    const {W0, dW, eta, T, isSteam} = values;
 
     const k = stepCount(f);
-    const Wk = W0 + MASS_INCREASE_PER_STEP_KG * k;
+    const Wk = W0 + dW * k;
     const f_value = isSteam ? f : f * 2; // Steam Engineならf単体。それ以外は、同量の酸化剤を追加
     const penalty = Math.max(Wk + f_value, Math.pow((Wk + f_value) / 300, 3.2));
     console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${T}`);
