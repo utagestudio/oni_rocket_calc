@@ -46,17 +46,6 @@ function useAmount() {
 
     const values =  {W0, dW, eta, TargetRange, isSteam}
 
-    // TODO: eta === 0 になることはないので、多分使わない
-    if (eta === 0) {
-      return { feasible: false, reason: "効率が0のため到達不可能" };
-    }
-
-    // TODO: f=0 はありえないので不要
-    // f=0 の個別判定
-    if (g(0, values)) {
-      return { feasible: true, fuelKg: 0, fSegment: 0, oSegment: 0 };
-    }
-
     // ピーク定数: (Wk + 2f)/300 = C
     const penaltyDerivativeCoeff = isSteam ? 3.2 : 6.4;
     const C = Math.pow((eta * 300) / penaltyDerivativeCoeff, 1 / 2.2);
@@ -147,7 +136,7 @@ function useAmount() {
     const thruster_wet_mass = thruster.length * 800;
     const total_mass = Wk + f_value + thruster_wet_mass;
     const penalty = Math.max(total_mass, Math.pow(total_mass / 300, 3.2));
-    console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${TargetRange}`);
+    // console.log(`k: ${k}, Wk: ${Wk}, f: ${f}, f_value: ${f_value}, penalty: ${penalty}, range: ${eta * f - penalty}, T: ${TargetRange}`);
     return eta * f - penalty > TargetRange - 12_000 * thruster.length;
   };
 
