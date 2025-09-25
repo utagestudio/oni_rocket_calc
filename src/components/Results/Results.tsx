@@ -15,12 +15,10 @@ import FuelAmount from '@/components/Results/FuelAmount'
 type Props = {}
 
 function Results({}: Props) {
-  const {head, engine, thruster, modules, oxidizerType} = useModules()
+  const {head, engine, thruster, modules, oxidizerType, setNumberOfFuelTanks, setNumberOfOxidizerTanks} = useModules()
   const {amount,  amountCalculate, setIsCalculating} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
-  const [numberOfFuelTanks, setNumberOfFuelTanks] = useState(0)
-  const [numberOfOxidizerTanks, setNumberOfOxidizerTanks] = useState(0)
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({
@@ -70,13 +68,13 @@ function Results({}: Props) {
             <div className="Results_cell -fuel">
               <div className="Results_title">Fuel Tanks</div>
               <div className="Results_content">
-                <FuelTank required={amount} numberOfTanks={numberOfFuelTanks} />
+                <FuelTank required={amount} />
               </div>
             </div>
             <div className="Results_cell -oxidizer">
               <div className="Results_title">Oxidizer Tanks</div>
               <div className="Results_content">
-                <OxidizerTank required={amount} numberOfTanks={numberOfOxidizerTanks} />
+                <OxidizerTank required={amount} />
               </div>
             </div>
           </>}

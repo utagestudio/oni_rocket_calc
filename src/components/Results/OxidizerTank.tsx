@@ -4,11 +4,10 @@ import {useEffect} from 'react'
 import Tank from '@/components/Results/Tank'
 type Props = {
   required: number
-  numberOfTanks: number
 }
 
-function OxidizerTank({required, numberOfTanks}: Props) {
-  const {oxidizerType, setOxidizerType, changeOxidizerTankByType} = useModules()
+function OxidizerTank({required}: Props) {
+  const {oxidizerTanks, oxidizerType, setOxidizerType, changeOxidizerTankByType} = useModules()
 
   useEffect(() => {
     changeOxidizerTankByType()
@@ -17,7 +16,7 @@ function OxidizerTank({required, numberOfTanks}: Props) {
 
 
   return <>
-    <Tank required={required} limitAmountPerTank={2700} numberOfTanks={numberOfTanks} image={oxidizerType === 'solid' ? 'img_solid_oxidizer_tank' : 'img_liquid_oxidizer_tank'} >
+    <Tank required={required} limitAmountPerTank={2700} numberOfTanks={oxidizerTanks.length} image={oxidizerType === 'solid' ? 'img_solid_oxidizer_tank' : 'img_liquid_oxidizer_tank'} >
       <div className="OxidizerTank">
         <ul className="OxidizerTank_selector">
           <li className={`OxidizerTank_type -solid ${oxidizerType === 'solid' ? '-selected' : ''}`} onClick={() => setOxidizerType('solid')}>

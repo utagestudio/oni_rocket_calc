@@ -55,7 +55,7 @@ function useModules() {
    * Set the number of fuel tanks to the specified number(num)
    * @param num
    */
-  const setNumberOfFuelTank = (num:number) => {
+  const setNumberOfFuelTanks = (num:number) => {
     if(modules.engine.name === "Steam Engine") return
     const tanks = [] as tItem[]
     for(let i = 0; i < num; i++) {
@@ -69,7 +69,7 @@ function useModules() {
    * Set the number of oxidizer tanks to the specified number(num)
    * @param num
    */
-  const setNumberOfOxidizerTank = (num:number) => {
+  const setNumberOfOxidizerTanks = (num:number) => {
     if(modules.engine.name === "Steam Engine") return
     const tanks = [] as tItem[]
     for(let i = 0; i < num; i++) {
@@ -180,8 +180,8 @@ function useModules() {
     removeModule,
     addOxidizerTank,
     changeOxidizerTankByType,
-    setNumberOfFuelTank,
-    setNumberOfOxidizerTank,
+    setNumberOfFuelTanks,
+    setNumberOfOxidizerTanks,
     reset,
     includes,
     setOxidizerType: modules.methods.setOxidizerType,
