@@ -1,0 +1,22 @@
+.Header
+  font-family: var(--font-barriecito)
+  font-style: normal
+  font-weight: 700
+  line-height: 1
+  color: #F8F8F8
+  display: grid
+  grid-template-areas: "name name" "title version" "usage usage"
+  gap: 0 16px
+  justify-content: start
+  align-items: baseline
+  @at-root
+    .Header_name
+      grid-area: name
+      font-size: 24px
+      letter-spacing: 0.1em
+    .Header_title
+      grid-area: title
+      font-size: 64px
+    .Header_version
+      grid-area: version
+      font-size: 24px

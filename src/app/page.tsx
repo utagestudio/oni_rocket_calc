@@ -6,17 +6,14 @@ import Distance from '@/components/Distance'
 import Rocket from '@/components/Rocket'
 import ResetButton from '@/components/ResetButton'
 import Results from '@/components/Results/Results'
+import Header from '@/app/Header'
 
 export default function Home() {
   return <>
     <div className={styles.page}>
       <div className={styles.main}>
         <div className={styles.wrapper}>
-          <h1 className={styles.heading}>
-            <div className={styles.gameName}>Oxygen Not Included</div>
-            <div className={styles.title}>Rocket Fuel Calculator</div>
-            <div className={styles.version}>Ver.beta</div>
-          </h1>
+          <div className={styles.heading}><Header /></div>
           <div className={styles.reset}><ResetButton /></div>
           <div className={styles.copyright}><Copyright /></div>
           <div className={styles.content}>
