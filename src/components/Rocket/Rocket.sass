@@ -1,19 +1,36 @@
 .Rocket
   @at-root
     .Rocket_wrap
-      display: flex
-      flex-direction: column
-      align-items: center
+      display: grid
+      grid-template-columns: auto
+      grid-template-rows: 1fr auto
+      height: 100%
+      gap: 8px
       position: relative
       @at-root
+        .Rocket_names
+          grid-area: 1/1/2/2
+          visibility: hidden
+          &.-show
+            visibility: visible
         .Rocket_modules
+          grid-area: 1/1/2/2
           position: absolute
           bottom: 0
+          display: flex
+          flex-direction: column
+          justify-content: end
           list-style: none
           margin: 0
           padding: 0
+          visibility: hidden
+          &.-show
+            visibility: visible
           @at-root
             .Rocket_module
               display: flex
               justify-content: center
-              margin: -2px 0
+              margin: -4px 0 0 0
+        .Rocket_change
+          grid-area: 2/1/3/2
+          cursor: pointer

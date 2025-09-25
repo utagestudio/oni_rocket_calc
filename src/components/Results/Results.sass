@@ -14,24 +14,6 @@
           flex-direction: column
           gap: 16px
 
-          &.-selected
-            // TODO: フロート化により、ここにあるのは不適切なので、移動させる。
-            position: fixed
-            top: 0
-            left: 50lvw
-            z-index: 1000
-            width: 100lvw
-            height: 100lvh
-            transform: translateX(50lvw)
-            background-color: rgba(#171932, .8)
-            color: white
-            padding: 16px
-            border-radius: 8px 0 0 8px
-            gap: 16px
-            transition: transform .1s ease-in-out
-            &.-show
-              transform: translateX(415px)
-
           &.-steam
             grid-area: 1/1/2/3
             min-height: 130px
