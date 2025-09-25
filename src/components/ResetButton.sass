@@ -1,4 +1,31 @@
 .ResetButton
-  width: 100%
-  height: 100%
   cursor: pointer
+
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 8px
+
+  padding: 8px 16px
+  border-radius: 8px
+  border: none
+
+  box-shadow: 0 4px 0 rgba(0,0,0,1)
+  background-color: #eee
+  transition: all .1s ease
+
+  &:hover
+    box-shadow: 0 2px 0 rgba(0,0,0,.5)
+    transform: translateY(2px)
+    background-color: #fff
+    .ResetButton_icon
+      transform: rotate(180deg)
+    .ResetButton_label
+      color: #E4801D
+
+  @at-root
+    .ResetButton_icon
+      transition: transform .1s ease
+    .ResetButton_label
+      color: #333
+      transition: color .1s ease

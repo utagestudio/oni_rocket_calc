@@ -44,10 +44,7 @@ function SelectedModules({isShown, onToggle}: Props) {
           <div className="SelectedModules_number">x1</div>
         </li>
       </ul>
-
-      {/*暫定設置*/}
-      <button className={`SelectedModules_button ${isShown ? '-shown' : ''}`} onClick={onToggle}>{isShown ? 'Hide' : 'Show Selected Modules'}</button>
-    </div>
+   </div>
   </>
 }
 

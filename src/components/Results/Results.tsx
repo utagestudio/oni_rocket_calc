@@ -1,13 +1,12 @@
 "use client"
 
 import './Results.sass'
-import SelectedModules from '@/components/Results/SelectedModules'
 import FuelTank from '@/components/Results/FuelTank'
 import OxidizerTank from '@/components/Results/OxidizerTank'
 import useModules from '@/hooks/useModules'
 import ForThruster from '@/components/Results/ForThruster'
 import useAmount from '@/hooks/useAmount'
-import {useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import {useContext, useEffect, useMemo} from 'react'
 import {useDebounce} from 'react-use'
 import {DistanceContext} from '@/provider/DistanceProvider'
 import SteamTank from '@/components/Results/SteamTank'
@@ -18,7 +17,6 @@ function Results({}: Props) {
   const {head, engine, thruster, modules, oxidizerType, setNumberOfFuelTanks, setNumberOfOxidizerTanks} = useModules()
   const {amount,  amountCalculate, setIsCalculating} = useAmount()
   const {distance} = useContext<tDistanceContext>(DistanceContext)
-  const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({
@@ -43,17 +41,10 @@ function Results({}: Props) {
     setIsCalculating(true)
   }, [params]);
 
-  const toggleSelectedModuleArea = useCallback(() => {
-    setIsShowSelectedModuleArea(prev => !prev)
-  }, [])
 
   return <>
     <div className="Results">
       <div className="Results_wrap">
-        <div className={`Results_cell -selected ${isShowSelectedModuleArea ? '-show' : ''}`}>
-          <div className="Results_title">Selected Modules</div>
-          <div className="Results_content"><SelectedModules isShown={isShowSelectedModuleArea} onToggle={toggleSelectedModuleArea} /></div>
-        </div>
         {<>
           {engine.name === "Steam Engine" &&
             <div className="Results_cell -steam">
