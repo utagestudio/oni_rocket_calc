@@ -20,6 +20,14 @@ function Footer({}: Props) {
       <span className={styles.wrap}>/</span>
 
       <span className={styles.wrap}>
+        <a href='https://oxygennotincluded.wiki.gg/' target='_blank' className={styles.anchor}>
+          The Oxygen Not Included Wiki
+        </a>
+      </span>
+
+      <span className={styles.wrap}>/</span>
+
+      <span className={styles.wrap}>
         <a href='https://store.steampowered.com/app/457140/Oxygen_Not_Included/' target='_blank' className={styles.anchor}>
           Oxygen Not Included
         </a>
