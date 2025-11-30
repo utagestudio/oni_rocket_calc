@@ -19,7 +19,7 @@
 .wrapper
   display: grid
   grid-template-columns: 800px auto 1fr
-  grid-template-rows: auto auto auto
+  grid-template-rows: auto 1fr auto
   grid-template-areas: "heading reset copyright" "content distance rocket" "results distance rocket"
   gap: 8px 16px
   box-sizing: border-box
@@ -39,6 +39,7 @@
   align-self: center
 .content
   grid-area: content
+  align-self: center
   padding: 16px 0
 .distance
   grid-area: distance
