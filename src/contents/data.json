@@ -45,6 +45,15 @@
       },
       {
         "type": "engine",
+        "name": "Biodiesel Engine",
+        "image": "img_biodiesel_engine.webp",
+        "image2x": "img_biodiesel_engine@2x.webp",
+        "multiple": false,
+        "mass": 200,
+        "efficiency": 50
+      },
+      {
+        "type": "engine",
         "name": "Hydrogen Engine",
         "image": "img_hydrogen_engine.webp",
         "image2x": "img_hydrogen_engine@2x.webp",
