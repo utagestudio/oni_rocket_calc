@@ -1,9 +1,6 @@
 import type {Metadata} from "next";
 import {Barriecito, M_PLUS_Rounded_1c} from "next/font/google";
 import "./globals.sass";
-import ModulesProvider from '@/provider/ModulesProvider'
-import DistanceProvider from '@/provider/DistanceProvider'
-import AmountProvider from '@/provider/AmountProvider'
 import { Analytics } from "@vercel/analytics/next"
 
 const barriecito = Barriecito({
@@ -60,13 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={`${mplus.variable} ${barriecito.variable}`}>
-      <AmountProvider>
-        <ModulesProvider>
-          <DistanceProvider>
-            {children}
-          </DistanceProvider>
-        </ModulesProvider>
-      </AmountProvider>
+      {children}
       <Analytics />
     </body>
     </html>
