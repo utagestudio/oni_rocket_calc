@@ -1,5 +1,7 @@
 import "./ModuleImage.sass"
 import useModules from '@/hooks/useModules'
+import Image from 'next/image'
+import {getImageDimensions} from '@/lib/imageDimensions'
 
 type Props = {
   module: tItem
@@ -7,6 +9,7 @@ type Props = {
 
 function ModuleImage({module}: Props) {
   const {addModule, removeModule} = useModules()
+  const dimensions = getImageDimensions(module.image)
 
   const build = () => {
     addModule(module)
@@ -19,7 +22,13 @@ function ModuleImage({module}: Props) {
   return <>
     <div className="ModuleImage">
       <div className="ModuleImage_imageWrap">
-        <img className="ModuleImage_image" src={`/assets/images/${module.image}`} srcSet={`/assets/images/${module.image2x} 2x, /assets/images/${module.image} 1x`} alt={module.name} />
+        <Image
+          className="ModuleImage_image"
+          src={`/assets/images/${module.image}`}
+          width={dimensions.width}
+          height={dimensions.height}
+          alt={module.name}
+        />
       </div>
       <div className="ModuleImage_buttons">
         {module.multiple && <>

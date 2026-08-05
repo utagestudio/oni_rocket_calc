@@ -3,6 +3,7 @@
 import './Distance.sass'
 import {useDistanceContext} from '@/provider/DistanceProvider'
 import {MouseEvent, useCallback} from 'react'
+import Image from 'next/image'
 type Props = {}
 
 const NUM_DISTANCE = 18
@@ -24,7 +25,9 @@ function Distance({}: Props) {
   return <>
     <div className="Distance">
       <div className="Distance_wrap">
-        <div className="Distance_destination"><img src="/assets/images/img_temporal_tear.webp" srcSet="/assets/images/img_temporal_tear.webp 1x, /assets/images/img_temporal_tear@2x.webp 2x" alt='' /></div>
+        <div className="Distance_destination">
+          <Image src="/assets/images/img_temporal_tear.webp" width={44} height={44} alt="" />
+        </div>
         <div className="Distance_meter">
           <ul className="Distance_list">
             {Array.from({length: NUM_DISTANCE}, (_, i) => {
@@ -37,9 +40,13 @@ function Distance({}: Props) {
               )
             })}
           </ul>
-          <div className="Distance_current" style={currentPosition()}><img src="/assets/images/img_terra_asteroid.webp" srcSet="/assets/images/img_rocket.webp 1x, /assets/images/img_rocket@2x.webp 2x" alt='' /></div>
+          <div className="Distance_current" style={currentPosition()}>
+            <Image src="/assets/images/img_rocket.webp" width={32} height={32} alt="" />
+          </div>
         </div>
-        <div className="Distance_source"><img src="/assets/images/img_terra_asteroid.webp" srcSet="/assets/images/img_terra_asteroid.webp 1x, /assets/images/img_terra_asteroid@2x.webp 2x" alt='' /></div>
+        <div className="Distance_source">
+          <Image src="/assets/images/img_terra_asteroid.webp" width={44} height={44} alt="" />
+        </div>
       </div>
     </div>
   </>
