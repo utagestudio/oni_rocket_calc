@@ -10,6 +10,7 @@
 
 - Use the project-pinned Node.js version from `.mise.toml` when running npm scripts.
 - Node.js 25 can trigger `localStorage.getItem is not a function` with Next.js 15 because Web Storage is exposed differently on the server. Keep this project on Node.js 24 unless the runtime issue is deliberately revisited.
+- If `localhost:3000` returns `500 Internal Server Error` or the running dev server appears to need a restart, stop the current workflow and ask the user to restart the server instead of continuing around it.
 
 ## Calculation Code
 
