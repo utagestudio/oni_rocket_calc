@@ -17,6 +17,7 @@ type ModuleAction =
   | {type: 'SET_FUEL_TANKS'; value: React.SetStateAction<tItem[]>}
   | {type: 'SET_OXIDIZER_TANKS'; value: React.SetStateAction<tItem[]>}
   | {type: 'SET_OXIDIZER_TYPE'; value: React.SetStateAction<tOxidizerType>}
+  | {type: 'RESET'}
 
 type ModuleState = Omit<tModuleContext, 'methods'>
 
@@ -71,6 +72,9 @@ function moduleReducer(state: ModuleState, action: ModuleAction): ModuleState {
       return {...state, oxidizerTanks: resolveStateAction(state.oxidizerTanks, action.value)}
     case 'SET_OXIDIZER_TYPE':
       return {...state, oxidizerType: resolveStateAction(state.oxidizerType, action.value)}
+    case 'RESET':
+      // Reset ボタンでは現在のエンジンを維持せず、data.json の selected に基づく初期構成へ戻す。
+      return createInitialState()
     default:
       return state
   }
@@ -91,6 +95,7 @@ function ModulesProvider({children}: React.PropsWithChildren<Props>) {
         dispatch({type: 'SET_OXIDIZER_TANKS', value}),
       setOxidizerType: (value: React.SetStateAction<tOxidizerType>) =>
         dispatch({type: 'SET_OXIDIZER_TYPE', value}),
+      reset: () => dispatch({type: 'RESET'}),
     }),
     [],
   )

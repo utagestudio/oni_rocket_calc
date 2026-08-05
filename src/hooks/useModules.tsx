@@ -137,9 +137,8 @@ function useModules() {
    * Reset the state to the initial state
    */
   const reset = () => {
-    modules.methods.setThruster([])
-    modules.methods.setModules([])
-    setupTanks(modules.engine.name)
+    // 部分的なクリアではなく、Provider が持つ初期構成を再生成してロケット設定を戻す。
+    modules.methods.reset()
   }
 
   /**

@@ -17,5 +17,6 @@ type tModuleContext = tModuleState & {
     setFuelTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
     setOxidizerTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
     setOxidizerType: React.Dispatch<React.SetStateAction<tOxidizerType>>
+    reset: () => void
   }
 }
