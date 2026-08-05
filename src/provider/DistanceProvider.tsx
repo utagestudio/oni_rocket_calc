@@ -1,5 +1,6 @@
 "use client"
-import React, {useState, createContext, useContext} from 'react'
+import React, {useEffect, useState, createContext, useContext} from 'react'
+import {loadPersistedDistance, savePersistedDistance} from '@/lib/rocketPersistence'
 
 export const DistanceContext = createContext<tDistanceContext | undefined>(undefined)
 
@@ -9,6 +10,20 @@ type Props = {
 
 function DistanceProvider({children}: React.PropsWithChildren<Props>) {
   const [distance, setDistance] = useState<number>(10000)
+  const [isPersistenceLoaded, setIsPersistenceLoaded] = useState(false)
+
+  useEffect(() => {
+    // 距離もアクティブなロケットスロットに紐づくため、初回 mount 後に保存値を読む。
+    const persistedDistance = loadPersistedDistance()
+    if (persistedDistance) setDistance(persistedDistance)
+    setIsPersistenceLoaded(true)
+  }, [])
+
+  useEffect(() => {
+    // 復元前にデフォルト距離を書き込まないよう、読み込み完了後だけ保存する。
+    if (!isPersistenceLoaded) return
+    savePersistedDistance(distance)
+  }, [distance, isPersistenceLoaded])
 
   return <>
     <DistanceContext.Provider value={{distance, methods: {setDistance}}}>

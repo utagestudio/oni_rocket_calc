@@ -1,0 +1,92 @@
+.MemorySlots
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 6px
+  user-select: none
+
+.MemorySlots_item
+  display: flex
+  overflow: hidden
+  border-radius: 8px
+  box-shadow: 0 4px 0 rgba(0,0,0,1)
+  background-color: #eee
+  transition: all .1s ease
+
+  &.-active
+    background-color: #E4801D
+
+    .MemorySlots_button
+      color: #fff
+
+      &:hover
+        background-color: rgba(0,0,0,.16)
+        color: #fff
+
+    .MemorySlots_reset
+      border-color: rgba(255,255,255,.34)
+      color: #fff
+
+      .MemorySlots_resetIcon
+        filter: brightness(0) invert(1)
+
+.MemorySlots_button
+  cursor: pointer
+  min-width: 58px
+  padding: 8px 10px
+  border: none
+  background: transparent
+
+  font-family: var(--font-mplus)
+  font-weight: 700
+  font-size: 14px
+  line-height: 1
+  color: #333
+
+  transition: all .1s ease
+
+  &:hover
+    background-color: #fff
+    color: #E4801D
+
+.MemorySlots_reset
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 24px
+  padding: 0
+  border: none
+  border-left: 1px solid rgba(0,0,0,.18)
+  background: transparent
+
+  font-family: var(--font-mplus)
+  font-weight: 700
+  font-size: 14px
+  line-height: 1
+  color: #666
+
+  transition: all .1s ease
+
+  &:hover
+    background-color: #C7392F
+
+    .MemorySlots_resetIcon
+      filter: brightness(0) invert(1)
+      transform: rotate(180deg)
+
+  &:focus-visible
+    outline: 2px solid #fff
+    outline-offset: -2px
+
+.MemorySlots_resetIcon
+  display: block
+  width: 14px
+  height: 14px
+  filter: brightness(0) saturate(100%) invert(29%) sepia(4%) saturate(6%) hue-rotate(321deg) brightness(93%) contrast(86%)
+  transition: transform .1s ease
+
+.MemorySlots_button
+  &:focus-visible
+    outline: 2px solid #fff
+    outline-offset: -4px

@@ -20,6 +20,12 @@
 - When changing rocket fuel calculation logic under `src/domain/rocketFuel.ts`, run `npm test`.
 - If calculation behavior intentionally changes, update `tests/rocketFuel.test.ts` in the same change.
 
+## Code Comments
+
+- When implementing or changing code, add concise Japanese comments where they make future code reading easier.
+- Focus comments on why the code exists, why a guard or fallback is needed, and how cross-component state or persistence is coordinated.
+- Avoid comments that simply repeat what a line of code does.
+
 ## Git
 
 - Unless the user explicitly says not to commit, commit completed work after verification without asking for separate confirmation.

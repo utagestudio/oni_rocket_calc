@@ -1,6 +1,5 @@
 import './OxidizerTank.sass'
 import useModules from '@/hooks/useModules'
-import {useEffect} from 'react'
 import Tank from '@/components/Results/Tank'
 import AssetImage from '@/components/AssetImage'
 type Props = {
@@ -8,13 +7,7 @@ type Props = {
 }
 
 function OxidizerTank({required}: Props) {
-  const {oxidizerTanks, oxidizerType, setOxidizerType, changeOxidizerTankByType} = useModules()
-
-  useEffect(() => {
-    changeOxidizerTankByType()
-  }, [oxidizerType]);
-
-
+  const {oxidizerTanks, oxidizerType, setOxidizerType} = useModules()
 
   return <>
     <Tank required={required} limitAmountPerTank={2700} numberOfTanks={oxidizerTanks.length} image={oxidizerType === 'solid' ? 'img_solid_oxidizer_tank' : 'img_liquid_oxidizer_tank'} >
