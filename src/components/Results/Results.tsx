@@ -27,8 +27,8 @@ function Results({}: Props) {
   useDebounce(() => {
     const feasible = amountCalculate()
     if(feasible.feasible) {
-      setNumberOfFuelTanks(feasible.fSegment)
-      setNumberOfOxidizerTanks(feasible.oSegment)
+      setNumberOfFuelTanks(feasible.fuelTankCount)
+      setNumberOfOxidizerTanks(feasible.oxidizerTankCount)
     } else {
       setNumberOfFuelTanks(0)
       setNumberOfOxidizerTanks(0)
