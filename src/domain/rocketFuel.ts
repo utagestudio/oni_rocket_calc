@@ -222,5 +222,5 @@ function canReach(fuelKg: number, values: SearchValues) {
   // ONI の到達距離計算に合わせ、質量によるペナルティを差し引いて到達可否を判定する。
   const penalty = Math.max(totalMassKg, Math.pow(totalMassKg / 300, 3.2))
 
-  return efficiencyKmPerKg * fuelKg - penalty > targetRangeKm - THRUSTER_RANGE_KM * thrusterCount
+  return efficiencyKmPerKg * fuelKg - penalty >= targetRangeKm - THRUSTER_RANGE_KM * thrusterCount
 }
