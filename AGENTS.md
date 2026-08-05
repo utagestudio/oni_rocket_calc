@@ -21,5 +21,7 @@
 
 ## Git
 
+- Unless the user explicitly says not to commit, commit completed work after verification without asking for separate confirmation.
+- Keep commits scoped to the actual implementation or documentation changes; do not include ignored local workflow files such as `TODO.md` or `SKILLS/`.
 - Follow `SKILLS/git-commit.md` for commit message format when committing.
 - `SKILLS/git-commit.md` is a local instruction file and is ignored by Git; do not add it to commits.
