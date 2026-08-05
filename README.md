@@ -1,6 +1,6 @@
 # ONI Rocket Fuel Calculator
 
-Japanese documentation is available in the second half of this README.
+日本語の説明は README の後半にあります。
 
 An unofficial rocket fuel calculator for the Oxygen Not Included base game.
 
