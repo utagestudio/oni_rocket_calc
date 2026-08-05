@@ -6,20 +6,12 @@
   user-select: none
 
 .MemorySlots_item
-  position: relative
   display: flex
+  overflow: hidden
   border-radius: 8px
   box-shadow: 0 4px 0 rgba(0,0,0,1)
   background-color: #eee
   transition: all .1s ease
-
-  &:has(.MemorySlots_button:hover)
-    box-shadow: 0 2px 0 rgba(0,0,0,.5)
-    transform: translateY(2px)
-    background-color: #fff
-
-    .MemorySlots_button
-      color: #E4801D
 
   &.-active
     background-color: #E4801D
@@ -27,20 +19,19 @@
     .MemorySlots_button
       color: #fff
 
-    .MemorySlots_reset
-      background-color: rgba(255,255,255,.24)
-      color: #fff
-
       &:hover
-        background-color: rgba(0,0,0,.28)
+        background-color: rgba(0,0,0,.16)
         color: #fff
+
+    .MemorySlots_reset
+      border-color: rgba(255,255,255,.34)
+      color: #fff
 
 .MemorySlots_button
   cursor: pointer
   min-width: 58px
-  padding: 8px 24px 8px 10px
+  padding: 8px 10px
   border: none
-  border-radius: 8px
   background: transparent
 
   font-family: var(--font-mplus)
@@ -51,20 +42,20 @@
 
   transition: all .1s ease
 
+  &:hover
+    background-color: #fff
+    color: #E4801D
+
 .MemorySlots_reset
   cursor: pointer
-  position: absolute
-  top: 50%
-  right: 4px
   display: flex
   align-items: center
   justify-content: center
-  width: 18px
-  height: 18px
+  width: 24px
   padding: 0
   border: none
-  border-radius: 50%
-  background-color: rgba(0,0,0,.1)
+  border-left: 1px solid rgba(0,0,0,.18)
+  background: transparent
 
   font-family: var(--font-mplus)
   font-weight: 700
@@ -72,11 +63,10 @@
   line-height: 1
   color: #666
 
-  transform: translateY(-50%)
   transition: all .1s ease
 
   &:hover
-    background-color: rgba(0,0,0,.28)
+    background-color: #C7392F
     color: #fff
 
   &:focus-visible
@@ -87,6 +77,3 @@
   &:focus-visible
     outline: 2px solid #fff
     outline-offset: -4px
-
-  &:hover
-    color: #E4801D
