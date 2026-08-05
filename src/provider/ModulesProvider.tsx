@@ -73,13 +73,12 @@ function moduleReducer(state: ModuleState, action: ModuleAction): ModuleState {
     case 'SET_OXIDIZER_TYPE':
       return {...state, oxidizerType: resolveStateAction(state.oxidizerType, action.value)}
     case 'RESET':
-      // エンジン選定は試行錯誤の前提として維持し、積載して試す部分だけを空に戻す。
+      // エンジン選定と計算結果由来のタンク表示は維持し、次の計算完了時にタンク数を置き換える。
+      // ここでタンクを空にすると、Reset直後から再計算完了までの間にResultsが一瞬ちらつく。
       return {
         ...state,
         thruster: [],
         modules: [],
-        fuelTanks: [],
-        oxidizerTanks: [],
       }
     default:
       return state
