@@ -12,6 +12,7 @@ export default function Home() {
     <div className={styles.page}>
       <div className={styles.main}>
         <div className={styles.wrapper}>
+          {/* MemorySlots もロケット構成と距離を読み書きするため、計算 UI 全体を同じ Provider 配下に置く。 */}
           <AmountProvider>
             <ModulesProvider>
               <DistanceProvider>

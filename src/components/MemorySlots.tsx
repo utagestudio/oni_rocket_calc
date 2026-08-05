@@ -24,6 +24,7 @@ function MemorySlots({}: Props) {
   const [activeSlotIndex, setActiveSlotIndex] = useState(0)
 
   useEffect(() => {
+    // 初回 SSR 時は localStorage を読めないため、mount 後に表示上の選択スロットを実データへ同期する。
     setActiveSlotIndex(loadActiveRocketMemorySlotIndex())
   }, [])
 
@@ -34,12 +35,14 @@ function MemorySlots({}: Props) {
     clearRocketMemorySlot(slotIndex)
 
     if (activeSlotIndex === slotIndex) {
+      // 表示中のスロットを初期化した場合だけ、画面のロケット構成も即座に初期状態へ戻す。
       restorePersistedState(undefined)
       setDistance(DEFAULT_DISTANCE)
     }
   }, [activeSlotIndex, restorePersistedState, setDistance])
 
   const selectSlot = useCallback((slotIndex: number) => {
+    // スロット切り替え直前に現在の構成を明示保存し、effect の非同期保存待ちで取りこぼさないようにする。
     saveRocketMemorySlot(activeSlotIndex, {
       moduleState: {
         headName: head.name,
@@ -54,6 +57,7 @@ function MemorySlots({}: Props) {
     saveActiveRocketMemorySlotIndex(slotIndex)
     setActiveSlotIndex(slotIndex)
 
+    // 空スロットなら undefined を渡し、Provider 側で初期状態へフォールバックする。
     const memorySlot = loadRocketMemorySlot(slotIndex)
     restorePersistedState(memorySlot?.moduleState)
     setDistance(memorySlot?.distance || DEFAULT_DISTANCE)

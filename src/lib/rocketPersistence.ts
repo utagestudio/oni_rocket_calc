@@ -17,6 +17,8 @@ export function loadPersistedModuleState(): PersistedModuleState | undefined {
   if (!storage) return undefined
 
   try {
+    // 現行仕様ではアクティブなメモリスロットを優先して復元する。
+    // 旧仕様の単一保存キーは、スロット保存がまだ存在しない場合の移行用フォールバックとして残す。
     const memorySlot = loadRocketMemorySlot(loadActiveRocketMemorySlotIndex())
     if (memorySlot?.moduleState) return memorySlot.moduleState
 
@@ -37,6 +39,8 @@ export function savePersistedModuleState(value: PersistedModuleState) {
   if (!storage) return
 
   try {
+    // Provider 側は常にこの関数を呼ぶだけでよいよう、現在のアクティブスロットへ自動保存する。
+    // 旧キーにも保存しておくことで、既存 localStorage を使う古いコードとの互換性を保つ。
     saveRocketMemorySlot(loadActiveRocketMemorySlotIndex(), {moduleState: value})
     storage.setItem(MODULE_STORAGE_KEY, JSON.stringify(value))
   } catch {
@@ -49,6 +53,7 @@ export function loadPersistedDistance(): number | undefined {
   if (!storage) return undefined
 
   try {
+    // 距離もロケット構成と同じスロットに属する。旧キーは移行用の読み込み先としてだけ使う。
     const memorySlot = loadRocketMemorySlot(loadActiveRocketMemorySlotIndex())
     if (isValidDistance(memorySlot?.distance)) return memorySlot.distance
 
@@ -69,6 +74,7 @@ export function savePersistedDistance(value: number) {
   if (!storage) return
 
   try {
+    // 距離 Provider はスロットを意識せず、アクティブスロットへ現在値を保存する。
     saveRocketMemorySlot(loadActiveRocketMemorySlotIndex(), {distance: value})
     storage.setItem(DISTANCE_STORAGE_KEY, JSON.stringify(value))
   } catch {
@@ -126,6 +132,7 @@ export function saveRocketMemorySlot(slotIndex: number, value: RocketMemorySlot)
   if (!storage || !isValidSlotIndex(slotIndex)) return
 
   try {
+    // モジュール構成と距離は別々の Provider から保存されるため、片方だけの更新で既存値を消さない。
     const currentSlot = loadRocketMemorySlot(slotIndex) || {}
     storage.setItem(createMemorySlotKey(slotIndex), JSON.stringify({...currentSlot, ...value}))
   } catch {
@@ -148,6 +155,7 @@ function getLocalStorage() {
   if (typeof window === 'undefined') return undefined
 
   try {
+    // SSR やブラウザ設定によって localStorage が使えない場合は、永続化なしでアプリを動かす。
     if (typeof window.localStorage?.getItem !== 'function') return undefined
     if (typeof window.localStorage?.setItem !== 'function') return undefined
     if (typeof window.localStorage?.removeItem !== 'function') return undefined

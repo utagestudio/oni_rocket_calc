@@ -64,6 +64,7 @@ function findSelectedModules() {
 
 function createStateFromPersistedState(persistedState: PersistedModuleState): ModuleState {
   const initialState = createInitialState()
+  // 保存データは部品名だけを持つ。復元時に現在の data.json から引き直すことで、部品定義の変更に追従する。
   const restoredModules = persistedState.moduleNames
     .map((name) => findItem('modules', name))
     .filter((item): item is tRocketModule => Boolean(item))
@@ -71,6 +72,7 @@ function createStateFromPersistedState(persistedState: PersistedModuleState): Mo
 
   return {
     ...initialState,
+    // 保存名が現在の data.json に存在しない場合は、壊れた状態にせず初期パーツへ戻す。
     head: findItem('head', persistedState.headName) || initialState.head,
     engine: findItem('engine', persistedState.engineName) || initialState.engine,
     thruster: persistedState.thrusterNames
@@ -143,12 +145,14 @@ function ModulesProvider({children}: React.PropsWithChildren<Props>) {
   const [isPersistenceLoaded, setIsPersistenceLoaded] = useState(false)
 
   useEffect(() => {
+    // localStorage はクライアントでしか読めないため、初回描画後に保存済み構成を hydrate する。
     const persistedState = loadPersistedModuleState()
     if (persistedState) dispatch({type: 'HYDRATE', value: persistedState})
     setIsPersistenceLoaded(true)
   }, [])
 
   useEffect(() => {
+    // hydrate 前に初期状態を保存してしまうと、保存済みスロットを上書きするため読み込み完了まで待つ。
     if (!isPersistenceLoaded) return
     savePersistedModuleState(serializeModuleState(state))
   }, [isPersistenceLoaded, state])

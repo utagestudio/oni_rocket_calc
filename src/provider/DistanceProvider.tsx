@@ -13,12 +13,14 @@ function DistanceProvider({children}: React.PropsWithChildren<Props>) {
   const [isPersistenceLoaded, setIsPersistenceLoaded] = useState(false)
 
   useEffect(() => {
+    // 距離もアクティブなロケットスロットに紐づくため、初回 mount 後に保存値を読む。
     const persistedDistance = loadPersistedDistance()
     if (persistedDistance) setDistance(persistedDistance)
     setIsPersistenceLoaded(true)
   }, [])
 
   useEffect(() => {
+    // 復元前にデフォルト距離を書き込まないよう、読み込み完了後だけ保存する。
     if (!isPersistenceLoaded) return
     savePersistedDistance(distance)
   }, [distance, isPersistenceLoaded])
