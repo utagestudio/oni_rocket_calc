@@ -10,7 +10,7 @@ function Header({}: Props) {
     <h1 className="Header">
       <div className="Header_name">Oxygen Not Included</div>
       <div className="Header_title">Rocket Fuel Calculator</div>
-      <div className="Header_version">Ver.delta</div>
+      <div className="Header_version">Ver.epsilon</div>
       <div className="Header_usage">Usage:
         <Image className="Header_mouse -left" src="/assets/images/ico_left_click.svg" alt="left click" width={13} height={18} unoptimized />
         Add Module
