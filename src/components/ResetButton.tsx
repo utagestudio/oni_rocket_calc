@@ -11,7 +11,7 @@ function ResetButton({}: Props) {
   return <>
     <button onClick={reset} className="ResetButton">
       <span className="ResetButton_icon">
-        <Image className="ResetButton_img" src="/assets/images/ico_reset.svg" alt="reset" width={24} height={24} />
+        <Image className="ResetButton_img" src="/assets/images/ico_reset.svg" alt="reset" width={24} height={24} unoptimized />
       </span>
       <span className="ResetButton_label">Reset</span>
     </button>

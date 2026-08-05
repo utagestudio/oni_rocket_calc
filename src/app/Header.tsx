@@ -12,9 +12,9 @@ function Header({}: Props) {
       <div className="Header_title">Rocket Fuel Calculator</div>
       <div className="Header_version">Ver.delta</div>
       <div className="Header_usage">Usage:
-        <Image className="Header_mouse -left" src="/assets/images/ico_left_click.svg" alt="left click" width={13} height={18} />
+        <Image className="Header_mouse -left" src="/assets/images/ico_left_click.svg" alt="left click" width={13} height={18} unoptimized />
         Add Module
-        <Image className="Header_mouse -right" src="/assets/images/ico_right_click.svg" alt="right click" width={13} height={18} />
+        <Image className="Header_mouse -right" src="/assets/images/ico_right_click.svg" alt="right click" width={13} height={18} unoptimized />
         Remove Module
       </div>
     </h1>

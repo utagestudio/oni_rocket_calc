@@ -31,6 +31,7 @@ function Tank({required, limitAmountPerTank, numberOfTanks, image, children}: Re
                 width={dimensions.width}
                 height={dimensions.height}
                 alt=""
+                unoptimized
               />
             </div>
             <div className="Tank_capacity">

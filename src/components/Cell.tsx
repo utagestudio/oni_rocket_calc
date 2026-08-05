@@ -15,7 +15,7 @@ function Cell({item}: Props) {
     <div className={styles.Cell}>
       <div className={`${styles.frame} ${modules.includes(item) && styles.selected}`}>
         <div className={styles.image}>
-          <Image src={image} width={dimensions.width} height={dimensions.height} alt={item.name} />
+          <Image src={image} width={dimensions.width} height={dimensions.height} alt={item.name} unoptimized />
         </div>
 
         <div className={styles.name}>{item.name}</div>

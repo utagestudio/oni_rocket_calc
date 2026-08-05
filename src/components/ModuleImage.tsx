@@ -28,6 +28,7 @@ function ModuleImage({module}: Props) {
           width={dimensions.width}
           height={dimensions.height}
           alt={module.name}
+          unoptimized
         />
       </div>
       <div className="ModuleImage_buttons">
