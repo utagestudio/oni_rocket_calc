@@ -51,7 +51,7 @@ function MemorySlots({}: Props) {
           aria-pressed={activeSlotIndex === slotIndex}
           key={`memory-slot-${slotIndex}`}
         >
-          Slot {slotIndex + 1}
+          Rocket {slotIndex + 1}
         </button>
       ))}
     </div>
