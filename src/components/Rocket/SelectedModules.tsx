@@ -5,16 +5,25 @@ type Props = {
   onToggle: () => void
 }
 
+type GroupedModule = {
+  key: string
+  name: string
+  count: number
+}
+
 function SelectedModules({isShown, onToggle}: Props) {
   const modules = useModules()
 
   const groupModulesModule = (modules: tItem[]) => {
-    const grouped: {[key: string]: {name: string; count: number}} = {}
+    const grouped: Record<string, GroupedModule> = {}
     modules.forEach((module) => {
-      if( grouped[module.name] ) {
-        grouped[module.name].count++
+      // 表示名が同じでも種類が違う可能性を避けるため、集計キーにはtypeも含める。
+      const key = `${module.type}:${module.name}`
+
+      if( grouped[key] ) {
+        grouped[key].count++
       } else {
-        grouped[module.name] = {name: module.name, count: 1}
+        grouped[key] = {key, name: module.name, count: 1}
       }
     })
     return Object.values(grouped)
@@ -30,7 +39,7 @@ function SelectedModules({isShown, onToggle}: Props) {
           <div className="SelectedModules_number">x1</div>
         </li>
         { groupedModules.length > 0 && <>
-          { groupedModules.map(((m, i) => {return <li className="SelectedModules_item" key={i}>
+          { groupedModules.map(((m) => {return <li className="SelectedModules_item" key={m.key}>
             <div className="SelectedModules_name">{m.name}</div>
             <div className="SelectedModules_number">x{m.count}</div>
           </li>})) }

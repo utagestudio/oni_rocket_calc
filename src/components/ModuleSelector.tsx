@@ -3,24 +3,14 @@
 import styles from './ModuleSelector.module.sass'
 import data from '@/contents/data.json'
 import Group from '@/components/Group'
-import {useEffect} from 'react'
-import useModules from '@/hooks/useModules'
 type Props = {}
 
+const moduleGroups = data as tGroup[]
+
 function ModuleSelector({}: Props) {
-  const modules = useModules()
-
-  useEffect(() => {
-    data && data.map((group:tGroup) => {
-      group.items.map((item) => {
-        item.selected && modules.addModule(item)
-      })
-    })
-  }, []);
-
   return <>
     <div className={styles.ModuleSelector}>
-      {data && data.map((group:tGroup) => {
+      {moduleGroups.map((group) => {
         if( group.isUnSelectable ) return
         return <Group group={group} key={group.title}/>
       })}

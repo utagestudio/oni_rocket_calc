@@ -7,6 +7,11 @@ import SelectedModules from '@/components/Rocket/SelectedModules'
 import {useCallback, useState} from 'react'
 type Props = {}
 
+// 同じモジュールを複数積めるため、種類と名前に並び順を足して各スロットを区別する。
+function buildModuleSlotKey(module: tItem, index: number) {
+  return `${module.type}:${module.name}:${index}`
+}
+
 function Rocket({}: Props) {
   const modules = useModules()
   const [isShowSelectedModuleArea, setIsShowSelectedModuleArea] = useState(false)
@@ -20,20 +25,20 @@ function Rocket({}: Props) {
       <div className="Rocket_wrap">
         <div className={`Rocket_names ${isShowSelectedModuleArea ? '-show' : ''}`} ><SelectedModules isShown={isShowSelectedModuleArea} onToggle={toggleSelectedModuleArea} /></div>
         <ul className={`Rocket_modules ${isShowSelectedModuleArea ? '' : '-show'}`}>
-          <li className="Rocket_module"><ModuleImage module={modules.head} /></li>
+          <li className="Rocket_module" key={`head:${modules.head.name}`}><ModuleImage module={modules.head} /></li>
           { modules.modules.length > 0 && <>
-            { modules.modules.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+            { modules.modules.map(((m, i) => {return <li className="Rocket_module" key={buildModuleSlotKey(m, i)}><ModuleImage module={m} /></li>})) }
           </>}
           { modules.fuelTanks.length > 0 && <>
-            { modules.fuelTanks.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+            { modules.fuelTanks.map(((m, i) => {return <li className="Rocket_module" key={buildModuleSlotKey(m, i)}><ModuleImage module={m} /></li>})) }
           </>}
           { modules.oxidizerTanks.length > 0 && <>
-            { modules.oxidizerTanks.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+            { modules.oxidizerTanks.map(((m, i) => {return <li className="Rocket_module" key={buildModuleSlotKey(m, i)}><ModuleImage module={m} /></li>})) }
           </>}
           { modules.thruster.length > 0 && <>
-            { modules.thruster.map(((m, i) => {return <li className="Rocket_module" key={i}><ModuleImage module={m} /></li>})) }
+            { modules.thruster.map(((m, i) => {return <li className="Rocket_module" key={buildModuleSlotKey(m, i)}><ModuleImage module={m} /></li>})) }
           </>}
-          <li className="Rocket_module"><ModuleImage module={modules.engine} /></li>
+          <li className="Rocket_module" key={`engine:${modules.engine.name}`}><ModuleImage module={modules.engine} /></li>
         </ul>
         <button className="Rocket_change" onClick={toggleSelectedModuleArea}>CHANGE</button>
       </div>

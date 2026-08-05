@@ -1,5 +1,6 @@
 import "./ModuleImage.sass"
 import useModules from '@/hooks/useModules'
+import AssetImage from '@/components/AssetImage'
 
 type Props = {
   module: tItem
@@ -19,7 +20,11 @@ function ModuleImage({module}: Props) {
   return <>
     <div className="ModuleImage">
       <div className="ModuleImage_imageWrap">
-        <img className="ModuleImage_image" src={`/assets/images/${module.image}`} srcSet={`/assets/images/${module.image2x} 2x, /assets/images/${module.image} 1x`} alt={module.name} />
+        <AssetImage
+          className="ModuleImage_image"
+          imageName={module.image}
+          alt={module.name}
+        />
       </div>
       <div className="ModuleImage_buttons">
         {module.multiple && <>

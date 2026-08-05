@@ -1,5 +1,8 @@
-type tItem = {
-  type: string
+type tModuleType = 'head' | 'engine' | 'thruster' | 'modules' | 'fuel' | 'oxidizer'
+type tOxidizerType = 'solid' | 'liquid'
+
+type tBaseItem<T extends tModuleType = tModuleType> = {
+  type: T
   name: string
   order?: number
   selected?: boolean
@@ -10,10 +13,18 @@ type tItem = {
   mass: number
 };
 
-type tEngine = tItem & {
+type tHead = tBaseItem<'head'>
+type tRocketModule = tBaseItem<'modules'>
+type tFuelTank = tBaseItem<'fuel'>
+type tOxidizerTank = tBaseItem<'oxidizer'>
+
+type tEngine = tBaseItem<'engine'> & {
   efficiency: number
 };
 
-type tThruster = tItem & {
+type tThruster = tBaseItem<'thruster'> & {
+  efficiency?: number
   baseRange: number
 };
+
+type tItem = tHead | tEngine | tThruster | tRocketModule | tFuelTank | tOxidizerTank

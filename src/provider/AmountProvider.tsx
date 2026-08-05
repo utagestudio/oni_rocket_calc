@@ -1,10 +1,10 @@
 "use client"
-import {createContext, PropsWithChildren, useState} from 'react'
+import {createContext, PropsWithChildren, ReactNode, useContext, useState} from 'react'
 
-export const AmountContext = createContext<tAmountContext>({} as tAmountContext)
+export const AmountContext = createContext<tAmountContext | undefined>(undefined)
 
 type Props = {
-  children: any
+  children: ReactNode
 }
 
 function AmountProvider({children}: PropsWithChildren<Props>) {
@@ -16,6 +16,15 @@ function AmountProvider({children}: PropsWithChildren<Props>) {
       {children}
     </AmountContext.Provider>
   </>
+}
+
+// Provider 外で使われた場合に、空オブジェクト由来の実行時エラーではなく原因が分かる例外を出す。
+export function useAmountContext() {
+  const context = useContext(AmountContext)
+  if (!context) {
+    throw new Error('useAmountContext must be used within AmountProvider')
+  }
+  return context
 }
 
 export default AmountProvider

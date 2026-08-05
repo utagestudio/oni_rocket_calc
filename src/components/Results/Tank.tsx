@@ -1,6 +1,7 @@
 import './Tank.sass'
 import useAmount from '@/hooks/useAmount'
 import React from 'react'
+import AssetImage from '@/components/AssetImage'
 type Props = {
   required: number
   limitAmountPerTank: number
@@ -19,9 +20,17 @@ function Tank({required, limitAmountPerTank, numberOfTanks, image, children}: Re
       <ul className="Tank_list">
         {Array.from({length: Math.max(1, numberOfTanks)}, (_, i) => {
           const capacity = numberOfTanks === i + 1 ? (required % limitAmountPerTank) : limitAmountPerTank
+          // 同じタンク画像が複数並ぶため、画像種別とスロット番号で各タンクを識別する。
+          const tankKey = `${image}:tank-${i + 1}`
 
-          return <li className="Tank_item" key={i}>
-            <div className="Tank_image"><img className="Tank_img" src={`/assets/images/${image}.webp`} srcSet={`/assets/images/${image}.webp 1x, /assets/images/${image}@2x.webp 2x`} alt="" /></div>
+          return <li className="Tank_item" key={tankKey}>
+            <div className="Tank_image">
+              <AssetImage
+                className="Tank_img"
+                imageName={`${image}.webp`}
+                alt=""
+              />
+            </div>
             <div className="Tank_capacity">
               <div className="Tank_value">{isCalculating || required <= 0 ? '---' : capacity.toLocaleString()}</div>
               <div className="Tank_unit">kg</div>

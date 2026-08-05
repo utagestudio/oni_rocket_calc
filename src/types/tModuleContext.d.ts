@@ -3,7 +3,7 @@ type tModuleState = {
   engine: tEngine
   thruster: tThruster[]
   modules: tItem[]
-  oxidizerType: string
+  oxidizerType: tOxidizerType
 }
 
 type tModuleContext = tModuleState & {
@@ -16,6 +16,7 @@ type tModuleContext = tModuleState & {
     setModules:  React.Dispatch<React.SetStateAction<tItem[]>>
     setFuelTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
     setOxidizerTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
-    setOxidizerType: React.Dispatch<React.SetStateAction<string>>
+    setOxidizerType: React.Dispatch<React.SetStateAction<tOxidizerType>>
+    reset: () => void
   }
 }

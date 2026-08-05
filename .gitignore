@@ -13,6 +13,7 @@
 
 # testing
 /coverage
+/.tmp-test-dist
 
 # next.js
 /.next/
@@ -40,3 +41,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+TODO.md
+SKILLS/git-commit.md
