@@ -134,10 +134,10 @@ function useModules() {
   }
 
   /**
-   * Reset the state to the initial state
+   * Clear mounted modules while keeping the selected engine
    */
   const reset = () => {
-    // 部分的なクリアではなく、Provider が持つ初期構成を再生成してロケット設定を戻す。
+    // エンジン選定は維持し、搭載モジュールと計算結果由来のタンクだけを外す。
     modules.methods.reset()
   }
 

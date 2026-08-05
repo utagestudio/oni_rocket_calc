@@ -73,8 +73,14 @@ function moduleReducer(state: ModuleState, action: ModuleAction): ModuleState {
     case 'SET_OXIDIZER_TYPE':
       return {...state, oxidizerType: resolveStateAction(state.oxidizerType, action.value)}
     case 'RESET':
-      // Reset ボタンでは現在のエンジンを維持せず、data.json の selected に基づく初期構成へ戻す。
-      return createInitialState()
+      // エンジン選定は試行錯誤の前提として維持し、積載して試す部分だけを空に戻す。
+      return {
+        ...state,
+        thruster: [],
+        modules: [],
+        fuelTanks: [],
+        oxidizerTanks: [],
+      }
     default:
       return state
   }
