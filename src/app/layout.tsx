@@ -1,4 +1,4 @@
-import type {Metadata} from "next";
+import type {Metadata, Viewport} from "next";
 import {Barriecito, M_PLUS_Rounded_1c} from "next/font/google";
 import "./globals.sass";
 import { Analytics } from "@vercel/analytics/next"
@@ -43,11 +43,13 @@ export const metadata: Metadata = {
     site: '@utage_studio', // 公式アカウント
     creator: '@utage_studio', // 作成者アカウント
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
 };
+
+// App Routerではviewportをmetadataから分けて定義する。
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
 
 export default function RootLayout({
                                      children,
