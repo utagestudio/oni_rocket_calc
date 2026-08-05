@@ -6,8 +6,7 @@ import OxidizerTank from '@/components/Results/OxidizerTank'
 import useModules from '@/hooks/useModules'
 import ForThruster from '@/components/Results/ForThruster'
 import useAmount from '@/hooks/useAmount'
-import {useEffect, useMemo} from 'react'
-import {useDebounce} from 'react-use'
+import {useLayoutEffect, useMemo} from 'react'
 import {useDistanceContext} from '@/provider/DistanceProvider'
 import SteamTank from '@/components/Results/SteamTank'
 import FuelAmount from '@/components/Results/FuelAmount'
@@ -23,8 +22,9 @@ function Results({}: Props) {
     head, engine, thruster, modules, oxidizerType, distance
   }), [head, engine, thruster, modules, oxidizerType, distance])
 
-  // amountCalculate をDebounce
-  useDebounce(() => {
+  // 構成変更後の中間表示を避けるため、描画前に燃料量とタンク数をまとめて更新する。
+  useLayoutEffect(() => {
+    setIsCalculating(true)
     const feasible = amountCalculate()
     if(feasible.feasible) {
       setNumberOfFuelTanks(feasible.fuelTankCount)
@@ -34,12 +34,7 @@ function Results({}: Props) {
       setNumberOfOxidizerTanks(0)
     }
     setIsCalculating(false)
-  }, 200, [params])
-
-  // paramsに変更があった時点で、loadingにする
-  useEffect(() => {
-    setIsCalculating(true)
-  }, [params]);
+  }, [params])
 
 
   return <>
