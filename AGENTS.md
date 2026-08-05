@@ -4,7 +4,7 @@
 
 - This is a Next.js web tool for calculating rocket fuel requirements for Oxygen Not Included.
 - The current refactoring work is driven by `TODO.md`, which is intentionally ignored by Git.
-- The next planned calculation task is to review and fix suspected double-counting of non-Steam oxidizer tank mass in `src/domain/rocketFuel.ts`.
+- If `TODO.md` exists, use its unchecked items as the source of truth for the next refactoring task, working from higher-priority sections first.
 
 ## Runtime
 
