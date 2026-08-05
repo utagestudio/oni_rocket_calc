@@ -9,6 +9,7 @@ import {
   saveActiveRocketMemorySlotIndex,
   savePersistedDistance,
   savePersistedModuleState,
+  clearRocketMemorySlot,
 } from '../src/lib/rocketPersistence'
 
 const moduleState: tPersistedModuleState = {
@@ -28,6 +29,7 @@ beforeEach(() => {
       localStorage: {
         getItem: (key: string) => values.get(key) || null,
         setItem: (key: string, value: string) => values.set(key, value),
+        removeItem: (key: string) => values.delete(key),
       },
     },
   })
@@ -51,4 +53,14 @@ test('ignores invalid memory slot indexes', () => {
   saveActiveRocketMemorySlotIndex(99)
 
   assert.equal(loadActiveRocketMemorySlotIndex(), 0)
+})
+
+test('clears a rocket memory slot', () => {
+  saveActiveRocketMemorySlotIndex(1)
+  savePersistedModuleState(moduleState)
+  savePersistedDistance(30_000)
+
+  clearRocketMemorySlot(1)
+
+  assert.equal(loadRocketMemorySlot(1), undefined)
 })

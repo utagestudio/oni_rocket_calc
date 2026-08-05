@@ -133,12 +133,24 @@ export function saveRocketMemorySlot(slotIndex: number, value: RocketMemorySlot)
   }
 }
 
+export function clearRocketMemorySlot(slotIndex: number) {
+  const storage = getLocalStorage()
+  if (!storage || !isValidSlotIndex(slotIndex)) return
+
+  try {
+    storage.removeItem(createMemorySlotKey(slotIndex))
+  } catch {
+    // Storage can be unavailable. In that case the app should keep working without persistence.
+  }
+}
+
 function getLocalStorage() {
   if (typeof window === 'undefined') return undefined
 
   try {
     if (typeof window.localStorage?.getItem !== 'function') return undefined
     if (typeof window.localStorage?.setItem !== 'function') return undefined
+    if (typeof window.localStorage?.removeItem !== 'function') return undefined
     return window.localStorage
   } catch {
     return undefined
