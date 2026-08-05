@@ -11,7 +11,7 @@ import {
   saveActiveRocketMemorySlotIndex,
   saveRocketMemorySlot,
 } from '@/lib/rocketPersistence'
-import {useCallback, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import Image from 'next/image'
 
 type Props = {}
@@ -21,7 +21,11 @@ const DEFAULT_DISTANCE = 10000
 function MemorySlots({}: Props) {
   const {head, engine, thruster, modules, oxidizerType, restorePersistedState} = useModules()
   const {distance, methods: {setDistance}} = useDistanceContext()
-  const [activeSlotIndex, setActiveSlotIndex] = useState(loadActiveRocketMemorySlotIndex)
+  const [activeSlotIndex, setActiveSlotIndex] = useState(0)
+
+  useEffect(() => {
+    setActiveSlotIndex(loadActiveRocketMemorySlotIndex())
+  }, [])
 
   const resetSlot = useCallback((slotIndex: number) => {
     const shouldReset = window.confirm(`Rocket ${slotIndex + 1} を初期状態に戻しますか？`)
