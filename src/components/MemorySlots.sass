@@ -27,6 +27,9 @@
       border-color: rgba(255,255,255,.34)
       color: #fff
 
+      .MemorySlots_resetIcon
+        filter: brightness(0) invert(1)
+
 .MemorySlots_button
   cursor: pointer
   min-width: 58px
@@ -66,12 +69,21 @@
   transition: all .1s ease
 
   &:hover
-    background-color: #C7392F
-    color: #fff
+    background-color: rgba(0,0,0,.12)
+
+    .MemorySlots_resetIcon
+      transform: rotate(180deg)
 
   &:focus-visible
     outline: 2px solid #fff
     outline-offset: -2px
+
+.MemorySlots_resetIcon
+  display: block
+  width: 14px
+  height: 14px
+  filter: brightness(0) saturate(100%) invert(29%) sepia(4%) saturate(6%) hue-rotate(321deg) brightness(93%) contrast(86%)
+  transition: transform .1s ease
 
 .MemorySlots_button
   &:focus-visible

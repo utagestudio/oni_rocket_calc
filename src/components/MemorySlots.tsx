@@ -12,6 +12,7 @@ import {
   saveRocketMemorySlot,
 } from '@/lib/rocketPersistence'
 import {useCallback, useState} from 'react'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -72,7 +73,14 @@ function MemorySlots({}: Props) {
             onClick={() => resetSlot(slotIndex)}
             aria-label={`Reset Rocket ${slotIndex + 1}`}
           >
-            ×
+            <Image
+              className="MemorySlots_resetIcon"
+              src="/assets/images/ico_reset.svg"
+              alt=""
+              width={14}
+              height={14}
+              unoptimized
+            />
           </button>
         </div>
       ))}
