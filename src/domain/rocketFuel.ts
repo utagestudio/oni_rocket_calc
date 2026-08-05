@@ -124,8 +124,8 @@ function findMinimalFuel({
     const end = fuelTankCount * fuelPerTankKg
 
     // このセグメントで想定するタンク質量を含めたロケット質量。
-    const segmentMassKg =
-      baseMassKg + massIncreasePerFuelTankKg * fuelTankCount + oxidizerTankMassKg
+    // baseMassKg には酸化剤タンク質量をすでに含めている。
+    const segmentMassKg = baseMassKg + massIncreasePerFuelTankKg * fuelTankCount
     const effectiveFuelMassMultiplier = isSteam ? 1 : 2
 
     // 連続値として見たときに到達距離が最大になる燃料量。

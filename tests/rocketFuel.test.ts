@@ -81,7 +81,7 @@ test('Steam Engine does not require oxidizer tanks', () => {
   )
 })
 
-test('non-Steam engines calculate current solid oxidizer fuel amounts', () => {
+test('non-Steam engines calculate solid oxidizer fuel amounts', () => {
   const cases: Array<[tEngine, RocketFuelResult]> = [
     [
       engine('Petroleum Engine', 200, 40),
@@ -131,6 +131,16 @@ test('Solid Fuel Thruster range bonus is included in reachability', () => {
       thrusters: [solidFuelThruster],
     }),
     {feasible: true, fuelKg: 311, fuelTankCount: 1, oxidizerTankCount: 1},
+  )
+})
+
+test('non-Steam peak search uses oxidizer tank mass only once', () => {
+  assert.deepEqual(
+    calculate({
+      rocketEngine: engine('Boundary Test Engine', 1200, 25),
+      distanceKm: 39_000,
+    }),
+    {feasible: true, fuelKg: 2687, fuelTankCount: 3, oxidizerTankCount: 1},
   )
 })
 
