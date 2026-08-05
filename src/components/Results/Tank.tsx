@@ -20,8 +20,10 @@ function Tank({required, limitAmountPerTank, numberOfTanks, image, children}: Re
       <ul className="Tank_list">
         {Array.from({length: Math.max(1, numberOfTanks)}, (_, i) => {
           const capacity = numberOfTanks === i + 1 ? (required % limitAmountPerTank) : limitAmountPerTank
+          // 同じタンク画像が複数並ぶため、画像種別とスロット番号で各タンクを識別する。
+          const tankKey = `${image}:tank-${i + 1}`
 
-          return <li className="Tank_item" key={i}>
+          return <li className="Tank_item" key={tankKey}>
             <div className="Tank_image">
               <AssetImage
                 className="Tank_img"

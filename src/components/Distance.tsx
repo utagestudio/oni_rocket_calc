@@ -33,7 +33,7 @@ function Distance({}: Props) {
             {Array.from({length: NUM_DISTANCE}, (_, i) => {
               const distance_num = (NUM_DISTANCE - i) * 10000
               return (
-                <li className="Distance_item" onClick={onClickDistance} data-distance={distance_num} key={i}>
+                <li className="Distance_item" onClick={onClickDistance} data-distance={distance_num} key={`distance-${distance_num}`}>
                   <div className="Distance_dot"></div>
                   <div className="Distance_value">{distance_num.toLocaleString()} km</div>
                 </li>
