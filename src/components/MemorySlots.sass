@@ -24,9 +24,16 @@
   &.-active
     background-color: #E4801D
 
-    .MemorySlots_button,
-    .MemorySlots_reset
+    .MemorySlots_button
       color: #fff
+
+    .MemorySlots_reset
+      background-color: rgba(255,255,255,.24)
+      color: #fff
+
+      &:hover
+        background-color: rgba(0,0,0,.28)
+        color: #fff
 
 .MemorySlots_button
   cursor: pointer
@@ -57,7 +64,7 @@
   padding: 0
   border: none
   border-radius: 50%
-  background: transparent
+  background-color: rgba(0,0,0,.1)
 
   font-family: var(--font-mplus)
   font-weight: 700
@@ -69,8 +76,8 @@
   transition: all .1s ease
 
   &:hover
-    background-color: rgba(0,0,0,.16)
-    color: #E4801D
+    background-color: rgba(0,0,0,.28)
+    color: #fff
 
   &:focus-visible
     outline: 2px solid #fff
