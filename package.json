@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "tsc -p tsconfig.test.json && node .tmp-test-dist/tests/rocketFuel.test.js"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",

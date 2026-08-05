@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "outDir": ".tmp-test-dist",
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": [
+    "src/domain/**/*.ts",
+    "src/types/**/*.d.ts",
+    "tests/**/*.ts"
+  ]
+}
