@@ -134,6 +134,17 @@ test('Solid Fuel Thruster range bonus is included in reachability', () => {
   )
 })
 
+test('multiple Solid Fuel Thrusters stack their range bonus and wet mass', () => {
+  assert.deepEqual(
+    calculate({
+      rocketEngine: engine('Petroleum Engine', 200, 40),
+      distanceKm: 58_000,
+      thrusters: [solidFuelThruster, solidFuelThruster],
+    }),
+    {feasible: true, fuelKg: 1055, fuelTankCount: 2, oxidizerTankCount: 1},
+  )
+})
+
 test('non-Steam peak search uses oxidizer tank mass only once', () => {
   assert.deepEqual(
     calculate({
@@ -141,6 +152,42 @@ test('non-Steam peak search uses oxidizer tank mass only once', () => {
       distanceKm: 39_000,
     }),
     {feasible: true, fuelKg: 2687, fuelTankCount: 3, oxidizerTankCount: 1},
+  )
+})
+
+test('non-Steam fuel tank count changes at 900kg segment boundaries', () => {
+  const rocketEngine = engine('Petroleum Engine', 200, 40)
+
+  assert.deepEqual(
+    calculate({
+      rocketEngine,
+      distanceKm: 33_399,
+    }),
+    {feasible: true, fuelKg: 900, fuelTankCount: 1, oxidizerTankCount: 1},
+  )
+
+  assert.deepEqual(
+    calculate({
+      rocketEngine,
+      distanceKm: 33_400,
+    }),
+    {feasible: true, fuelKg: 903, fuelTankCount: 2, oxidizerTankCount: 1},
+  )
+
+  assert.deepEqual(
+    calculate({
+      rocketEngine,
+      distanceKm: 66_199,
+    }),
+    {feasible: true, fuelKg: 1800, fuelTankCount: 2, oxidizerTankCount: 1},
+  )
+
+  assert.deepEqual(
+    calculate({
+      rocketEngine,
+      distanceKm: 66_200,
+    }),
+    {feasible: true, fuelKg: 1814, fuelTankCount: 3, oxidizerTankCount: 1},
   )
 })
 
