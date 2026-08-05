@@ -1,8 +1,7 @@
 import './Tank.sass'
 import useAmount from '@/hooks/useAmount'
 import React from 'react'
-import Image from 'next/image'
-import {getImageDimensions} from '@/lib/imageDimensions'
+import AssetImage from '@/components/AssetImage'
 type Props = {
   required: number
   limitAmountPerTank: number
@@ -12,7 +11,6 @@ type Props = {
 
 function Tank({required, limitAmountPerTank, numberOfTanks, image, children}: React.PropsWithChildren<Props>) {
   const {isCalculating} = useAmount()
-  const dimensions = getImageDimensions(image)
 
   return <>
     <div className="Tank">
@@ -25,13 +23,10 @@ function Tank({required, limitAmountPerTank, numberOfTanks, image, children}: Re
 
           return <li className="Tank_item" key={i}>
             <div className="Tank_image">
-              <Image
+              <AssetImage
                 className="Tank_img"
-                src={`/assets/images/${image}.webp`}
-                width={dimensions.width}
-                height={dimensions.height}
+                imageName={`${image}.webp`}
                 alt=""
-                unoptimized
               />
             </div>
             <div className="Tank_capacity">

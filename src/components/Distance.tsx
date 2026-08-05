@@ -3,7 +3,7 @@
 import './Distance.sass'
 import {useDistanceContext} from '@/provider/DistanceProvider'
 import {MouseEvent, useCallback} from 'react'
-import Image from 'next/image'
+import AssetImage from '@/components/AssetImage'
 type Props = {}
 
 const NUM_DISTANCE = 18
@@ -26,7 +26,7 @@ function Distance({}: Props) {
     <div className="Distance">
       <div className="Distance_wrap">
         <div className="Distance_destination">
-          <Image src="/assets/images/img_temporal_tear.webp" width={44} height={44} alt="" unoptimized />
+          <AssetImage imageName="img_temporal_tear.webp" alt="" />
         </div>
         <div className="Distance_meter">
           <ul className="Distance_list">
@@ -41,11 +41,11 @@ function Distance({}: Props) {
             })}
           </ul>
           <div className="Distance_current" style={currentPosition()}>
-            <Image src="/assets/images/img_rocket.webp" width={32} height={32} alt="" unoptimized />
+            <AssetImage imageName="img_rocket.webp" alt="" />
           </div>
         </div>
         <div className="Distance_source">
-          <Image src="/assets/images/img_terra_asteroid.webp" width={44} height={44} alt="" unoptimized />
+          <AssetImage imageName="img_terra_asteroid.webp" alt="" />
         </div>
       </div>
     </div>

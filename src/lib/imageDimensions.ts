@@ -35,3 +35,20 @@ export function getImageDimensions(imageName: string): ImageDimensions {
   if (!dimensions) throw new Error(`image dimensions are not registered: ${imageName}`)
   return dimensions
 }
+
+function getImagePath(imageName: string) {
+  return `/assets/images/${imageName}`
+}
+
+function getHighResolutionImageName(imageName: string) {
+  return imageName.includes('@2x') ? imageName : imageName.replace(/(\.[^.]+)$/, '@2x$1')
+}
+
+// 公開版と同じく、ブラウザにDPI別の元画像を選ばせて小さい表示時のにじみを防ぐ。
+export function getImageSourceSet(imageName: string) {
+  return `${getImagePath(getHighResolutionImageName(imageName))} 2x, ${getImagePath(imageName)} 1x`
+}
+
+export function getStandardImagePath(imageName: string) {
+  return getImagePath(imageName)
+}

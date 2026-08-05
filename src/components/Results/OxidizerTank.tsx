@@ -2,7 +2,7 @@ import './OxidizerTank.sass'
 import useModules from '@/hooks/useModules'
 import {useEffect} from 'react'
 import Tank from '@/components/Results/Tank'
-import Image from 'next/image'
+import AssetImage from '@/components/AssetImage'
 type Props = {
   required: number
 }
@@ -21,11 +21,11 @@ function OxidizerTank({required}: Props) {
       <div className="OxidizerTank">
         <ul className="OxidizerTank_selector">
           <li className={`OxidizerTank_type -solid ${oxidizerType === 'solid' ? '-selected' : ''}`} onClick={() => setOxidizerType('solid')}>
-            <Image className="OxidizerTank_typeImg" src="/assets/images/img_oxylite.webp" width={25} height={28} alt="Oxylite" unoptimized />
+            <AssetImage className="OxidizerTank_typeImg" imageName="img_oxylite.webp" alt="Oxylite" />
             Oxylite
           </li>
           <li className={`OxidizerTank_type -liquid ${oxidizerType === 'liquid' ? '-selected' : ''}`} onClick={() => setOxidizerType('liquid')}>
-            <Image className="OxidizerTank_typeImg" src="/assets/images/img_liquid_oxygen.webp" width={25} height={28} alt="Liquid Oxygen" unoptimized />
+            <AssetImage className="OxidizerTank_typeImg" imageName="img_liquid_oxygen.webp" alt="Liquid Oxygen" />
             Liquid Oxygen
           </li>
         </ul>
