@@ -2,7 +2,7 @@
 import React, {createContext, useMemo, useReducer} from 'react'
 import data from '@/contents/data.json'
 
-export const ModuleContext = createContext<tModuleContext>({} as tModuleContext)
+export const ModuleContext = createContext<tModuleContext | undefined>(undefined)
 const moduleGroups = data as tGroup[]
 
 type Props = {
@@ -16,7 +16,7 @@ type ModuleAction =
   | {type: 'SET_MODULES'; value: React.SetStateAction<tItem[]>}
   | {type: 'SET_FUEL_TANKS'; value: React.SetStateAction<tItem[]>}
   | {type: 'SET_OXIDIZER_TANKS'; value: React.SetStateAction<tItem[]>}
-  | {type: 'SET_OXIDIZER_TYPE'; value: React.SetStateAction<string>}
+  | {type: 'SET_OXIDIZER_TYPE'; value: React.SetStateAction<tOxidizerType>}
 
 type ModuleState = Omit<tModuleContext, 'methods'>
 
@@ -25,12 +25,14 @@ function resolveStateAction<T>(currentValue: T, value: React.SetStateAction<T>) 
 }
 
 // data.json の selected フラグから、初回描画時点で選択済みになる単一パーツを取得する。
-function findSelectedItem(type: string) {
+function findSelectedItem<T extends tModuleType>(type: T) {
   for (const group of moduleGroups) {
-    const selectedItem = group.items.find((item) => item.type === type && item.selected)
+    const selectedItem = group.items.find(
+      (item): item is Extract<tItem, {type: T}> => item.type === type && Boolean(item.selected),
+    )
     if (selectedItem) return selectedItem
   }
-  return {} as tItem
+  throw new Error(`selected item is not found: ${type}`)
 }
 
 // 複数積める通常モジュールは、ロケット表示順に合わせて order で並べておく。
@@ -44,7 +46,7 @@ function findSelectedModules() {
 function createInitialState(): ModuleState {
   return {
     head: findSelectedItem('head'),
-    engine: findSelectedItem('engine') as tEngine,
+    engine: findSelectedItem('engine'),
     thruster: [],
     modules: findSelectedModules(),
     fuelTanks: [],
@@ -87,7 +89,7 @@ function ModulesProvider({children}: React.PropsWithChildren<Props>) {
       setFuelTanks: (value: React.SetStateAction<tItem[]>) => dispatch({type: 'SET_FUEL_TANKS', value}),
       setOxidizerTanks: (value: React.SetStateAction<tItem[]>) =>
         dispatch({type: 'SET_OXIDIZER_TANKS', value}),
-      setOxidizerType: (value: React.SetStateAction<string>) =>
+      setOxidizerType: (value: React.SetStateAction<tOxidizerType>) =>
         dispatch({type: 'SET_OXIDIZER_TYPE', value}),
     }),
     [],

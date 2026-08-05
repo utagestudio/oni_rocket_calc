@@ -1,16 +1,19 @@
-import {useContext} from 'react'
-import {AmountContext} from '@/provider/AmountProvider'
+import {useAmountContext} from '@/provider/AmountProvider'
 import useModules from '@/hooks/useModules'
-import {DistanceContext} from '@/provider/DistanceProvider'
+import {useDistanceContext} from '@/provider/DistanceProvider'
 import {calculateRocketFuel} from '@/domain/rocketFuel'
 
 function useAmount() {
   const {head, engine, modules, oxidizerType, thruster, findItem} = useModules()
-  const {distance} = useContext<tDistanceContext>(DistanceContext)
-  const amount = useContext<tAmountContext>(AmountContext)
+  const {distance} = useDistanceContext()
+  const amount = useAmountContext()
   const fuelTank = findItem("Fuel Tank")
 
   const amountCalculate = () => {
+    if (!fuelTank) {
+      throw new Error('Fuel Tank is not found in data.json')
+    }
+
     amount.methods.setAmount(0)
     const res = calculateRocketFuel({
       head,
@@ -19,7 +22,7 @@ function useAmount() {
       thrusters: thruster,
       distanceKm: distance,
       oxidizerType,
-      fuelTankMassKg: fuelTank!.mass,
+      fuelTankMassKg: fuelTank.mass,
     })
 
     if (res.feasible) {

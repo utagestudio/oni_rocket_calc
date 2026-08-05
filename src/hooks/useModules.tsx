@@ -2,8 +2,13 @@ import {useContext} from 'react'
 import {ModuleContext} from '@/provider/ModulesProvider'
 import data from '@/contents/data.json'
 
+const moduleGroups = data as tGroup[]
+
 function useModules() {
-  const modules = useContext<tModuleContext>(ModuleContext)
+  const modules = useContext(ModuleContext)
+  if (!modules) {
+    throw new Error('useModules must be used within ModulesProvider')
+  }
 
   /**
    * Find the module from the data.json file
@@ -11,12 +16,19 @@ function useModules() {
    */
   const findItem = (itemName:string) => {
     let foundItem:tItem | undefined = undefined
-    for(let i = 0; i < data.length; i++) {
-      const group = data[i]
+    for(let i = 0; i < moduleGroups.length; i++) {
+      const group = moduleGroups[i]
       foundItem = group.items.find((i) => i.name === itemName)
       if(foundItem) break
     }
     return foundItem
+  }
+
+  // 必須データが data.json から消えている場合は、空オブジェクトではなく明示的なエラーにする。
+  const findRequiredItem = (itemName:string) => {
+    const item = findItem(itemName)
+    if (!item) throw new Error(`module item is not found: ${itemName}`)
+    return item
   }
 
   /**
@@ -24,18 +36,17 @@ function useModules() {
    * @param item
    */
   const addModule = (item:tItem) => {
-    let foundItem:tItem | undefined = undefined
-    foundItem = findItem(item.name)
+    const foundItem = findItem(item.name)
     switch(foundItem?.type){
       case 'head':
         modules.methods.setHead(foundItem)
         break
       case 'engine':
-        modules.methods.setEngine(foundItem as tEngine)
+        modules.methods.setEngine(foundItem)
         setupTanks(foundItem.name)
         break
       case 'thruster':
-        modules.methods.setThruster(preValue => preValue.concat(foundItem as tThruster))
+        modules.methods.setThruster(preValue => preValue.concat(foundItem))
         break
       case 'modules':
         const new_modules = modules.modules.concat(foundItem)
@@ -57,10 +68,9 @@ function useModules() {
    */
   const setNumberOfFuelTanks = (num:number) => {
     if(modules.engine.name === "Steam Engine") return
-    const tanks = [] as tItem[]
+    const tanks: tItem[] = []
     for(let i = 0; i < num; i++) {
-      const tank = findItem("Fuel Tank")
-      if(tank) tanks.push(tank)
+      tanks.push(findRequiredItem("Fuel Tank"))
     }
     modules.methods.setFuelTanks(tanks)
   }
@@ -71,15 +81,10 @@ function useModules() {
    */
   const setNumberOfOxidizerTanks = (num:number) => {
     if(modules.engine.name === "Steam Engine") return
-    const tanks = [] as tItem[]
+    const tanks: tItem[] = []
     for(let i = 0; i < num; i++) {
-      let tank: tItem | undefined = undefined
-      if( modules.oxidizerType === 'solid') {
-        tank = findItem("Solid Oxidizer Tank") as tItem
-      } else {
-        tank = findItem("Liquid Oxidizer Tank") as tItem
-      }
-      if(tank) tanks.push(tank)
+      const tankName = modules.oxidizerType === 'solid' ? "Solid Oxidizer Tank" : "Liquid Oxidizer Tank"
+      tanks.push(findRequiredItem(tankName))
     }
     modules.methods.setOxidizerTanks(tanks)
   }
@@ -89,9 +94,9 @@ function useModules() {
    */
   const addOxidizerTank = () => {
     if( modules.oxidizerType === 'solid') {
-      addModule(findItem("Solid Oxidizer Tank") as tItem)
+      addModule(findRequiredItem("Solid Oxidizer Tank"))
     } else {
-      addModule(findItem("Liquid Oxidizer Tank") as tItem)
+      addModule(findRequiredItem("Liquid Oxidizer Tank"))
     }
   }
 
@@ -147,7 +152,7 @@ function useModules() {
       modules.methods.setOxidizerTanks([])
     } else {
       if( modules.fuelTanks.length === 0 ){
-        addModule(findItem("Fuel Tank") as tItem)
+        addModule(findRequiredItem("Fuel Tank"))
       }
       if( modules.oxidizerTanks.length === 0 ){
         addOxidizerTank()

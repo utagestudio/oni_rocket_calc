@@ -6,9 +6,9 @@ import OxidizerTank from '@/components/Results/OxidizerTank'
 import useModules from '@/hooks/useModules'
 import ForThruster from '@/components/Results/ForThruster'
 import useAmount from '@/hooks/useAmount'
-import {useContext, useEffect, useMemo} from 'react'
+import {useEffect, useMemo} from 'react'
 import {useDebounce} from 'react-use'
-import {DistanceContext} from '@/provider/DistanceProvider'
+import {useDistanceContext} from '@/provider/DistanceProvider'
 import SteamTank from '@/components/Results/SteamTank'
 import FuelAmount from '@/components/Results/FuelAmount'
 type Props = {}
@@ -16,7 +16,7 @@ type Props = {}
 function Results({}: Props) {
   const {head, engine, thruster, modules, oxidizerType, setNumberOfFuelTanks, setNumberOfOxidizerTanks} = useModules()
   const {amount,  amountCalculate, setIsCalculating} = useAmount()
-  const {distance} = useContext<tDistanceContext>(DistanceContext)
+  const {distance} = useDistanceContext()
 
   // 依存値を1つのオブジェクトにまとめてメモ化
   const params = useMemo(() => ({

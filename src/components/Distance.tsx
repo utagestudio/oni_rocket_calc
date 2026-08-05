@@ -1,14 +1,14 @@
 "use client"
 
 import './Distance.sass'
-import {DistanceContext} from '@/provider/DistanceProvider'
-import {MouseEvent, useCallback, useContext} from 'react'
+import {useDistanceContext} from '@/provider/DistanceProvider'
+import {MouseEvent, useCallback} from 'react'
 type Props = {}
 
 const NUM_DISTANCE = 18
 
 function Distance({}: Props) {
-  const {distance, methods: {setDistance}} = useContext<tDistanceContext>(DistanceContext)
+  const {distance, methods: {setDistance}} = useDistanceContext()
 
   const onClickDistance = useCallback((e:MouseEvent<HTMLLIElement>) =>{
     const value = parseInt(e.currentTarget.dataset.distance as string) || 10000
