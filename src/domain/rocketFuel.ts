@@ -43,12 +43,15 @@ type SearchValues = {
 
 export function calculateRocketFuel(input: RocketFuelInput): RocketFuelResult {
   const isSteam = input.engine.name === 'Steam Engine'
+
+  // 燃料・酸化剤・タンク内容物を除いた、ロケット本体の質量を求める。
   const dryMassKg =
     input.head.mass +
     input.engine.mass +
     input.thrusters.reduce((mass, thruster) => mass + thruster.mass, 0) +
     input.modules.reduce((mass, module) => mass + module.mass, 0)
 
+  // Liquid Oxygen は Oxylite より効率が高いものとして扱う。
   const efficiencyKmPerKg =
     input.engine.efficiency * (isSteam || input.oxidizerType === 'solid' ? 1 : 1.33)
 
@@ -93,6 +96,8 @@ function findMinimalFuel({
   const targetRange = Math.max(0, targetRangeKm)
   const baseMassKg = Math.max(0, dryMassKg + oxidizerTankMassKg)
   const efficiency = Math.max(0, efficiencyKmPerKg)
+
+  // 非 Steam エンジンでは、燃料タンクが1本増えるごとにタンク自体の質量が増える。
   const massIncreasePerFuelTankKg = isSteam ? 0 : Math.max(0, fuelTankMassKg)
   const fuelPerTankKg = Math.max(1, Math.floor(FUEL_PER_TANK_KG))
 
@@ -107,20 +112,27 @@ function findMinimalFuel({
 
   // Keep the current model unchanged: Steam searches one fuel segment,
   // non-Steam engines search up to three fuel tank segments.
+  // 到達距離は燃料量に対して単調増加ではなく、重くなりすぎると悪化する。
+  // そのため、まず理論上のピーク位置を使って探索対象のセグメントを絞る。
   const penaltyDerivativeCoeff = isSteam ? 3.2 : 6.4
   const peakConstant = Math.pow((efficiency * 300) / penaltyDerivativeCoeff, 1 / 2.2)
   const maxFuelTankCount = isSteam ? 1 : 3
 
   for (let fuelTankCount = 1; fuelTankCount <= maxFuelTankCount; fuelTankCount++) {
+    // 燃料タンク数ごとに、探索する燃料量の範囲を 1..900, 901..1800 のように区切る。
     const start = (fuelTankCount - 1) * fuelPerTankKg + 1
     const end = fuelTankCount * fuelPerTankKg
 
+    // このセグメントで想定するタンク質量を含めたロケット質量。
     const segmentMassKg =
       baseMassKg + massIncreasePerFuelTankKg * fuelTankCount + oxidizerTankMassKg
     const effectiveFuelMassMultiplier = isSteam ? 1 : 2
+
+    // 連続値として見たときに到達距離が最大になる燃料量。
     const continuousFuelPeak =
       (300 * peakConstant - segmentMassKg) / effectiveFuelMassMultiplier
 
+    // ピーク位置とセグメント端点を見て、このセグメント内に到達可能な点があり得るか判定する。
     let mayHavePositive = false
     if (continuousFuelPeak < start) {
       if (canReach(start, values)) {
@@ -140,6 +152,7 @@ function findMinimalFuel({
 
     if (!mayHavePositive) continue
 
+    // 到達可能な点があり得る場合、到達可能になる最小燃料量を二分探索で探す。
     const rightMono = Math.min(
       end,
       Math.floor(Math.max(start, Math.min(continuousFuelPeak, end))),
@@ -167,6 +180,7 @@ function findMinimalFuel({
       else lo = mid
     }
 
+    // 境界付近の丸め誤差に備えて、到達可能な最小値まで前詰めする。
     if (canReach(lo, values)) hi = lo
     let fuelKg = hi
     while (fuelKg - 1 >= start && canReach(fuelKg - 1, values)) fuelKg--
@@ -196,11 +210,16 @@ function canReach(fuelKg: number, values: SearchValues) {
     thrusterCount,
   } = values
 
+  // 指定燃料量を積むために必要な燃料タンク数を求め、その分のタンク質量を加える。
   const fuelTankCount = fuelTankCountForFuel(fuelKg)
   const massByFuelTanksKg = baseMassKg + massIncreasePerFuelTankKg * fuelTankCount
+
+  // 非 Steam エンジンでは燃料と同量の酸化剤を積む前提にする。
   const fuelAndOxidizerMassKg = isSteam ? fuelKg : fuelKg * 2
   const thrusterWetMassKg = thrusterCount * THRUSTER_WET_MASS_KG
   const totalMassKg = massByFuelTanksKg + fuelAndOxidizerMassKg + thrusterWetMassKg
+
+  // ONI の到達距離計算に合わせ、質量によるペナルティを差し引いて到達可否を判定する。
   const penalty = Math.max(totalMassKg, Math.pow(totalMassKg / 300, 3.2))
 
   return efficiencyKmPerKg * fuelKg - penalty > targetRangeKm - THRUSTER_RANGE_KM * thrusterCount
