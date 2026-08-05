@@ -1,0 +1,30 @@
+.MemorySlots
+  display: flex
+  align-items: center
+  gap: 6px
+
+.MemorySlots_button
+  cursor: pointer
+  min-width: 58px
+  padding: 8px 10px
+  border: none
+  border-radius: 8px
+  box-shadow: 0 4px 0 rgba(0,0,0,1)
+  background-color: #eee
+
+  font-family: var(--font-barriecito)
+  font-size: 14px
+  line-height: 1
+  color: #333
+
+  transition: all .1s ease
+
+  &:hover
+    box-shadow: 0 2px 0 rgba(0,0,0,.5)
+    transform: translateY(2px)
+    background-color: #fff
+    color: #E4801D
+
+  &.-active
+    background-color: #E4801D
+    color: #fff

@@ -23,6 +23,7 @@ type ModuleAction =
   | {type: 'SET_OXIDIZER_TANKS'; value: React.SetStateAction<tItem[]>}
   | {type: 'SET_OXIDIZER_TYPE'; value: React.SetStateAction<tOxidizerType>}
   | {type: 'HYDRATE'; value: PersistedModuleState}
+  | {type: 'RESTORE_INITIAL'}
   | {type: 'RESET'}
 
 type ModuleState = Omit<tModuleContext, 'methods'>
@@ -120,6 +121,8 @@ function moduleReducer(state: ModuleState, action: ModuleAction): ModuleState {
       return {...state, oxidizerType: resolveStateAction(state.oxidizerType, action.value)}
     case 'HYDRATE':
       return createStateFromPersistedState(action.value)
+    case 'RESTORE_INITIAL':
+      return createInitialState()
     case 'RESET':
       // エンジン選定は試行錯誤の前提として維持し、積載して試す部分だけを空に戻す。
       // タンク数はResults側で描画前に再計算されるため、古い構成由来の本数は持ち越さない。
@@ -162,6 +165,8 @@ function ModulesProvider({children}: React.PropsWithChildren<Props>) {
         dispatch({type: 'SET_OXIDIZER_TANKS', value}),
       setOxidizerType: (value: React.SetStateAction<tOxidizerType>) =>
         dispatch({type: 'SET_OXIDIZER_TYPE', value}),
+      restorePersistedState: (value: PersistedModuleState | undefined) =>
+        value ? dispatch({type: 'HYDRATE', value}) : dispatch({type: 'RESTORE_INITIAL'}),
       reset: () => dispatch({type: 'RESET'}),
     }),
     [],

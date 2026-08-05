@@ -189,6 +189,7 @@ function useModules() {
     reset,
     includes,
     setOxidizerType: modules.methods.setOxidizerType,
+    restorePersistedState: modules.methods.restorePersistedState,
   }
 
 }

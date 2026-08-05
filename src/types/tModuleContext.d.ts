@@ -6,6 +6,14 @@ type tModuleState = {
   oxidizerType: tOxidizerType
 }
 
+type tPersistedModuleState = {
+  headName: string
+  engineName: string
+  thrusterNames: string[]
+  moduleNames: string[]
+  oxidizerType: tOxidizerType
+}
+
 type tModuleContext = tModuleState & {
   fuelTanks: tItem[]
   oxidizerTanks: tItem[]
@@ -17,6 +25,7 @@ type tModuleContext = tModuleState & {
     setFuelTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
     setOxidizerTanks:  React.Dispatch<React.SetStateAction<tItem[]>>
     setOxidizerType: React.Dispatch<React.SetStateAction<tOxidizerType>>
+    restorePersistedState: (value: tPersistedModuleState | undefined) => void
     reset: () => void
   }
 }
