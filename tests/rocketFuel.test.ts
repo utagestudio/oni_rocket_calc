@@ -89,7 +89,7 @@ test('non-Steam engines calculate solid oxidizer fuel amounts', () => {
     ],
     [
       engine('Biodiesel Engine', 200, 50),
-      {feasible: true, fuelKg: 226, fuelTankCount: 1, oxidizerTankCount: 1},
+      {feasible: true, fuelKg: 225, fuelTankCount: 1, oxidizerTankCount: 1},
     ],
     [
       engine('Hydrogen Engine', 500, 60),
@@ -100,6 +100,21 @@ test('non-Steam engines calculate solid oxidizer fuel amounts', () => {
   for (const [rocketEngine, expected] of cases) {
     assert.deepEqual(calculate({rocketEngine}), expected)
   }
+})
+
+test('exact target range is reachable without adding extra fuel', () => {
+  assert.deepEqual(
+    calculateRocketFuel({
+      head: commandCapsule,
+      engine: engine('Petroleum Engine', 200, 40),
+      modules: [researchModule, researchModule, researchModule, researchModule],
+      thrusters: [],
+      distanceKm: 10_000,
+      oxidizerType: 'solid',
+      fuelTankMassKg,
+    }),
+    {feasible: true, fuelKg: 300, fuelTankCount: 1, oxidizerTankCount: 1},
+  )
 })
 
 test('liquid oxidizer applies the current efficiency multiplier', () => {
@@ -170,6 +185,14 @@ test('non-Steam fuel tank count changes at 900kg segment boundaries', () => {
     calculate({
       rocketEngine,
       distanceKm: 33_400,
+    }),
+    {feasible: true, fuelKg: 900, fuelTankCount: 1, oxidizerTankCount: 1},
+  )
+
+  assert.deepEqual(
+    calculate({
+      rocketEngine,
+      distanceKm: 33_401,
     }),
     {feasible: true, fuelKg: 903, fuelTankCount: 2, oxidizerTankCount: 1},
   )
