@@ -82,6 +82,11 @@ tests/                   Calculation tests
 public/assets/           Game-related UI images
 ```
 
+## Contact
+
+Bug reports, requests, and questions can be sent through the [contact form](https://tally.so/r/KYqY78?product=Rocket%20Fuel%20Calculator) (no account required).
+If you have a GitHub account, [Issues](https://github.com/utagestudio/oni_rocket_calc/issues) works as well.
+
 ## Credits
 
 Oxygen Not Included is developed by Klei Entertainment.
@@ -171,6 +176,11 @@ src/contents/data.json   ロケット部品データ
 tests/                   計算テスト
 public/assets/           ゲーム関連の UI 画像
 ```
+
+## お問い合わせ
+
+不具合の報告、要望、質問は[お問い合わせフォーム（英語）](https://tally.so/r/KYqY78?product=Rocket%20Fuel%20Calculator)から送れます（アカウント不要）。
+GitHub のアカウントをお持ちなら、[Issues](https://github.com/utagestudio/oni_rocket_calc/issues) に書いていただいてもかまいません。
 
 ## クレジット
 
