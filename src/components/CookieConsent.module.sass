@@ -29,6 +29,7 @@
   &::backdrop
     background: rgba(0, 0, 0, .6)
   h2
+    padding-right: 36px
     padding-left: 12px
     border-left: 4px solid #F14846
     font-size: 16px
@@ -38,6 +39,27 @@
   p
     font-size: 14px
     line-height: 1.8
+
+.close
+  position: absolute
+  top: 12px
+  right: 12px
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 36px
+  height: 36px
+  border: 0
+  border-radius: 8px
+  background: transparent
+  color: #F8F8F8
+  font: inherit
+  font-size: 28px
+  line-height: 1
+  cursor: pointer
+  &:hover
+    background: rgba(255, 255, 255, .1)
+    color: #E4801D
 
 .actions
   display: flex
@@ -63,7 +85,7 @@
       box-shadow: 0 2px 0 rgba(0, 0, 0, .5)
       transform: translateY(2px)
 
-.settings button, .actions button
+.settings button, .actions button, .close
   &:focus-visible
     outline: 3px solid #E4801D
     outline-offset: 3px

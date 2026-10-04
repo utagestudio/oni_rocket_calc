@@ -71,6 +71,10 @@ export default function CookieConsent({gtmId}: {gtmId: string}) {
         if (choice === null) choose('rejected')
         else setSettingsOpen(false)
       }}>
+      {/* 閉じる操作も拒否として保存し、許可済みの場合は同じ撤回処理を使う。 */}
+      <button className={styles.close} type="button" aria-label="Reject analytics cookies and close" onClick={() => choose('rejected')}>
+        <span aria-hidden="true">×</span>
+      </button>
       <h2 id="cookie-title">Analytics cookies</h2>
       <p id="cookie-description">With your permission, we use Google Tag Manager to enable analytics tags that may use cookies to understand how this calculator is used. Advertising is not included in this consent. Vercel Analytics runs separately. You can change your choice in Cookie settings at any time.</p>
       <div className={styles.actions}>
