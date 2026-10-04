@@ -1,4 +1,5 @@
 import styles from './Footer.module.sass'
+import {CONTACT_FORM_URL} from '@/lib/product'
 type Props = {}
 
 function Footer({}: Props) {
@@ -12,8 +13,16 @@ function Footer({}: Props) {
       <span className={styles.wrap}>/</span>
 
       <span className={styles.wrap}>
+        <a href={CONTACT_FORM_URL} target='_blank' rel='noopener noreferrer' className={styles.anchor}>
+          Contact form (bugs, requests, questions; no account required)
+        </a>
+      </span>
+
+      <span className={styles.wrap}>/</span>
+
+      <span className={styles.wrap}>
         <a href='https://github.com/utagestudio/oni_rocket_calc/issues' target='_blank' className={styles.anchor}>
-          Issue Tracker (バグ報告等）
+          Issue Tracker (GitHub account required)
         </a>
       </span>
 
