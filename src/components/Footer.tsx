@@ -14,7 +14,7 @@ function Footer({}: Props) {
 
       <span className={styles.wrap}>
         <a href={CONTACT_FORM_URL} target='_blank' rel='noopener noreferrer' className={styles.anchor}>
-          Contact form (bugs, requests, questions; no account required)
+          Report bugs, Rquests
         </a>
       </span>
 
@@ -22,7 +22,7 @@ function Footer({}: Props) {
 
       <span className={styles.wrap}>
         <a href='https://github.com/utagestudio/oni_rocket_calc/issues' target='_blank' className={styles.anchor}>
-          Issue Tracker (GitHub account required)
+          Issue Tracker
         </a>
       </span>
 
