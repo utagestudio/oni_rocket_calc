@@ -1,6 +1,8 @@
 import type {Metadata, Viewport} from "next";
 import {Barriecito, M_PLUS_Rounded_1c} from "next/font/google";
 import "./globals.sass";
+import CookieConsent from '@/components/CookieConsent'
+import {validGtmId} from '@/lib/cookieConsent'
 import { Analytics } from "@vercel/analytics/next"
 
 const barriecito = Barriecito({
@@ -56,11 +58,16 @@ export default function RootLayout({
                                    }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gtmId = validGtmId(process.env.GTM_ID)
+  if (process.env.GTM_ID?.trim() && !gtmId) {
+    console.error('GTM_ID must be a GTM container ID (GTM- followed by uppercase letters or digits).')
+  }
   return (
     <html lang="en">
     <body className={`${mplus.variable} ${barriecito.variable}`}>
       {children}
       <Analytics />
+      {gtmId && <CookieConsent gtmId={gtmId} />}
     </body>
     </html>
   );

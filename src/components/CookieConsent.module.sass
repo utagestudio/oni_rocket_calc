@@ -1,0 +1,49 @@
+.settings
+  text-align: center
+  background: #05030e
+  padding: .5rem
+  button
+    color: #ccc
+    background: transparent
+    border: 0
+    text-decoration: underline
+    cursor: pointer
+    padding: .5rem
+
+.dialog
+  margin: auto
+  width: min(32rem, calc(100% - 2rem))
+  max-height: calc(100dvh - 2rem)
+  overflow-y: auto
+  padding: 1.5rem
+  border: 1px solid #777
+  border-radius: .75rem
+  background: #fff
+  color: #171321
+  &::backdrop
+    background: rgba(0, 0, 0, .6)
+  h2
+    font-size: 1.25rem
+    margin-bottom: 1rem
+  p
+    line-height: 1.7
+
+.actions
+  display: flex
+  flex-wrap: wrap
+  gap: 1rem
+  margin-top: 1.5rem
+  button
+    flex: 1
+    padding: .75rem 1rem
+    font: inherit
+    border: 1px solid #51416b
+    border-radius: .4rem
+    background: #f2eef8
+    color: #171321
+    cursor: pointer
+
+.settings button, .actions button
+  &:focus-visible
+    outline: 3px solid #9361df
+    outline-offset: 3px
