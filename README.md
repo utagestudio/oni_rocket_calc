@@ -50,6 +50,14 @@ npm run start
 npm test
 ```
 
+## GTM and cookie consent
+
+Set `GTM_ID=GTM-XXXXXXX` in `.env.local` for local development, or in Vercel **Project → Settings → Environment Variables** for deployments. Select Production (and Preview/Development if needed), save, and redeploy. No `NEXT_PUBLIC_` prefix is needed. Configuration is applied at build time.
+
+Without a valid ID, neither GTM nor the consent dialog is enabled. GTM loads only after analytics consent; choices are stored in localStorage for 180 days and renewed when the consent version or container changes. Cookie settings allows changing the choice; withdrawing consent reloads the page to stop loaded tags. Previously created cookies are not deleted. Storage failures keep the choice effective only for the current page.
+
+Consent covers analytics only. Advertising consent signals remain denied. Configure the GTM container for analytics and ensure every advertising or custom tag respects the appropriate consent checks; arbitrary custom tags do not automatically respect Google consent signals. Vercel Analytics continues to run independently.
+
 ## Calculation Model
 
 The core fuel calculation lives in:
@@ -145,6 +153,14 @@ npm run start
 npm test
 ```
 
+## GTM と Cookie 同意
+
+Vercel の対象プロジェクトで **Settings → Environment Variables** を開き、キー `GTM_ID`、値 `GTM-XXXXXXX` を登録します。Production を選択して保存後、再デプロイしてください。Preview / Development は必要な場合だけ選択します。`NEXT_PUBLIC_` は不要で、設定はビルド時に反映されます。ローカルでは `.env.local` に設定します。
+
+有効な ID がある場合だけ同意ダイアログを表示し、許可後に GTM を読み込みます。選択は localStorage に180日間保存し、同意文面やコンテナの変更時は再確認します。Cookie settings から変更でき、同意撤回時には読み込み済みタグを停止するためリロードします。作成済み Cookie の削除は行いません。保存できない場合、選択は現在のページ内だけ有効です。
+
+同意対象はアクセス解析です。広告関連の同意シグナルは拒否のままです。GTM コンテナも解析用途に設定し、広告タグやカスタムタグには必要な同意チェックを設定してください。任意のカスタムタグが Google の同意シグナルに自動対応するわけではありません。Vercel Analytics は別途動作します。
+
 ## 計算モデル
 
 燃料計算の中心となるロジックは次のファイルにあります。
@@ -187,3 +203,11 @@ GitHub のアカウントをお持ちなら、[Issues](https://github.com/utages
 Oxygen Not Included は Klei Entertainment によって開発されています。
 
 このプロジェクトは非公式のファンメイド計算ツールです。
+
+### 公開後の GTM 確認
+
+- 新規ブラウザ状態で同意前・Reject 選択後に `googletagmanager.com/gtm.js` の通信がないこと。
+- Accept 選択後に GTM が一度だけ読み込まれ、再訪問時には保存された選択が反映されること。
+- Cookie settings から Reject に変更するとリロードし、GTM が読み込まれなくなること。
+- キーボードだけでダイアログを操作でき、Escape が許可として扱われないこと。
+- GTM 側で解析タグと広告・カスタムタグの同意設定を確認すること。
