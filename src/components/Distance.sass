@@ -1,4 +1,5 @@
 .Distance
+  --distance-step: 32px
   @at-root
     .Distance_wrap
       @at-root
@@ -9,9 +10,9 @@
             content: ''
             display: block
             position: absolute
-            top: 16px
+            top: calc(var(--distance-step) / 2)
             width: 4px
-            height: calc( 100% - 32px)
+            height: calc(100% - var(--distance-step))
             z-index: 10
             background-color: rgba(white, .3)
 
@@ -27,15 +28,22 @@
               z-index: 100
               @at-root
                 .Distance_item
+                  width: 100%
+                  border: 0
+                  background: transparent
+                  padding: 0
+                  font-family: inherit
                   display: flex
                   align-items: center
                   justify-content: space-between
                   gap: 16px
                   color: white
                   font-size: 12px
-                  height: 32px
+                  height: var(--distance-step)
                   cursor: pointer
                   white-space: nowrap
+                  &:focus-visible
+                    outline: 2px solid #E4801D
                   @at-root
                     .Distance_dot
                       background-color: rgba(white, .5)
@@ -47,7 +55,7 @@
                       //
             .Distance_current
               position: absolute
-              bottom: 0
+              bottom: calc(var(--distance-position) * var(--distance-step))
               left: 0
               width: 100%
               padding-left: 1px
@@ -65,3 +73,30 @@
           padding-left: 20px
           font-size: 0
           line-height: 0
+
+@media (min-width: 1100px) and (max-height: 850px)
+  .Distance
+    --distance-step: 24px
+
+@media (max-width: 1099px)
+  .Distance_destination, .Distance_source, .Distance_current
+    display: none
+  .Distance_meter
+    padding: 0
+    &::before
+      display: none
+  .Distance_list
+    display: grid
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    gap: 6px
+    padding: 0
+  .Distance_item
+    min-height: 44px
+    justify-content: center
+    gap: 0
+    border-radius: 6px
+    background: rgba(255,255,255,.1)
+    &[aria-pressed="true"]
+      background: rgba(#F44A47, .7)
+  .Distance_dot
+    display: none

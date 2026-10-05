@@ -28,8 +28,8 @@ function ModuleImage({module}: Props) {
       </div>
       <div className="ModuleImage_buttons">
         {module.multiple && <>
-          <button className="ModuleImage_button -plus" onClick={build}>+</button>
-          <button className="ModuleImage_button -minus" onClick={destroy}>-</button>
+          <button type="button" className="ModuleImage_button -plus" aria-label={`Add another ${module.name}`} onClick={build}>+</button>
+          <button type="button" className="ModuleImage_button -minus" aria-label={`Remove one ${module.name}`} onClick={destroy}>-</button>
         </>}
       </div>
     </div>

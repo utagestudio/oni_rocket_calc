@@ -21,7 +21,7 @@ function Footer({}: Props) {
 
         <span className={styles.wrap}>
           <a href={CONTACT_FORM_URL} target='_blank' rel='noopener noreferrer' className={styles.anchor}>
-            Report bugs, Rquests
+            Report bugs, Requests
           </a>
         </span>
 

@@ -2,7 +2,8 @@
 
 import './Distance.sass'
 import {useDistanceContext} from '@/provider/DistanceProvider'
-import {MouseEvent, useCallback} from 'react'
+import {useCallback} from 'react'
+import type {CSSProperties} from 'react'
 import AssetImage from '@/components/AssetImage'
 type Props = {}
 
@@ -11,19 +12,15 @@ const NUM_DISTANCE = 18
 function Distance({}: Props) {
   const {distance, methods: {setDistance}} = useDistanceContext()
 
-  const onClickDistance = useCallback((e:MouseEvent<HTMLLIElement>) =>{
-    const value = parseInt(e.currentTarget.dataset.distance as string) || 10000
-    setDistance(value)
-  }, [])
-
   const currentPosition = useCallback(() => {
     return {
-      bottom: `${((distance/10000) - 1) * 32}px`,
-    }
+      // 距離目盛りの高さをCSSと共有し、小さなPC画面でも選択位置を一致させる。
+      '--distance-position': (distance / 10000) - 1,
+    } as CSSProperties
   }, [distance])
 
   return <>
-    <div className="Distance">
+    <div className="Distance" aria-label="Target distance">
       <div className="Distance_wrap">
         <div className="Distance_destination">
           <AssetImage imageName="img_temporal_tear.webp" alt="" />
@@ -33,9 +30,11 @@ function Distance({}: Props) {
             {Array.from({length: NUM_DISTANCE}, (_, i) => {
               const distance_num = (NUM_DISTANCE - i) * 10000
               return (
-                <li className="Distance_item" onClick={onClickDistance} data-distance={distance_num} key={`distance-${distance_num}`}>
+                <li key={`distance-${distance_num}`}>
+                  <button type="button" className="Distance_item" onClick={() => setDistance(distance_num)} data-distance={distance_num} aria-label={`Target distance ${distance_num.toLocaleString('en-US')} km`} aria-pressed={distance === distance_num}>
                   <div className="Distance_dot"></div>
                   <div className="Distance_value">{distance_num.toLocaleString()} km</div>
+                  </button>
                 </li>
               )
             })}

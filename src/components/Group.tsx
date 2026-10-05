@@ -3,7 +3,7 @@ import Cell from '@/components/Cell'
 import {useCallback} from 'react'
 import useModules from '@/hooks/useModules'
 type Props = {
-  group: any
+  group: tGroup
 }
 
 function Group({group}: Props) {
@@ -24,7 +24,11 @@ function Group({group}: Props) {
         <div className={styles.items}>
           {group && group.items && group.items.map((item:tItem) => <div className={styles.wrap} key={item.name}>
             {item && item.options && <div className={styles.option}>+</div>}
-            <div className={styles.item} onClick={(e) => onClick(e, item)} onContextMenu={(e) => onRightClick(e, item)}><Cell item={item}/></div>
+            <div className={styles.item}>
+              <button type="button" className={styles.select} aria-label={`${item.multiple ? 'Add' : 'Select'} ${item.name}`} aria-pressed={Boolean(modules.includes(item))} onClick={(e) => onClick(e, item)} onContextMenu={(e) => onRightClick(e, item)}><Cell item={item}/></button>
+              {/* タッチ端末は右クリックできないため、同じ削除操作を選択欄からも提供する。 */}
+              {item.multiple && <button type="button" className={styles.remove} aria-label={`Remove ${item.name}`} disabled={!modules.includes(item)} onClick={() => modules.removeModule(item)}>−</button>}
+            </div>
           </div>)}
         </div>
     </div>
