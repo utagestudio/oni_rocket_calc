@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    siteName: SITE_TITLE,
+    siteName: 'UTAGE.GAMES',
     url: SITE_URL,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
         url: '/assets/ogp.png',
         width: 1200,
         height: 630,
-        alt: 'design',
+        alt: 'Oxygen Not Included rocket fuel calculator with module selection, distance, and fuel results',
       },
     ],
-    locale: 'en',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
