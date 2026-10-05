@@ -5,21 +5,26 @@
   line-height: 1
   color: #F8F8F8
   display: grid
-  grid-template-areas: "name name" "title version" "usage usage"
+  grid-template-areas: "heading version" "usage usage"
   gap: 0 16px
   justify-content: start
   align-items: baseline
   @at-root
+    .Header_heading
+      grid-area: heading
+      display: flex
+      flex-direction: column
+      font: inherit
+      min-width: 0
     .Header_name
-      grid-area: name
       font-size: 24px
       letter-spacing: 0.1em
     .Header_title
-      grid-area: title
       font-size: 64px
     .Header_version
       grid-area: version
       font-size: 24px
+      align-self: end
     .Header_usage
       grid-area: usage
       font-family: var(--font-mplus)
@@ -27,3 +32,40 @@
       display: flex
       gap: 8px
       letter-spacing: .1em
+      align-items: center
+    .Header_desktopUsage
+      display: flex
+      align-items: center
+      gap: 8px
+    .Header_touchUsage
+      display: none
+
+@media (min-width: 1100px) and (max-width: 1399px), (min-width: 1100px) and (max-height: 850px)
+  .Header_title
+    font-size: 48px
+  .Header_name
+    font-size: 20px
+  .Header_version
+    font-size: 18px
+  .Header_usage
+    font-size: 12px
+    letter-spacing: .04em
+
+@media (max-width: 1099px)
+  .Header
+    gap: 8px
+  .Header_title
+    font-size: clamp(28px, 6.5vw, 44px)
+  .Header_name
+    font-size: 16px
+    letter-spacing: .04em
+  .Header_version
+    font-size: 14px
+  .Header_usage
+    font-size: 12px
+    letter-spacing: normal
+    flex-wrap: wrap
+  .Header_desktopUsage
+    display: none
+  .Header_touchUsage
+    display: inline

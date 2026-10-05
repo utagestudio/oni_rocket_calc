@@ -2,6 +2,7 @@ import type {Metadata, Viewport} from "next";
 import {Barriecito, M_PLUS_Rounded_1c} from "next/font/google";
 import "./globals.sass";
 import { Analytics } from "@vercel/analytics/next"
+import {SITE_DESCRIPTION, SITE_TITLE, SITE_URL} from '@/lib/seo'
 
 const barriecito = Barriecito({
   variable: "--font-barriecito",
@@ -16,27 +17,27 @@ const mplus = M_PLUS_Rounded_1c({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rocket-calc.utage.games'),
-  title: "Rocket Fuel Calculator for Oxygen Not Included Base Game | UTAGE.GAMES",
-  description: "Automatic fuel amount calculator for rockets in Oxygen Not Included",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: '/', // ルートの canonical
   },
   openGraph: {
     type: 'website',
-    siteName: 'Rocket Fuel Calculator for Oxygen Not Included Base Game | UTAGE.GAMES',
-    url: 'https://rocket-calc.utage.games',
-    title: 'Rocket Fuel Calculator for Oxygen Not Included Base Game | UTAGE.GAMES',
-    description: 'Automatic fuel amount calculator for rockets in Oxygen Not Included',
+    siteName: 'UTAGE.GAMES',
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: [
       {
         url: '/assets/ogp.png',
         width: 1200,
         height: 630,
-        alt: 'design',
+        alt: 'Oxygen Not Included rocket fuel calculator with module selection, distance, and fuel results',
       },
     ],
-    locale: 'en',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',

@@ -4,7 +4,7 @@
   grid-template-rows: 1fr auto
   grid-template-areas: "main" "footer"
   width: 100%
-  height: 100%
+  min-height: 100svh
 .main
   grid-area: main
   display: flex
@@ -18,14 +18,15 @@
 
 .wrapper
   display: grid
-  grid-template-columns: 800px auto 1fr
+  grid-template-columns: minmax(0, 800px) auto 170px
   grid-template-rows: auto 1fr auto
   grid-template-areas: "heading reset copyright" "content distance rocket" "results distance rocket"
   gap: 8px 16px
   box-sizing: border-box
-  padding: 48px 48px 48px 48px
-
-  max-width: 1280px
+  padding: 32px
+  width: 100%
+  max-width: 1248px
+  min-width: 0
 
 .heading
   grid-area: heading
@@ -42,6 +43,7 @@
   grid-area: content
   align-self: center
   padding: 16px 0
+  min-width: 0
 .distance
   grid-area: distance
 .rocket
@@ -49,5 +51,31 @@
   display: flex
 .results
   grid-area: results
+  min-width: 0
 .footer
   grid-area: footer
+
+// 距離の縦目盛りを残したまま、一般的なPCの高さで操作領域を収める。
+@media (min-width: 1100px) and (max-height: 850px)
+  .wrapper
+    padding: 12px 24px
+    gap: 8px 16px
+  .content
+    padding: 8px 0
+
+// SPは既存の領域を順に並べる暫定対応。結果確認には縦スクロールを許容する。
+@media (max-width: 1099px)
+  .main
+    align-items: flex-start
+  .wrapper
+    grid-template-columns: minmax(0, 1fr)
+    grid-template-rows: auto
+    grid-template-areas: "heading" "reset" "content" "distance" "results" "rocket"
+    padding: 20px 16px
+    gap: 20px
+  .reset
+    justify-self: end
+  .content
+    padding: 0
+  .rocket
+    justify-content: center

@@ -50,3 +50,31 @@
             line-height: 0.8
             letter-spacing: .08em
             font-weight: 700
+
+@media (min-width: 1100px) and (max-width: 1399px), (min-width: 1100px) and (max-height: 850px)
+  .Results_wrap
+    padding: 12px
+    gap: 12px
+    min-height: 180px
+  .Results_cell
+    gap: 12px
+    &.-steam, &.-fuel, &.-oxidizer, &.-thruster
+      min-height: 120px
+  .Results_title
+    font-size: 14px
+
+@media (max-width: 1099px)
+  .Results_wrap
+    grid-template-columns: minmax(0, 1fr)
+  .Results_cell
+    &.-steam, &.-fuel, &.-oxidizer, &.-thruster, &.-amount
+      grid-area: auto
+      min-height: 0
+  .Results_content
+    min-width: 0
+  .Results_cell.-amount
+    flex-wrap: wrap
+
+@media (max-width: 1099px)
+  .Results_wrap
+    gap: 24px

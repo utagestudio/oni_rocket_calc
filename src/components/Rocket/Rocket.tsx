@@ -40,7 +40,7 @@ function Rocket({}: Props) {
           </>}
           <li className="Rocket_module" key={`engine:${modules.engine.name}`}><ModuleImage module={modules.engine} /></li>
         </ul>
-        <button className="Rocket_change" onClick={toggleSelectedModuleArea}>CHANGE</button>
+        <button type="button" className="Rocket_change" aria-label="Switch rocket illustration and module list" aria-pressed={isShowSelectedModuleArea} onClick={toggleSelectedModuleArea}>CHANGE</button>
       </div>
     </div>
   </>

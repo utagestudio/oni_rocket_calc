@@ -19,6 +19,21 @@
       gap: 8px
     .item
       flex: 0 0 100px
+      position: relative
+    .select
+      display: block
+      width: 100%
+      border: 0
+      border-radius: 8px
+      background: transparent
+      font: inherit
+      text-align: inherit
+      cursor: pointer
+      &:focus-visible
+        outline: 3px solid #E4801D
+        outline-offset: 2px
+    .remove
+      display: none
     .option
       font-style: normal
       font-weight: 700
@@ -28,3 +43,35 @@
       display: flex
       align-items: center
 
+@media (min-width: 1100px) and (max-width: 1399px), (min-width: 1100px) and (max-height: 850px)
+  .Group
+    gap: 10px
+  .item
+    flex-basis: 88px
+
+@media (max-width: 1099px)
+  .items
+    display: grid
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    gap: 8px
+  .item
+    min-width: 0
+  .option
+    display: none
+  .remove
+    display: block
+    width: 100%
+    min-height: 44px
+    border: 1px solid rgba(255,255,255,.25)
+    border-radius: 6px
+    margin-top: 4px
+    background: rgba(255,255,255,.12)
+    color: #fff
+    font: inherit
+    font-size: 20px
+    cursor: pointer
+    &:disabled
+      opacity: .3
+      cursor: default
+    &:focus-visible
+      outline: 3px solid #E4801D

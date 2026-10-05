@@ -13,14 +13,14 @@ function OxidizerTank({required}: Props) {
     <Tank required={required} limitAmountPerTank={2700} numberOfTanks={oxidizerTanks.length} image={oxidizerType === 'solid' ? 'img_solid_oxidizer_tank' : 'img_liquid_oxidizer_tank'} >
       <div className="OxidizerTank">
         <ul className="OxidizerTank_selector">
-          <li className={`OxidizerTank_type -solid ${oxidizerType === 'solid' ? '-selected' : ''}`} onClick={() => setOxidizerType('solid')}>
+          <li><button type="button" className={`OxidizerTank_type -solid ${oxidizerType === 'solid' ? '-selected' : ''}`} aria-label="Use Oxylite" aria-pressed={oxidizerType === 'solid'} onClick={() => setOxidizerType('solid')}>
             <AssetImage className="OxidizerTank_typeImg" imageName="img_oxylite.webp" alt="Oxylite" />
             Oxylite
-          </li>
-          <li className={`OxidizerTank_type -liquid ${oxidizerType === 'liquid' ? '-selected' : ''}`} onClick={() => setOxidizerType('liquid')}>
+          </button></li>
+          <li><button type="button" className={`OxidizerTank_type -liquid ${oxidizerType === 'liquid' ? '-selected' : ''}`} aria-label="Use Liquid Oxygen" aria-pressed={oxidizerType === 'liquid'} onClick={() => setOxidizerType('liquid')}>
             <AssetImage className="OxidizerTank_typeImg" imageName="img_liquid_oxygen.webp" alt="Liquid Oxygen" />
             Liquid Oxygen
-          </li>
+          </button></li>
         </ul>
       </div>
     </Tank>
