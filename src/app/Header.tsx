@@ -1,6 +1,7 @@
 import './Header.sass'
 import Image from 'next/image'
 import {PRODUCT_NAME, PRODUCT_VERSION} from '@/lib/product'
+import CalculatorHelp from '@/components/CalculatorHelp'
 type Props = {}
 
 // if it uses 'slot', you need to specify {children}: React.PropsWithChildren<Props>
@@ -19,6 +20,7 @@ function Header({}: Props) {
         Add Module
         <Image className="Header_mouse -right" src="/assets/images/ico_right_click.svg" alt="right click" width={13} height={18} unoptimized />
         Remove Module
+        <CalculatorHelp />
       </div>
     </header>
   </>
