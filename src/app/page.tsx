@@ -6,9 +6,11 @@ import MemorySlots from '@/components/MemorySlots'
 import AmountProvider from '@/provider/AmountProvider'
 import ModulesProvider from '@/provider/ModulesProvider'
 import DistanceProvider from '@/provider/DistanceProvider'
+import {applicationSchema} from '@/lib/seo'
 
 export default function Home() {
   return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(applicationSchema).replace(/</g, '\\u003c')}} />
     <div className={styles.page}>
       <div className={styles.main}>
         <div className={styles.wrapper}>
