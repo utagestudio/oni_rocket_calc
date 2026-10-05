@@ -44,6 +44,12 @@ export default function CalculatorHelp() {
       <p><strong>Unreached</strong> means that this calculator could not find enough range for the selected configuration within its search limits. Try a shorter distance, fewer heavy modules, a different engine, or a different oxidizer.</p>
       <h3>Rocket slots and reset</h3>
       <p>Rocket 1–5 keep separate configurations in this browser. The small reset icon restores that slot to its initial configuration. The main Reset removes optional modules and thrusters while keeping the capsule, engine, oxidizer choice, and distance. CHANGE switches between the rocket illustration and the selected-module list.</p>
+      <h3>Calculation model and limits</h3>
+      <p>The estimate includes the selected parts, fuel tanks, oxidizer tank, fuel, oxidizer, and thruster load. It uses a mass penalty of max(mass, (mass / 300)<sup>3.2</sup>) and engine efficiencies of 20 / 40 / 50 / 60 km per kg for Steam / Petroleum / Biodiesel / Hydrogen. Liquid Oxygen applies a 1.33 efficiency multiplier to liquid-fuel engines.</p>
+      <p>The current model searches whole kilograms up to 900 kg for Steam or 2,700 kg across three fuel tanks for other engines, with one oxidizer tank. Each thruster contributes a nominal 12,000 km range bonus and requires 400 kg each of Iron and Oxylite; its extra mass is also included. Cargo contents, mods, and changes to game mechanics are not modelled. These are this tool’s assumptions, not a guarantee for every game version; check the in-game range before launch.</p>
+      <h3>References and maintenance</h3>
+      <p>See the <a href="https://oxygennotincluded.wiki.gg/wiki/Rockets" target="_blank" rel="noopener noreferrer">base-game rocket reference</a> and <a href="https://github.com/utagestudio/oni_rocket_calc/blob/master/src/domain/rocketFuel.ts" target="_blank" rel="noopener noreferrer">this calculator’s calculation model</a>. The Wiki describes the game; the source defines the assumptions used here.</p>
+      <p>Calculator version: {PRODUCT_VERSION}. <a href="https://github.com/utagestudio/oni_rocket_calc/commits/master/" target="_blank" rel="noopener noreferrer">Development history</a> · <a href={CONTACT_FORM_URL} target="_blank" rel="noopener noreferrer">Report a bug or request</a>.</p>
       <p>This is a free, unofficial fan-made tool, unaffiliated with or endorsed by Klei Entertainment. English is currently supported. Mobile layout is provisional; scroll to see results.</p>
     </dialog>
   </>
