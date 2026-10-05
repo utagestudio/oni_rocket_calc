@@ -58,6 +58,12 @@ Without a valid ID, neither GTM nor the consent dialog is enabled. GTM loads onl
 
 Consent covers analytics only. Advertising consent signals remain denied. Configure the GTM container for analytics and ensure every advertising or custom tag respects the appropriate consent checks; arbitrary custom tags do not automatically respect Google consent signals. Vercel Analytics continues to run independently.
 
+## SEO and help
+
+Help opens a guide with usage, base-game scope, calculation assumptions, and limits. Its content is included in the initial HTML while the calculator stays compact. The provisional mobile layout supports tap controls and vertical scrolling; a full mobile redesign and Japanese localisation remain separate work.
+
+See [SEO and responsive layout](docs/seo.md) for metadata, sitemap, structured data, verification, and post-deployment checks.
+
 ## Calculation Model
 
 The core fuel calculation lives in:
@@ -160,6 +166,12 @@ Vercel の対象プロジェクトで **Settings → Environment Variables** を
 有効な ID がある場合だけ同意ダイアログを表示し、許可後に GTM を読み込みます。選択は localStorage に180日間保存し、同意文面やコンテナの変更時は再確認します。Cookie settings から変更でき、同意撤回時には読み込み済みタグを停止するためリロードします。作成済み Cookie の削除は行いません。保存できない場合、選択は現在のページ内だけ有効です。
 
 同意対象はアクセス解析です。広告関連の同意シグナルは拒否のままです。GTM コンテナも解析用途に設定し、広告タグやカスタムタグには必要な同意チェックを設定してください。任意のカスタムタグが Google の同意シグナルに自動対応するわけではありません。Vercel Analytics は別途動作します。
+
+## SEO とヘルプ
+
+Help から使い方・Base Game の対応範囲・計算前提と制約を確認できます。説明は初期 HTML に含め、通常の計算画面を圧迫しないモーダルにまとめています。スマホはタップ操作と縦スクロールによる暫定対応です。本格的なスマホ設計と日本語化は別途対応します。
+
+メタ情報、サイトマップ、構造化データ、公開後の確認手順は [SEO and responsive layout](docs/seo.md) を参照してください。
 
 ## 計算モデル
 
