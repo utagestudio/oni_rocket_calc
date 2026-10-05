@@ -20,7 +20,7 @@ function Group({group}: Props) {
 
   return <>
     <div className={styles.Group}>
-        <h1 className={styles.title}>{group.title}</h1>
+        <h2 className={styles.title}>{group.title === 'HEAD' ? 'CAPSULES' : group.title === 'MODULES' ? 'ROCKET MODULES' : group.title}</h2>
         <div className={styles.items}>
           {group && group.items && group.items.map((item:tItem) => <div className={styles.wrap} key={item.name}>
             {item && item.options && <div className={styles.option}>+</div>}

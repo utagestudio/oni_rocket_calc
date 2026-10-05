@@ -5,21 +5,26 @@
   line-height: 1
   color: #F8F8F8
   display: grid
-  grid-template-areas: "name name" "title version" "usage usage"
+  grid-template-areas: "heading version" "usage usage"
   gap: 0 16px
   justify-content: start
   align-items: baseline
   @at-root
+    .Header_heading
+      grid-area: heading
+      display: flex
+      flex-direction: column
+      font: inherit
+      min-width: 0
     .Header_name
-      grid-area: name
       font-size: 24px
       letter-spacing: 0.1em
     .Header_title
-      grid-area: title
       font-size: 64px
     .Header_version
       grid-area: version
       font-size: 24px
+      align-self: end
     .Header_usage
       grid-area: usage
       font-family: var(--font-mplus)
@@ -27,3 +32,11 @@
       display: flex
       gap: 8px
       letter-spacing: .1em
+      align-items: center
+    .Header_desktopUsage
+      display: flex
+      align-items: center
+      gap: 8px
+    .Header_touchUsage
+      display: none
+
