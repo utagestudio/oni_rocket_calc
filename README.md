@@ -21,7 +21,7 @@ Select a rocket head, engine, modules, thrusters, oxidizer type, and target dist
 - React 19
 - TypeScript
 - Sass
-- Node.js 24.14.1 via mise
+- Node.js 24.22.1 via mise
 
 ## Getting Started
 
@@ -40,6 +40,8 @@ This project should be run with the Node.js version pinned in `.mise.toml`:
 mise install
 mise exec -- npm run dev
 ```
+
+`package.json` selects Node.js 24.x for Vercel deployments. Vercel manages minor and patch updates; `.mise.toml` pins the local version only. After deployment, check `node -v` in the build logs (temporarily prepend it to the Build Command) and confirm 24.22.1 or a newer patched 24.x release. See [Vercel's Node.js version documentation](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
 
 ## Scripts
 
@@ -130,7 +132,7 @@ Oxygen Not Included の Base Game 向け非公式ロケット燃料計算ツー�
 - React 19
 - TypeScript
 - Sass
-- mise 経由の Node.js 24.14.1
+- mise 経由の Node.js 24.22.1
 
 ## 開発環境の起動
 
@@ -149,6 +151,8 @@ npm run dev
 mise install
 mise exec -- npm run dev
 ```
+
+Vercel 向けには `package.json` で Node.js 24.x を指定します。マイナー・パッチ更新は Vercel 側が管理し、`.mise.toml` の固定はローカル環境だけに適用されます。デプロイ後は Build Command の先頭に一時的に `node -v` を追加してビルドログを確認し、24.22.1 以上の修正済み 24 系が使われていることを確認してください。[Vercel の Node.js バージョン仕様](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)も参照してください。
 
 ## スクリプト
 
